@@ -30,5 +30,37 @@ const REFERENDUMS = [
     keyFigure: "$10.46M (FY2024) → $15.03M (FY2025) diverted to RDA Fund",
     summary: "Eagle Mountain held its certified tax rate flat for roughly 16 years — but its own ACFRs show the city's Redevelopment Agency Fund capturing a fast-growing share of city-wide property tax (34% in FY2024, 40% in FY2025) before it reaches the General Fund, via five known CRA/RDA project areas.",
     link: "eagle-mountain-finance-history.html"
+  },
+  {
+    id: "box-elder-bear-stratos",
+    county: "Box Elder County",
+    city: "Brigham City area",
+    title: "B.E.A.R. vs. the Stratos Data Center: The Referendum That Never Got a Signature Sheet",
+    subtitle: "The county attorney ruled the MIDA project resolutions were 'administrative,' not referable — blocking the signature-gathering window before it opened. Now in court.",
+    resolution: "Resolutions 26-11 & 26-12",
+    filedDate: "2026-05-08",
+    referableDate: "Rejected 2026-05-28 (on appeal)",
+    lastUpdated: "2026-09-17",
+    tags: ["MIDA", "tax increment financing", "referability determination", "Box Elder County", "data center"],
+    status: "disputed",
+    keyFigure: "0 signatures collected — window never opened",
+    summary: "Box Elder Accountability Referendum (B.E.A.R.) tried to force a public vote on the MIDA-approved Stratos data center project. The County Attorney rejected the referendum applications as targeting 'administrative' rather than 'legislative' acts, blocking signature-gathering before it began. B.E.A.R.'s appeal is pending in 1st District Court as of Sept. 2026.",
+    link: "pid-mida-referendums-blocked.html#box-elder"
+  },
+  {
+    id: "summit-county-kimball-junction",
+    county: "Summit County",
+    city: "Kimball Junction",
+    title: "Summit County's Referendum Against Dakota Pacific: Signatures Gathered, Then a Technicality — Then Moot",
+    subtitle: "Organizers gathered 6,000+ signatures against a state-overridden rezone; a binding-format technicality disqualified enough to fall short, and the follow-on lawsuit was dismissed as moot once the Legislature approved the project by separate statute.",
+    resolution: "Ordinance No. 987 (implementing S.B. 84, 2023)",
+    filedDate: "2025-01-27",
+    referableDate: "Declared insufficient 2025-06-23",
+    lastUpdated: "2026-09-17",
+    tags: ["tax increment financing", "HTRZ", "election date dispute", "Summit County", "development agreement"],
+    status: "confirmed",
+    keyFigure: "~3,214 of 6,000+ signatures certified — fell ~1,340 short of the 4,554 threshold",
+    summary: "A citizen referendum against Summit County's Dakota Pacific/Kimball Junction rezone gathered over 6,000 signatures, but most petition packets were disqualified for failing the Election Code's binding requirements. The developer's own executives had separately formed a group urging residents not to sign. The follow-on lawsuit was dismissed as moot in Aug. 2025 after the Legislature passed S.B. 26, independently approving the same project.",
+    link: "pid-mida-referendums-blocked.html#summit-county"
   }
 ];
