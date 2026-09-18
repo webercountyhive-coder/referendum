@@ -62,5 +62,21 @@ const REFERENDUMS = [
     keyFigure: "~3,214 of 6,000+ signatures certified — fell ~1,340 short of the 4,554 threshold",
     summary: "A citizen referendum against Summit County's Dakota Pacific/Kimball Junction rezone gathered over 6,000 signatures, but most petition packets were disqualified for failing the Election Code's binding requirements. The developer's own executives had separately formed a group urging residents not to sign. The follow-on lawsuit was dismissed as moot in Aug. 2025 after the Legislature passed S.B. 26, independently approving the same project.",
     link: "pid-mida-referendums-blocked.html#summit-county"
+  },
+  {
+    id: "utah-referendum-law-history",
+    county: "Statewide",
+    city: "Utah",
+    title: "The Rules Keep Changing: How Utah's Referendum Law Got Harder to Use",
+    subtitle: "A bill-by-bill legislative history — the 2019 overhaul that raised land-use signature thresholds, the 2022-2023 bills that tightened petition procedure and extended two-thirds immunity, and the easing bills that died.",
+    resolution: "H.B. 119 (2019), H.B. 38 (2023), S.B. 199 (2023), and related bills",
+    filedDate: "N/A",
+    referableDate: "N/A",
+    lastUpdated: "2026-09-18",
+    tags: ["referability determination", "legislative history", "statewide", "election date dispute"],
+    status: "confirmed",
+    keyFigure: "16% signature threshold for land-use referendums vs. 7.5% for general-law (H.B. 119, 2019)",
+    summary: "Since 2019, the Utah Legislature has repeatedly rewritten local referendum law — a separate, higher signature threshold for land-use referendums, a new geographic-distribution requirement, tighter petition-packet procedure, and expanded two-thirds immunity. Every bill in this record that would have made referendums easier to use — in 2006, 2013, 2022, and 2025 — died, three of them when a chamber struck its own enacting clause. Every bill that made the process harder passed.",
+    link: "utah-referendum-law-history.html"
   }
 ];
