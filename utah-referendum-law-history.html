@@ -143,6 +143,23 @@
     .timeline-viz { margin-left: 56px; margin-right: 56px; }
   }
   pre.mermaid, .mermaid-wrap .nodeLabel, .mermaid-wrap .edgeLabel, .mermaid-wrap foreignObject div { font-family: 'Source Sans 3', Arial, sans-serif !important; }
+  .sig{background:#fff;color:#1F1B16;border-top:4px solid #14213D;padding:18px 18px 22px;}
+  .sig-inner{max-width:1200px;margin:0 auto;padding:24px 20px 26px;}
+  .sig h2{font-size:clamp(24px,3.4vw,34px);margin:0 0 10px;line-height:1.15;}
+  .sig h3{font-size:21px;margin:22px 0 10px;}
+  .sig-lede{font-size:18px;line-height:1.55;max-width:72ch;margin:0 0 16px;}
+  .srow{display:grid;grid-template-columns:minmax(150px,300px) 1fr 140px;gap:12px;align-items:center;margin-bottom:12px;}
+  .sl{font-size:17px;font-weight:600;} .sv{font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:600;}
+  .st2{height:34px;background:#ece6d6;border:1px solid #B7AC91;position:relative;}
+  .sf{position:absolute;left:0;top:0;bottom:0;} .sf.c{background:#2F5A8F;} .sf.p{background:#A5301E;}
+  .sig-table-wrap{overflow-x:auto;margin:14px 0;}
+  .sig-table{width:100%;border-collapse:collapse;font-size:16px;line-height:1.5;}
+  .sig-table th,.sig-table td{border:1px solid #B7AC91;padding:10px 12px;text-align:left;vertical-align:top;}
+  .sig-table th{background:#14213D;color:#F5F1E6;font-size:14px;letter-spacing:.04em;text-transform:uppercase;}
+  .sig-facts{padding-left:22px;margin:0;font-size:17px;line-height:1.6;} .sig-facts li{margin-bottom:10px;}
+  .sig-note{font-size:14.5px;color:#4A443A;background:#f7f1de;border-left:4px solid #8a7a3d;padding:10px 14px;margin:14px 0 0;line-height:1.55;}
+  .sig a{color:#A5301E;font-weight:600;}
+  @media(max-width:700px){.srow{grid-template-columns:1fr;gap:4px;} .sig-table,.sig-table tbody,.sig-table tr,.sig-table td{display:block;width:100%;} .sig-table tr:first-child{display:none;} .sig-table tr{border:1px solid #B7AC91;margin-bottom:10px;} .sig-table td{border:none;border-bottom:1px dashed #B7AC91;} .sig-table td:nth-child(2)::before{content:"Candidates: ";font-weight:700;} .sig-table td:nth-child(3)::before{content:"Citizens: ";font-weight:700;}}
 </style>
 </head>
 <body>
@@ -161,7 +178,7 @@
       <span>UTAH CODE TITLE 20A, CHAPTER 7</span>
       <span>KEY CHANGES: 2019, 2022, 2023</span>
     </div>
-    <div class="pub-date">Published Sept. 18, 2026 &middot; Updated Oct. 1, 2026: added a large-print diagram of today's local referendum hurdles, a section on 2026 Constitutional Amendment B, a "People in this record" table, source links, and a corrected official title for H.B. 119.</div>
+    <div class="pub-date">Published Sept. 18, 2026 &middot; Updated Oct. 1, 2026: added a large-print diagram of today's local referendum hurdles, a section on 2026 Constitutional Amendment B, a "People in this record" table, source links, a corrected official title for H.B. 119, and a "Two Kinds of Ballot Signatures" section.</div>
   </div>
 </header>
 
@@ -171,13 +188,14 @@
     <a href="#how-it-works">How It Works Today</a>
     <a href="#2019-overhaul">2019 Overhaul</a>
     <a href="#petition-procedure">Petition Procedure</a>
-    <a href="#gatherer-fraud">When Gatherers Committed Fraud</a>
+    <a href="#gatherer-fraud">When Gatherers Were Charged</a>
     <a href="#immunity">Two-Thirds Immunity</a>
     <a href="#doctrine">The Judicial Backdrop</a>
     <a href="#died-vs-passed">What Died, What Passed</a>
     <a href="#rubric">Graded: Good for the Public?</a>
     <a href="#timeline">Full Timeline</a>
     <a href="#amendment-b">2026: Amendment B</a>
+    <a href="#signatures">Two Kinds of Signatures</a>
     <a href="#people">People</a>
     <a href="#questions">Questions</a>
     <a href="#sources">Sources</a>
@@ -303,20 +321,20 @@ flowchart TD
   </section>
 
   <section id="gatherer-fraud">
-    <h2>3. When the Gatherers Themselves Committed Fraud</h2>
-    <p>The petition-procedure tightening covered above (H.B. 218, H.B. 38) is usually framed around protecting the process from outside interference. But the record of criminal charges filed in Utah shows the more immediate integrity problem has come from inside the paid-signature-gathering industry itself — companies hired by campaigns and committees to collect the signatures that get a candidate on the ballot or a measure in front of voters.</p>
+    <h2>3. When Signature Gatherers Were Charged or Accused of Fraud</h2>
+    <p>The petition-procedure tightening covered above (H.B. 218, H.B. 38) is usually framed around protecting the process from outside interference. But the criminal charges and fraud allegations filed in Utah in recent years have involved people working inside the paid-signature-gathering industry itself — companies hired by campaigns and committees to collect the signatures that get a candidate on the ballot or a measure in front of voters.</p>
 
     <div class="bill-grid">
       <div class="bill-card tighten">
         <span class="bill-tag">Charged, March 2025</span>
         <h4>Gathering Inc.</h4>
-        <p>Hired by the 2024 signature-gathering campaigns of Gov. Spencer Cox, U.S. Senate candidate Brad Wilson, and state Sen. Don Ipson, among others. The Utah Attorney General's Office charged 11 people who worked as circulators for the firm with forgery, communication fraud, and breach of certificate-of-nomination procedures. Per the charges: one circulator had 2,146 of 2,243 submitted signatures rejected; another had an 80% invalidation rate; several admitted letting spouses sign for each other or forging names outright to increase their per-signature pay.</p>
+        <p>Hired by 2024 candidate campaigns, including Gov. Spencer Cox&rsquo;s. News reports also named U.S. Senate candidate Brad Wilson and state Sen. Don Ipson among its 2024 clients. Most charging documents do not say which candidate each defendant was gathering for. The Utah Attorney General's Office charged 11 people who worked as circulators for the firm with forgery, communication fraud, and breach of certificate-of-nomination procedures. According to the charging documents, one circulator had 2,146 of 2,243 submitted signatures rejected; another had an 80% invalidation rate; and investigators wrote that several told them they let spouses sign for each other or signed names themselves to increase their per-signature pay. County clerks flagged the packets during verification.</p>
         <p class="bill-meta">Utah AG charges filed 3/10/2025 &middot; 11 defendants</p>
       </div>
       <div class="bill-card tighten">
         <span class="bill-tag">Charged</span>
         <h4>Battleground USA LLC</h4>
-        <p>A separate scheme tied to the 2022 2nd Congressional District signature-gathering effort for candidate Bruce Hough. Owner Daniel Jacob McWilliams was paid over $58,000 for the contract; 13 people were charged, including circulators who used Nevada residents in violation of Utah residency requirements, forged verification forms, and fabricated lease documents and text messages to cover the scheme before submitting the packets to the Lieutenant Governor's office.</p>
+        <p>A separate case tied to the 2022 2nd Congressional District signature-gathering effort for candidate Bruce Hough. Owner Daniel Jacob McWilliams was paid over $58,000 for the contract; 13 people were charged. Prosecutors alleged circulators used Nevada residents despite Utah residency requirements, falsified verification forms, and created false lease documents and text messages before the packets were submitted to the Lieutenant Governor's office.</p>
         <p class="bill-meta">13 defendants charged</p>
       </div>
       <div class="bill-card tighten">
@@ -527,7 +545,7 @@ flowchart TD
       <li class="died"><span class="date">2022</span>H.B. 185 (would lower the 2019 thresholds) dies when the House strikes its own enacting clause.</li>
       <li class="tighten"><span class="date">2023</span>H.B. 38 lengthens hearing-notice requirements and formalizes petition-packet procedure.</li>
       <li class="tighten"><span class="date">2023</span>S.B. 199 extends a version of two-thirds immunity to transit area land use law at the local level.</li>
-      <li class="died"><span class="date">March 2025</span>Utah AG charges 11 people who worked as circulators for Gathering Inc. with forgery and fraud tied to 2024 primary signature-gathering for Cox, Brad Wilson, and Don Ipson's campaigns.</li>
+      <li class="died"><span class="date">March 2025</span>Utah AG charges 11 circulators, at least five of whom worked for Gathering Inc., with forgery and fraud-related counts tied to 2024 primary candidate petitions. Gathering Inc.&rsquo;s 2024 clients included Gov. Cox&rsquo;s campaign.</li>
       <li class="died"><span class="date">Feb. 2026</span>Utah County Clerk Aaron Davidson flags what he calls the most extensive signature fraud he's seen in the Patriot Grassroots-run Prop 4 repeal effort; the campaign misses its Feb. 15 deadline well short of the required signatures.</li>
       <li class="died"><span class="date">2025</span>H.B. 408 (would create a new referendum right over school-board tax decisions, with its own carve-out) clears House committee 7-3-3 on Feb. 19 over opposition testimony from Lexi Cunningham (Executive Director of both the Utah School Superintendents Association and the Utah School Boards Association) and Granite School District Superintendent Ben Horsley. Passes the full House 40-33-2 on Feb. 25. In Senate committee on March 3, Horsley again testifies against it, joined this time by residents and Utah Eagle Forum members testifying in favor; the committee fails to recommend it, 3-4-0. The Senate strikes its own enacting clause on March 7.</li>
       <li class="tighten"><span class="date">2026</span>Box Elder County's attorney invokes the "administrative vs. legislative" doctrine to reject B.E.A.R.'s referendum against the Stratos/MIDA project &mdash; now on appeal.</li>
@@ -563,6 +581,42 @@ flowchart TD
       <strong>Related reading, different subject</strong>
       H.B. 356 (2025), &ldquo;County Governance Amendments&rdquo; (primary sponsor Rep. Jordan Teuscher, Senate sponsor Sen. Michael McKell; the third substitute was offered by Sen. Brady Brammer), is sometimes mentioned alongside referendum law, but it is not about referendums. It deals with county forms of government &mdash; study committees, optional plans, and how council members are elected. For how it played out in one county, see <a href="uintah-prop-9-form-of-government.html">Uintah County Prop 9: Commission or Council-Manager?</a>
     </div>
+  </section>
+
+  <section id="signatures" class="sig">
+    <h2>10. Two Kinds of Ballot Signatures</h2>
+    <p class="diagram-caption"><strong>Two paths to the ballot:</strong> candidates and citizens both gather signatures, under different rules.</p>
+    <div class="mermaid-wrap"><pre class="mermaid">
+flowchart TD
+  C["Candidate<br/>(example: governor)"] --> C1["28,000<br/>signatures"]
+  C1 --> C2["On the<br/>primary ballot"]
+  P["Citizens<br/>(statewide petition)"] --> P1["About 140,748<br/>signatures across<br/>26 of 29 districts"]
+  P1 --> P2["On the<br/>general ballot"]
+  P2 --> P3["Simple majority today;<br/>60% for tax initiatives<br/>if Amendment B passes"]
+</pre></div>
+    <p class="sig-lede">Signatures are how anything gets onto a Utah ballot. Candidates use them to put their own names on the primary ballot. Citizens use them to put a law, or a government decision, to a public vote. The rules are not the same.</p>
+    <div class="sig-bars" role="img" aria-label="A statewide candidate such as governor needs 28,000 signatures. A 2026 statewide citizen petition needs about 140,748.">
+      <div class="srow"><span class="sl">Candidate for governor (to reach the primary)</span><span class="st2"><span class="sf c" style="width:19.9%"></span></span><span class="sv">28,000</span></div>
+      <div class="srow"><span class="sl">Statewide citizen petition, 2026</span><span class="st2"><span class="sf p" style="width:100%"></span></span><span class="sv">about 140,748</span></div>
+    </div>
+    <div class="sig-table-wrap"><table class="sig-table">
+      <tr><th></th><th>Candidates</th><th>Citizens</th></tr>
+      <tr><td><b>What the signatures do</b></td><td>Put a candidate on the primary ballot without winning the party convention</td><td>Put a new law (initiative) or a government decision (referendum) to a public vote</td></tr>
+      <tr><td><b>Where the rule came from</b></td><td>S.B. 54 (2014), the Count My Vote compromise</td><td>Utah Constitution, Article VI, plus state statute</td></tr>
+      <tr><td><b>How many, statewide</b></td><td>28,000 for governor</td><td>About 140,748 (8% of active voters), spread across 26 of 29 Senate districts</td></tr>
+      <tr><td><b>Vote needed to win</b></td><td>The most votes in the primary</td><td>A simple majority today. Statewide tax initiatives would need 60% if Amendment B passes.</td></tr>
+    </table></div>
+
+    <h3>The company that gathered the governor's signatures</h3>
+    <ul class="sig-facts">
+      <li><b>Gathering, Inc.</b> was incorporated in 2015 &ldquo;to gather signatures, voter registration and other campaign related activities.&rdquo; Its 2015 articles list Tanner Leatham, <b>Casey Hill</b> and <b>Spencer Stokes</b> as officers, and the current state record lists the same three. Its original registered agent was McCauley &amp; Associates PC.</li>
+      <li><b>Gov. Spencer Cox's 2024 campaign used Gathering, Inc.</b> and turned in more than the 28,000 signatures required. Cox lost the 2024 Republican convention and reached the primary through signatures.</li>
+      <li>In March 2025, the <b>Attorney General's office charged 11 signature gatherers</b> with forgery, communications fraud or violating nomination procedures for petitions circulated January&ndash;March 2024. Charging documents say at least five worked for Gathering, Inc. County clerks flagged the suspect packets during verification; in one case, 84 of 2,243 signatures matched voter records.</li>
+      <li><b>The Attorney General then was Derek Brown,</b> who co-founded the lobbying firm Lincoln Hill Partners with Casey Hill and is a listed director of Lincoln Hill PAC. Lincoln Hill PAC's treasurer, Mike McCauley, runs an accounting firm with the same name as Gathering, Inc.'s original registered agent.</li>
+      <li>After the 2024 primary, <b>Phil Lyman sued</b> over how Cox's signatures were verified, noting that the verifying office belongs to Lt. Gov. Deidre Henderson, Cox's running mate. The <b>State Auditor</b> later reported it was &ldquo;statistically likely&rdquo; Cox had enough valid signatures.</li>
+    </ul>
+    <p class="sig-note">Charges are accusations, not convictions; anyone charged is presumed innocent unless proven guilty. These are documented relationships and dates. The records do not show that any official acted improperly, and the 2025 prosecution went forward. How the records were read: the 2015 Articles of Incorporation from a screenshot of the state filing; the current Utah Division of Corporations record (entity #9637579-0142) from pasted text; news reports as linked. Not yet confirmed: that McCauley &amp; Associates PC is the same firm as Mike McCauley's (the 2015 filing lists it at Gathering's own address, later filings at 420 E. South Temple).</p>
+    <p style="margin:14px 0 0;">See it alongside every Nov. 3 ballot measure on <a href="https://weber-county-hive.github.io/utah-maps/utah-ballot-measures-2026.html" target="_blank" rel="noopener">MAP 009 &rarr;</a></p>
   </section>
 
   <section id="people">
@@ -613,6 +667,13 @@ flowchart TD
   <details class="sources" id="sources">
     <summary>Sources (click to expand)</summary>
     <ol>
+      <li>Utah Division of Corporations: Gathering, Inc. Articles of Incorporation (signed Nov. 19, 2015) and current entity record #9637579-0142 (search by name) <a href="https://businessregistration.utah.gov/" target="_blank" rel="noopener">Link</a></li>
+      <li>Utah News Dispatch, March 2025: Eleven people charged with forging signatures (Cox campaign hired Gathering Inc.; 28,000 requirement) <a href="https://utahnewsdispatch.com/?p=9224" target="_blank" rel="noopener">Link</a></li>
+      <li>KSL, March 2025: 11 signature gatherers charged <a href="https://www.ksl.com/article/51271985/11-signature-gatherers-charged-with-forging-signatures-for-utah-candidates" target="_blank" rel="noopener">Link</a></li>
+      <li>Utah News Dispatch, Aug. 2, 2024: Lyman lawsuit over primary results <a href="https://utahnewsdispatch.com/2024/08/02/lyman-lawsuit-annul-primary-results-remove-cox-henderson/" target="_blank" rel="noopener">Link</a></li>
+      <li>Office of the State Auditor letter on Cox signature verification (2024) <a href="https://vote.utah.gov/wp-content/uploads/2024/09/Letter-from-Office-of-the-State-Auditor.pdf" target="_blank" rel="noopener">Link</a></li>
+      <li>Ballotpedia News: 2026 statewide petition threshold of 140,748 signatures <a href="https://news.ballotpedia.org/2025/05/13/referendum-to-repeal-utah-bill-prohibiting-public-sector-collective-bargaining-clears-signature-threshold-for-2026-ballot/" target="_blank" rel="noopener">Link</a></li>
+      <li>Utah News Dispatch: S.B. 54 still stands after 10 years <a href="https://utahnewsdispatch.com/?p=7973" target="_blank" rel="noopener">Link</a></li>
       <li>2026 Proposed Constitutional Amendments (H.J.R. 10 and S.J.R. 2 full text and final votes), le.utah.gov. <a href="https://le.utah.gov/constitutionalAmendment/2026/constitutionalamendments.pdf" target="_blank" rel="noopener">Link</a></li>
       <li>H.B. 119 (2019), "Initiatives, Referenda, and Other Political Activities," primary sponsor Rep. Brad M. Daw, Senate sponsor Sen. Curtis S. Bramble &mdash; <a href="https://le.utah.gov/~2019/bills/static/HB0119.html" target="_blank" rel="noopener">bill page and status</a>; <a href="https://le.utah.gov/~2019/bills/hbillint/HB0119S04.htm" target="_blank" rel="noopener">4th substitute text</a>. Final vote history (House 3rd reading 64-7-4, 3/5/2019; Senate 2nd/3rd reading 21-1-7, 3/14/2019; House concurrence 59-12-4, 3/14/2019; signed 3/25/2019; effective 5/14/2019; Session Laws of Utah 2019, Chapter 203).</li>
       <li>Deseret News, "Utah bill setting new requirements for local referendums passes House committee," March 4, 2019 (no public link located).</li>

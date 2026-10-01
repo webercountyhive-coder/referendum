@@ -59,7 +59,7 @@ const REFERENDUMS = [
     lastUpdated: "2026-09-17",
     tags: ["property tax", "CRA/RDA", "tax increment financing", "Utah County", "finance history"],
     status: "confirmed",
-    keyFigure: "$10.46M (FY2024) → $15.03M (FY2025) diverted to RDA Fund",
+    keyFigure: "$10.46M (FY2024) → $15.03M (FY2025) to the RDA Fund",
     summary: "Eagle Mountain held its certified tax rate flat for roughly 16 years — but its own ACFRs show the city's Redevelopment Agency Fund capturing a fast-growing amount of property tax ($10.46M in FY2024, $15.03M in FY2025, equal to 34% and 40% of all city tax revenue) before it reaches the General Fund, via five known CRA/RDA project areas.",
     link: "eagle-mountain-finance-history.html"
   },
