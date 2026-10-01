@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eagle Mountain's Balanced Budget: Where 16 Years of "No Tax Increase" Money Actually Went</title>
-<meta name="description" content="Eagle Mountain held its property tax rate flat for roughly 16 years before 2026 — but its own audited financial statements show a growing share of city-wide property tax never reaches the General Fund at all.">
+<meta name="description" content="Eagle Mountain held its property tax rate flat for roughly 16 years before 2026 — but its own audited financial statements show a fast-growing amount of property tax going to redevelopment project areas instead of the General Fund.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -116,6 +116,8 @@
   .tl-label.allowed .tl-tag { color: var(--good); }
   .tl-label.blocked .tl-tag { color: var(--bad); }
   .mermaid-wrap { background: var(--paper); border: 1px solid var(--line); padding: 16px; margin: 16px 0; overflow-x: auto; }
+  .mermaid-wrap svg{max-width:100%!important;height:auto;display:block;margin:0 auto;}
+  .diagram-caption { font-family: 'Source Sans 3', sans-serif; font-size: 1rem; color: var(--ink); margin: 18px 0 6px; }
 
   /* --- gap/waterfall chart --- */
   .gap-chart { margin: 16px 0; }
@@ -141,6 +143,33 @@
     .bar-row .bar-label { font-size: 0.72rem; }
   }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  .locator { margin: 0 0 36px; }
+  .locator h2 { font-size: 1.3rem; }
+  #locmap { height: 380px; border: 1px solid var(--line); background: #eef1f4; }
+  .locator .loc-foot { font-family: 'Source Sans 3', sans-serif; font-size: 0.95rem; margin-top: 8px; }
+  .county-label{background:none;border:none;}
+  .county-label span{display:block;transform:translate(-50%,-50%);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#14213D;opacity:.7;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 3px #fff;pointer-events:none;}
+  .city-label{background:none;border:none;}
+  .city-label.key span{font-weight:600;font-size:11.5px;color:#14213D;}
+  .city-label span{display:block;transform:translate(-50%,-50%);font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#4a2f55;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff;pointer-events:none;}
+  .loc-pin{background:none;border:none;}
+  .loc-pin span{display:block;width:22px;height:22px;border-radius:50%;background:#a8431f;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.5);transform:translate(-50%,-50%);}
+  @media (max-width:640px){ #locmap{height:300px;} }
+</style>
+<style>
+  @media (max-width: 640px) {
+    table.compare, table.compare tbody, table.compare tr, table.compare td { display: block; width: 100%; }
+    table.compare tr:first-child:has(th) { display: none; }
+    table.compare tr { border: 1px solid var(--line); margin-bottom: 12px; background: var(--paper); }
+    table.compare td { border: none; border-bottom: 1px dashed var(--line); }
+    table.compare td[data-label]::before { content: attr(data-label); display: block; font-family: 'Source Sans 3', sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); margin-bottom: 2px; }
+    table.compare th { display: block; }
+    .timeline-viz { margin-left: 56px; margin-right: 56px; }
+  }
+  pre.mermaid, .mermaid-wrap .nodeLabel, .mermaid-wrap .edgeLabel, .mermaid-wrap foreignObject div { font-family: 'Source Sans 3', Arial, sans-serif !important; }
+</style>
 </head>
 <body>
 
@@ -153,13 +182,13 @@
   <div class="masthead-inner">
     <div class="eyebrow">Eagle Mountain, Utah County &middot; Finance History</div>
     <h1>The "No Tax Increase Since 2010" City Was Diverting $10&ndash;15 Million a Year Before the Rate Ever Moved</h1>
-    <p class="dek">Eagle Mountain held its property-tax rate flat for roughly sixteen years &mdash; a fact the city cites often. But its own audited financial statements show a fast-growing share of the property tax it collects never reaches the General Fund at all. It goes to redevelopment project areas first.</p>
+    <p class="dek">Eagle Mountain held its property-tax rate flat for roughly sixteen years &mdash; a fact the city cites often. But its own audited financial statements show a fast-growing amount of the property tax it collects never reaches the General Fund at all. It goes to redevelopment project areas first.</p>
     <div class="meta-row">
       <span>FY2022&ndash;FY2025 CONFIRMED</span>
       <span>5 KNOWN CRA/RDA PROJECT AREAS</span>
       <span>COMPANION TO THE R-62-2026 CASE FILE</span>
     </div>
-    <div class="pub-date">Published Sept. 17, 2026</div>
+    <div class="pub-date">Published Sept. 17, 2026 &middot; Updated Oct. 1, 2026: added a large-print diagram of how property tax splits, corrected the chart labels to "all city taxes" (the totals include sales and franchise tax), a "People in this record" table, and links for every source</div>
   </div>
 </header>
 
@@ -172,6 +201,7 @@
     <a href="#project-areas">Project Areas</a>
     <a href="#tiers">Three-Tier Risk</a>
     <a href="#gaps">What's Missing</a>
+    <a href="#people">People</a>
     <a href="#questions">Questions</a>
     <a href="#sources">Sources</a>
   </div>
@@ -210,6 +240,13 @@
     <strong>New Here? The Short Version</strong>
     <p style="margin:0;">Eagle Mountain officials point to roughly sixteen years without a Truth-in-Taxation rate increase as proof of fiscal restraint &mdash; right up until this year's 69.81% hike. That's true of the <em>rate</em>. But the city's own audited financial statements show something the rate history doesn't capture: a Redevelopment Agency fund that pulled in $10.5 million in FY2024 and $15.0 million in FY2025 &mdash; property tax increment captured from redevelopment project areas before it ever reaches the General Fund, the budget that pays for police, roads, and parks. That's not a hidden tax increase; it's money the city, the school district, the water district, and the fire service would otherwise have received, redirected instead to fund development inside specific project areas. It's legal, disclosed in public filings, and growing fast &mdash; and it's part of the answer to "why does this city need more money now."</p>
   </div>
+
+  <section class="locator" id="where">
+    <h2>Where This Is</h2>
+    <p style="margin:0 0 8px;">Eagle Mountain, in western Utah County. The gold line is the state; dark lines are counties; the highlighted county is outlined in gold; dashed purple lines are city limits. Zoom in for more labels.</p>
+    <div id="locmap" role="region" aria-label="Map: Eagle Mountain, in western Utah County"></div>
+    <p class="loc-foot">See every Utah referendum the Hive tracks on <a href="https://weber-county-hive.github.io/utah-maps/citizen-referendums.html" target="_blank" rel="noopener">MAP 006: Citizen Referendums &rarr;</a></p>
+  </section>
 
   <section id="the-rate">
     <h2>1. The Rate That Stayed Flat</h2>
@@ -291,25 +328,45 @@
 
   <section id="the-gap">
     <h2>3. The Gap Between "City-Wide" and "General Fund"</h2>
-    <p>This is the central finding of this piece. Eagle Mountain's audited financial statements report two different property-tax totals each year: the full city-wide amount billed across every fund, and the amount that specifically lands in the Redevelopment Agency (RDA) Fund &mdash; increment captured from CRA/RDA project areas before it reaches the General Fund. The gap between them is real money the General Fund, Alpine School District, the water district, and the fire service never see.</p>
+    <p>This is the central finding of this piece. Eagle Mountain's audited financial statements report two totals each year that belong side by side: the city's total tax revenue across every fund (property, sales and franchise tax together), and the property tax that specifically lands in the Redevelopment Agency (RDA) Fund &mdash; increment captured from CRA/RDA project areas before it reaches the General Fund. The RDA amount is property tax the General Fund, Alpine School District, the water district, and the fire service never see.</p>
 
     <div class="chart-block gap-chart">
-      <div class="chart-title">City-wide property tax vs. RDA Fund capture</div>
+      <div class="chart-title">All city taxes (property, sales &amp; franchise) vs. RDA Fund capture</div>
       <div class="gap-year">
-        <div class="gy-label">FY2024 &mdash; ~$30.67M city-wide</div>
+        <div class="gy-label">FY2024 &mdash; ~$30.67M in all city taxes</div>
         <div class="gap-bar">
           <div class="gap-seg gf" style="width:65.9%;">General Fund &amp; other &mdash; 66%</div>
           <div class="gap-seg rda" style="width:34.1%;">RDA Fund &mdash; $10.46M (34%)</div>
         </div>
       </div>
       <div class="gap-year">
-        <div class="gy-label">FY2025 &mdash; $37.53M city-wide</div>
+        <div class="gy-label">FY2025 &mdash; $37.53M in all city taxes</div>
         <div class="gap-bar">
           <div class="gap-seg gf" style="width:60.0%;">General Fund &amp; other &mdash; 60%</div>
           <div class="gap-seg rda" style="width:40.0%;">RDA Fund &mdash; $15.03M (40%)</div>
         </div>
       </div>
-      <p style="font-size:0.82rem; color:var(--ink-soft); margin-top:10px;">Both the RDA Fund's tax revenue ($10,457,606 in FY2024; $15,025,376 in FY2025) and the city-wide totals are stated directly in Eagle Mountain's own ACFRs &mdash; not estimated. The diverted share grew from roughly 34% to roughly 40% of all city-wide property tax in a single year.</p>
+      <p style="font-size:0.82rem; color:var(--ink-soft); margin-top:10px;">Both the RDA Fund's tax revenue ($10,457,606 in FY2024; $15,025,376 in FY2025) and the all-funds "Taxes" totals are stated directly in Eagle Mountain's own ACFRs &mdash; not estimated. The RDA Fund's share grew from roughly 34% to roughly 40% of <em>all</em> city tax revenue in a single year. Measured against property tax alone, its share would be larger.</p>
+    </div>
+
+    <p class="diagram-caption"><strong>How it works:</strong> where a property-tax dollar goes, depending on whether the property sits inside a project area.</p>
+    <div class="mermaid-wrap"><pre class="mermaid">
+flowchart TD
+  A["Owner pays<br/>property tax"] --> B{"Inside a CRA/RDA<br/>project area?"}
+  B -- "No, or the<br/>base-year part" --> C["Normal split:<br/>city General Fund,<br/>schools, water, fire"]
+  B -- "Yes: growth<br/>since base year" --> H["City RDA Fund<br/>$10.46M FY2024<br/>$15.03M FY2025"]
+</pre></div>
+
+    <p class="diagram-caption"><strong>FY2025 in one picture:</strong> the city's total "Taxes" line, split between the two funds that received it.</p>
+    <div class="mermaid-wrap"><pre class="mermaid">
+flowchart TD
+  T["All city taxes<br/>FY2025: $37.53M"] --> GF["General Fund<br/>and other:<br/>about 60%"]
+  T --> R["RDA Fund:<br/>$15.03M,<br/>about 40%"]
+</pre></div>
+
+    <div class="callout note">
+      <strong>Correction and reading note (Oct. 1, 2026)</strong>
+      In Eagle Mountain's audited statements, the $30.67M (FY2024) and $37.53M (FY2025) totals are the "Taxes" line for all governmental funds. That line combines property, sales, and franchise taxes &mdash; the FY2024 property, sales, and franchise figures in Section 2 ($13.18M + $11.12M + $6.35M) add up to about the same $30.65M. So the 34% and 40% shares above are shares of <em>all</em> city tax revenue, not of property tax alone. An earlier version of this page labeled them as shares of property tax; the labels were corrected Oct. 1, 2026. The dollar amounts did not change. The ACFR's own notes say tax increment "revenues are recorded as revenues of the RDA," so the RDA money is property tax. Measured against property tax alone, the RDA's share would be larger, not smaller. How this was read: the FY2024 and FY2025 ACFR PDFs on eaglemountain.gov, read by text extraction, not rendered pages.
     </div>
 
     <div class="callout finding">
@@ -366,7 +423,7 @@
   <section id="gaps">
     <h2>6. What's Missing &mdash; Said Plainly</h2>
     <ul class="qwa-list">
-      <li>Report 700 for Eagle Mountain was only located for tax year 2023. 2022, 2024, and 2025 versions could not be found at the expected URL pattern, and the county's online redevelopment portal appears to require selecting the agency from a form rather than a direct link.</li>
+      <li>Report 700 for Eagle Mountain was only located for tax year 2023. 2022, 2024, and 2025 versions could not be found at the expected URL pattern, and the county's online redevelopment portal appears to require selecting the agency from a form rather than a direct link. <em>Update, Oct. 1, 2026:</em> the 2022 report was since located at a different address (linked in Sources); 2024 and 2025 are still not located.</li>
       <li>Each ACFR's statistical section &mdash; the 10-year tables of taxable value and tax rates that would settle the FY2023&ndash;FY2025 taxable-value question outright &mdash; exists in the table of contents but could not be retrieved in full.</li>
       <li>The actual text of Resolution R-62-2026 was not obtained directly; its terms are corroborated by the city's own Truth-in-Taxation page and independent reporting, but the source document itself should be requested from the City Recorder or pulled from the city's CivicClerk portal.</li>
       <li>"Sweetwater CRA #2" is referenced elsewhere but unconfirmed here.</li>
@@ -374,28 +431,59 @@
     </ul>
   </section>
 
+  <section id="people">
+    <h2>People in this record</h2>
+    <p>These are the public officials named in the city's own audited reports and public notices that this page relies on. Being listed here means only that a person's name and title appear on those documents. It does not mean they did anything wrong.</p>
+    <table class="compare">
+      <tr><th>Person</th><th>Role in this record</th><th>Why they're connected</th><th>Also in the Hive</th></tr>
+      <tr><td>Tom Westmoreland</td><td>Mayor, listed in the FY2022&ndash;FY2025 ACFRs</td><td>Mayor during all four fiscal years whose audited figures appear on this page.</td><td>Quoted as mayor (later "former mayor") on property tax from Eagle Mountain's data-center and Tyson sites: <a href="https://webercountyhive-coder.github.io/Data-Centers/weber-hive-dc-meta-eagle-mountain.html" target="_blank" rel="noopener">Meta's Eagle Mountain Campus, Part 1</a>; <a href="https://weber-county-hive.github.io/Transparency/tyson-eagle-mountain-closure.html" target="_blank" rel="noopener">Tyson Leaves Eagle Mountain</a></td></tr>
+      <tr><td>Jared Gray</td><td>City Council member in the FY2022&ndash;FY2025 ACFRs; Mayor on the city's 2026 Truth-in-Taxation page</td><td>Sat on the council in the years shown here and is mayor during the 2026 rate increase.</td><td>Quoted as mayor saying data centers are "literally what funds our general fund": <a href="https://webercountyhive-coder.github.io/Data-Centers/weber-hive-dc-meta-eagle-mountain.html" target="_blank" rel="noopener">Meta's Eagle Mountain Campus, Part 1</a>; <a href="https://webercountyhive-coder.github.io/UIPA/weber-hive-dc-meta-eagle-mountain.html" target="_blank" rel="noopener">The Deal That Started With a Fake Name</a></td></tr>
+      <tr><td>Donna Burnham</td><td>City Council member, FY2022&ndash;FY2025 ACFRs</td><td>Council member in all four years shown.</td><td>None found</td></tr>
+      <tr><td>Brett Wright</td><td>City Council member, FY2022&ndash;FY2025 ACFRs</td><td>Council member in all four years shown.</td><td>A contributor listed as Brett Wright of Eagle Mountain gave $2,000 to a state senate candidate: <a href="https://weber-county-hive.github.io/candidates2026/sd11-buss-benson.html" target="_blank" rel="noopener">SD-11: Buss vs. Benson</a> (name and city match only; not confirmed as the same person)</td></tr>
+      <tr><td>Melissa Clark</td><td>City Council member, FY2024 and FY2025 ACFRs</td><td>Council member in the two years when RDA capture reached $10.46M and $15.03M.</td><td>Listed as a sitting Eagle Mountain council member on a Doers Network county board: <a href="https://weber-county-hive.github.io/candidates2026/doers-network.html" target="_blank" rel="noopener">Doers Network: The Endorsement List</a></td></tr>
+      <tr><td>Rich Wood</td><td>City Council member, FY2024 and FY2025 ACFRs</td><td>Council member in FY2024 and FY2025.</td><td>None found</td></tr>
+      <tr><td>Carolyn Love</td><td>City Council member, FY2022 and FY2023 ACFRs</td><td>Council member in FY2022 and FY2023.</td><td>None found</td></tr>
+      <tr><td>Colby Curtis</td><td>City Council member, FY2022 and FY2023 ACFRs</td><td>Council member in FY2022 and FY2023.</td><td>None found</td></tr>
+      <tr><td>Kimberly Ruesch</td><td>Finance Director (FY2022 ACFR); Administrative Services Director (FY2023&ndash;FY2025 ACFRs and Aug. 18, 2026 agenda)</td><td>Senior finance official over the reports that hold the figures on this page.</td><td>None found</td></tr>
+      <tr><td>Paul Jerome</td><td>City Administrator, FY2022 and FY2023 ACFRs</td><td>Top staff official in FY2022 and FY2023.</td><td>None found</td></tr>
+      <tr><td>Steve Mumford</td><td>Interim City Manager, FY2024 ACFR</td><td>Top staff official listed in the FY2024 report.</td><td>None found</td></tr>
+      <tr><td>Benjamin Reeves</td><td>City Manager, FY2025 ACFR</td><td>Top staff official listed in the FY2025 report.</td><td>None found</td></tr>
+      <tr><td>Alejandro Palacios</td><td>Finance Manager, FY2023 and FY2024 ACFRs</td><td>Finance staff named in those reports.</td><td>None found</td></tr>
+      <tr><td>Jeret Shaffer</td><td>Finance Manager, FY2025 ACFR</td><td>Finance staff named in the FY2025 report.</td><td>None found</td></tr>
+      <tr><td>Lacie Messerly</td><td>City Recorder</td><td>Signed the Feb. 17, 2026 notice for up to $220M in Water and Sewer Revenue Bonds; listed on the Aug. 18, 2026 council agenda.</td><td>None found</td></tr>
+      <tr><td>David Stroud</td><td>Senior Planner</td><td>Presented the Corrigan Farms rezone to the Planning Commission (May 12, 2026 minutes); listed on the Sept. 22, 2026 agenda.</td><td>None found</td></tr>
+    </table>
+    <p style="font-size:0.85rem; color:var(--ink-soft);">"None found" means a search of the Hive's own published case-file repositories on Oct. 1, 2026 turned up no other page naming that person. Officials' names were read from the reports' transmittal letters and lists of principal officials, by text extraction.</p>
+  </section>
+
   <section id="questions">
     <h2>Questions Worth Asking</h2>
     <ul class="qwa-list">
-      <li><b>Ask the Finance Department:</b> which is correct &mdash; that the rate hasn't gone through Truth in Taxation since 2005, or since 2010? The city's own audited reports say both in different years.</li>
-      <li><b>Ask the RDA board or Finance Director:</b> how does the RDA Fund's $10.46M (FY2024) / $15.03M (FY2025) tax revenue reconcile with Report 700's per-entity increment figures? Is the ACFR figure the sum captured across all taxing entities, or the city's own share plus something else?</li>
-      <li><b>Ask the City:</b> does "Sweetwater CRA #2" exist, and if so, what is its base year, term, and increment capture to date?</li>
-      <li><b>Ask the City or bond counsel:</b> is any city fund pledged, or does it serve as a fallback, for any CRA/RDA/PID-related bond currently outstanding?</li>
+      <li><b>Ask the Eagle Mountain Finance Department (Administrative Services Director):</b> which is correct &mdash; that the rate hasn't gone through Truth in Taxation since 2005, or since 2010? The city's own audited reports say both in different years.</li>
+      <li><b>Ask the Eagle Mountain RDA board or the Administrative Services Director:</b> how does the RDA Fund's $10.46M (FY2024) / $15.03M (FY2025) tax revenue reconcile with Report 700's per-entity increment figures? Is the ACFR figure the sum captured across all taxing entities, or the city's own share plus something else?</li>
+      <li><b>Ask the Eagle Mountain City Recorder's office:</b> does "Sweetwater CRA #2" exist, and if so, what is its base year, term, and increment capture to date?</li>
+      <li><b>Ask the Eagle Mountain Administrative Services Director or the City Attorney's office:</b> is any city fund pledged, or does it serve as a fallback, for any CRA/RDA/PID-related bond currently outstanding?</li>
     </ul>
   </section>
+
+  <div class="callout good" id="send-updates">
+    <strong>Have an update? Send it to us</strong>
+    Know about a referendum in your city or county, or have news on one listed here &mdash; a petition filing, a signature count, a clerk's notice, or a court ruling? Email <a href="mailto:webercountyhive@gmail.com">webercountyhive@gmail.com</a>. The Hive reports from public records, so please include a link to the document or a copy of it if you have one.
+  </div>
 
   <details class="sources" id="sources">
     <summary>Sources (click to expand)</summary>
     <ol>
-      <li>Eagle Mountain City, Annual Comprehensive Financial Report (ACFR), FY2022.</li>
-      <li>Eagle Mountain City, Annual Comprehensive Financial Report (ACFR), FY2023.</li>
-      <li>Eagle Mountain City, Annual Comprehensive Financial Report (ACFR), FY2024, including Management's Discussion &amp; Analysis.</li>
-      <li>Eagle Mountain City, Annual Comprehensive Financial Report (ACFR), FY2025.</li>
-      <li>Eagle Mountain City, "Truth in Taxation / Property Tax" page, eaglemountain.gov.</li>
-      <li>Utah County Auditor, 2023 Report 700 &mdash; Eagle Mountain (RDA/CRA increment accounting), utahcounty.gov.</li>
-      <li>Utah Public Notice Website (utah.gov/pmn): Eagle Mountain City Council meeting notice, Aug. 18, 2026 (Resolution R-62-2026).</li>
-      <li>Utah Public Notice Website (utah.gov/pmn): Notice of Public Hearing and Bonds to be Issued, Water and Sewer Revenue Bonds Series 2026.</li>
-      <li>Eagle Mountain Planning Commission agenda, Sept. 22, 2026 ("Corrigan Farms" rezoning items).</li>
+      <li><a href="https://eaglemountain.gov/wp-content/uploads/2024/10/finance-ACFR-2022.pdf" target="_blank" rel="noopener">Eagle Mountain City, Annual Comprehensive Financial Report (ACFR), FY2022</a> (year ended June 30, 2022).</li>
+      <li><a href="https://eaglemountain.gov/wp-content/uploads/2024/10/finance-ACFR-2023.pdf" target="_blank" rel="noopener">Eagle Mountain City, Annual Comprehensive Financial Report (ACFR), FY2023</a> (year ended June 30, 2023).</li>
+      <li><a href="https://eaglemountain.gov/wp-content/uploads/2025/01/2024-ACFR-Web-Version.pdf" target="_blank" rel="noopener">Eagle Mountain City, Annual Comprehensive Financial Report (ACFR), FY2024</a>, including Management's Discussion &amp; Analysis (year ended June 30, 2024).</li>
+      <li><a href="https://eaglemountain.gov/wp-content/uploads/2026/09/2025-ACFR-Final.pdf" target="_blank" rel="noopener">Eagle Mountain City, Annual Comprehensive Financial Report (ACFR), FY2025</a> (year ended June 30, 2025).</li>
+      <li><a href="https://eaglemountain.gov/truth-in-taxation" target="_blank" rel="noopener">Eagle Mountain City, "Truth in Taxation | Property Tax" page</a>, eaglemountain.gov.</li>
+      <li><a href="https://www.utahcounty.gov/Dept/Auditor/TaxAdmin/Forms/2023%20Report%20700%20-%20Eagle%20Mountain.pdf" target="_blank" rel="noopener">Utah County Auditor, 2023 Report 700 &mdash; Eagle Mountain</a> (Year-End 2023 Project Increment Paid by Entity), utahcounty.gov. An earlier <a href="https://www.utahcounty.gov/Dept/Auditor/docs/Distribution/2022/2022Rpt700EagleMtn.pdf" target="_blank" rel="noopener">2022 Report 700 for Eagle Mountain</a> was located on Oct. 1, 2026 at a different web address; its figures have not yet been added to this page.</li>
+      <li><a href="https://www.utah.gov/pmn/files/1474645.pdf" target="_blank" rel="noopener">Eagle Mountain City Council agenda, Aug. 18, 2026</a>, Utah Public Notice Website, items 13.A and 13.B (repealing and approving property tax increases above the certified rate for FY2026&ndash;2027). The agenda does not print the resolution number R-62-2026.</li>
+      <li><a href="https://www.utah.gov/pmn/files/1393137.pdf" target="_blank" rel="noopener">Eagle Mountain City, Notice of Public Hearing and Bonds to be Issued, Water and Sewer Revenue Bonds, Series 2026</a>, Utah Public Notice Website (resolution adopted Feb. 17, 2026; hearing March 5, 2026; not more than $220,000,000).</li>
+      <li><a href="https://www.utah.gov/pmn/sitemap/notice/1109515.html" target="_blank" rel="noopener">Eagle Mountain Planning Commission meeting notice and agenda, Sept. 22, 2026</a>, Utah Public Notice Website, items 7.C and 7.D ("Corrigan Farms" rezoning and development agreement).</li>
+      <li><a href="https://www.utah.gov/pmn/files/1436739.pdf" target="_blank" rel="noopener">Eagle Mountain Planning Commission, May 12, 2026 minutes (with May 26, 2026 agenda)</a>, Utah Public Notice Website &mdash; Corrigan Farms Rezone discussion item (used for the "People in this record" table).</li>
       <li>Companion piece: <a href="eagle-mountain-tax-referendum-2.html">Eagle Mountain's Second Tax Referendum</a>, this docket.</li>
     </ol>
   </details>
@@ -407,5 +495,47 @@
   <a href="index.html">Back to all referendums tracked</a>
 </footer>
 
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: false, theme: 'base',
+    flowchart: { htmlLabels: true, useMaxWidth: false, diagramPadding: 12, nodeSpacing: 30, rankSpacing: 40, wrappingWidth: 300 },
+    themeVariables: { primaryColor: '#fbf9f3', primaryTextColor: '#1c1c1c', primaryBorderColor: '#16273f', lineColor: '#16273f', fontFamily: '"Source Sans 3", Arial, sans-serif', fontSize: '22px' } });
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function(){ mermaid.run({ querySelector: 'pre.mermaid' }); });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="utah-geo.js"></script>
+<script>
+(function(){
+  if (!window.L || typeof addUtahOutlines !== 'function') return;
+  var PINS = [{"n": "Eagle Mountain", "lat": 40.314, "lng": -112.006, "t": "Eagle Mountain tax referendum (not on the Nov. 3 ballot)", "u": "eagle-mountain-tax-referendum-2.html"}];
+  var map = L.map('locmap', { scrollWheelZoom: false, zoomSnap: 0.25 });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+  addUtahOutlines(map, { highlightCounty: "Utah", alwaysLabel: ["Eagle Mountain"] });
+  var pts = [];
+  PINS.forEach(function(p){
+    var m = L.marker([p.lat, p.lng], { icon: L.divIcon({ className: 'loc-pin', html: '<span></span>', iconSize: null }), title: p.t }).addTo(map);
+    m.bindPopup('<b>' + p.t + '</b><br><a href="' + p.u + '">Open the case file</a>');
+    pts.push([p.lat, p.lng]);
+  });
+  var hi = "Utah";
+  if (hi) {
+    var f = UTAH_GEO.counties.features.filter(function(x){ return x.properties.n === hi; })[0];
+    map.fitBounds(L.geoJSON(f).getBounds(), { padding: [20, 20] });
+  } else if (pts.length > 1) {
+    map.fitBounds(L.latLngBounds(pts).pad(0.35));
+  }
+  if (PINS.length === 5) map.fitBounds(L.geoJSON(UTAH_GEO.state).getBounds());
+})();
+</script>
+<script>
+document.querySelectorAll('table.compare').forEach(function(t){
+  var head = t.querySelector('tr');
+  if (!head || !head.querySelector('th')) return;
+  var labels = [].map.call(head.children, function(c){ return c.textContent.trim(); });
+  [].forEach.call(t.querySelectorAll('tr'), function(r, i){ if (i === 0) return;
+    [].forEach.call(r.children, function(c, j){ if (labels[j]) c.setAttribute('data-label', labels[j]); }); });
+});
+</script>
 </body>
 </html>

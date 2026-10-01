@@ -241,10 +241,38 @@
   .tl-label.allowed .tl-tag { color: var(--good); }
   .tl-label.blocked .tl-tag { color: var(--bad); }
   .mermaid-wrap { background: var(--paper); border: 1px solid var(--line); padding: 16px; margin: 16px 0; overflow-x: auto; }
+  .mermaid-wrap svg{max-width:100%!important;height:auto;display:block;margin:0 auto;}
   @media (max-width: 640px) {
     .bar-row { grid-template-columns: 110px 1fr 70px; }
     .bar-row .bar-label { font-size: 0.72rem; }
   }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  .locator { margin: 0 0 36px; }
+  .locator h2 { font-size: 1.3rem; }
+  #locmap { height: 380px; border: 1px solid var(--line); background: #eef1f4; }
+  .locator .loc-foot { font-family: 'Source Sans 3', sans-serif; font-size: 0.95rem; margin-top: 8px; }
+  .county-label{background:none;border:none;}
+  .county-label span{display:block;transform:translate(-50%,-50%);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#14213D;opacity:.7;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 3px #fff;pointer-events:none;}
+  .city-label{background:none;border:none;}
+  .city-label.key span{font-weight:600;font-size:11.5px;color:#14213D;}
+  .city-label span{display:block;transform:translate(-50%,-50%);font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#4a2f55;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff;pointer-events:none;}
+  .loc-pin{background:none;border:none;}
+  .loc-pin span{display:block;width:22px;height:22px;border-radius:50%;background:#a8431f;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.5);transform:translate(-50%,-50%);}
+  @media (max-width:640px){ #locmap{height:300px;} }
+</style>
+<style>
+  @media (max-width: 640px) {
+    table.compare, table.compare tbody, table.compare tr, table.compare td { display: block; width: 100%; }
+    table.compare tr:first-child:has(th) { display: none; }
+    table.compare tr { border: 1px solid var(--line); margin-bottom: 12px; background: var(--paper); }
+    table.compare td { border: none; border-bottom: 1px dashed var(--line); }
+    table.compare td[data-label]::before { content: attr(data-label); display: block; font-family: 'Source Sans 3', sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); margin-bottom: 2px; }
+    table.compare th { display: block; }
+    .timeline-viz { margin-left: 56px; margin-right: 56px; }
+  }
+  pre.mermaid, .mermaid-wrap .nodeLabel, .mermaid-wrap .edgeLabel, .mermaid-wrap foreignObject div { font-family: 'Source Sans 3', Arial, sans-serif !important; }
 </style>
 </head>
 <body>
@@ -264,18 +292,20 @@
       <span>ADOPTED AUG 18, 2026</span>
       <span>REFERABILITY DETERMINED SEPT 14, 2026</span>
     </div>
-    <div class="pub-date">Published Sept. 17, 2026 &middot; Updated Sept. 17, 2026 (charts added)</div>
+    <div class="pub-date">Published Sept. 17, 2026 &middot; Updated Oct. 1, 2026 (Nov. 3 ballot status, map, people and linked sources added)</div>
   </div>
 </header>
 
 <nav class="jump">
   <div class="inner">
     <a href="#new-here">Start Here</a>
+    <a href="#oct1-update">Oct. 1 Update</a>
     <a href="#rate-history">The Rate</a>
     <a href="#date-problem">The Date Problem</a>
     <a href="#materials-dispute">Materials Fight</a>
     <a href="#context">Other Spending</a>
     <a href="#status-table">What's Confirmed</a>
+    <a href="#people">People</a>
     <a href="#questions">Questions</a>
     <a href="#sources">Sources</a>
     <a href="eagle-mountain-finance-history.html" style="color:var(--rust);">Finance History &rarr;</a>
@@ -314,6 +344,21 @@
   <div class="newhere" id="new-here">
     <strong>New Here? The Short Version</strong>
     <p style="margin:0;">Eagle Mountain's City Council raised its property-tax rate 69.81% on August 18, 2026, to help fund a Utah County Sheriff's Office contract. A group of residents is trying to force a public vote to repeal it &mdash; their second such attempt this cycle. The city's own attorney says the referendum is legally allowed to proceed. But sponsors say the city still hasn't handed over the petition forms, signature sheets, or an accurate ballot pamphlet it's required to provide within five days of that determination &mdash; and that the draft pamphlet lists an August 2027 election date for a tax measure that Utah law appears to only allow in November.</p>
+  </div>
+
+
+  <section class="locator" id="where">
+    <h2>Where This Is</h2>
+    <p style="margin:0 0 8px;">Eagle Mountain, in western Utah County. The gold line is the state; dark lines are counties; the highlighted county is outlined in gold; dashed purple lines are city limits. Zoom in for more labels.</p>
+    <div id="locmap" role="region" aria-label="Map: Eagle Mountain, in western Utah County"></div>
+    <p class="loc-foot">See every Utah referendum the Hive tracks on <a href="https://weber-county-hive.github.io/utah-maps/citizen-referendums.html" target="_blank" rel="noopener">MAP 006: Citizen Referendums &rarr;</a></p>
+  </section>
+
+  <div class="callout note" id="oct1-update">
+    <strong>Update &middot; Oct. 1, 2026 &middot; Not on the Nov. 3 ballot</strong>
+    <p style="margin:0 0 10px;">Utah County's 2026 General Election Candidate Certification, signed by County Clerk Aaron R. Davidson, lists one local ballot question for November 3, 2026: <b>Proposition #8 (Salem Residents)</b>, a 0.1% recreation, arts and parks sales tax. It does not list an Eagle Mountain referendum. Utah County's public-notices page and the Lieutenant Governor's initiatives and referenda page also list no Eagle Mountain measure for this election.</p>
+    <p style="margin:0;">That is consistent with the draft pamphlet's August 2027 date discussed in Section 2. The certification does not say why the referendum is absent, and this page draws no conclusion about it.</p>
+    <p style="margin:10px 0 0;font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:var(--ink-soft);overflow-wrap:anywhere;">How this was read: page 1 of the certification PDF (Utah_County_2026_General_Election_Candidate_Certification_4e705c1719.pdf, utahcounty.gov) viewed as a rendered page image.</p>
   </div>
 
   <section id="rate-history">
@@ -404,17 +449,17 @@
       <div class="mermaid-wrap">
         <pre class="mermaid">
 flowchart TD
-  A["Wants a date other<br/>than Nov 2026/2027"] --> B{"Disaster<br/>declared?"}
-  B -- No --> F["NOT PERMITTED<br/>Must use the<br/>statutory Nov. date"]
-  B -- Yes --> C{"Disaster + reasons<br/>put in writing?"}
+  A["Wants a date<br/>other than<br/>Nov 2026/2027"] --> B{"Disaster<br/>declared?"}
+  B -- No --> F["NOT PERMITTED<br/>Must use the<br/>statutory<br/>Nov. date"]
+  B -- Yes --> C{"Disaster and<br/>reasons put<br/>in writing?"}
   C -- No --> F
   C -- Yes --> D{"Council voted<br/>UNANIMOUSLY?"}
   D -- No --> F
-  D -- Yes --> E["Alternate date<br/>permitted<br/>Sect 20A-1-204(1)(c)"]
+  D -- Yes --> E["Alternate date<br/>permitted<br/>20A-1-204(1)(c)"]
   style F fill:#a8431f,stroke:#7a2f16,color:#fff
   style E fill:#3d6b46,stroke:#2c4e33,color:#fff
   style A fill:#16273f,stroke:#0d1826,color:#f4f0e6
-        </pre>
+</pre>
       </div>
       <p style="font-size:0.82rem; color:var(--ink-soft);">No step in this chain has a documented "yes" in the public record reviewed for this piece &mdash; which is why the pamphlet's Aug. 10, 2027 date lands in the red box above.</p>
     </div>
@@ -487,8 +532,22 @@ flowchart TD
       <tr><td>August 2027 date not permitted for a tax referendum absent a declared disaster + unanimous vote</td><td><span class="status-badge status-confirmed">Confirmed against statute text</span></td></tr>
       <tr><td>No disaster declaration or special-election ordinance found in the record</td><td><span class="status-badge status-unverified">Absence noted, not exhaustively confirmed &mdash; city minutes not yet obtained</span></td></tr>
       <tr><td>Pamphlet's specific defects (mislabeled cover, missing fiscal breakdown)</td><td><span class="status-badge status-disputed">Sponsors' characterization; draft pamphlet itself not independently reviewed here</span></td></tr>
+      <tr><td>Referendum is not on Utah County's Nov. 3, 2026 certified ballot (only Salem Prop #8 is listed)</td><td><span class="status-badge status-confirmed">Confirmed &mdash; rendered page 1 of county certification, Oct. 1, 2026</span></td></tr>
       <tr><td>UFSA exit / $4M savings claim</td><td><span class="status-badge status-unverified">Not found in any public record checked</span></td></tr>
     </table>
+  </section>
+
+  <section id="people">
+    <h2>People in This Record</h2>
+    <p>Sponsors are private citizens and are listed by name only, as they appear in their own press release.</p>
+    <table class="compare">
+      <tr><th>Person</th><th>Role in this record</th><th>Why they're connected</th><th>Also in the Hive</th></tr>
+      <tr><td>Bruce Carlson, Missy Parry, Ashley McMillan, Brett Mansfield, Joy Rasmussen, Nikki Jepson</td><td>Referendum sponsors</td><td>Named in the sponsors' Sept. 14, 2026 press release</td><td>None that bears on this referendum</td></tr>
+      <tr><td>Mayor Jared Gray</td><td>Eagle Mountain mayor (2026)</td><td>Leads the city whose council adopted the rate the referendum targets. The mayor's own position on the referendum was not found in the records read.</td><td><a href="https://webercountyhive-coder.github.io/Data-Centers/weber-hive-dc-meta-eagle-mountain.html" target="_blank" rel="noopener">Meta's Eagle Mountain data center (Data-Centers)</a></td></tr>
+      <tr><td>Councilmember Melissa Clark</td><td>Eagle Mountain City Council</td><td>Sits on the council that adopted the rate. Individual council votes on the Aug. 18 resolution were not in the records read for this page.</td><td><a href="https://weber-county-hive.github.io/candidates2026/doers-network.html" target="_blank" rel="noopener">Doers Network roster (candidates2026)</a></td></tr>
+      <tr><td>Sen. Emily Buss</td><td>State senator, District 11 (includes Eagle Mountain)</td><td>Represents Eagle Mountain in the Legislature, which writes the referendum and election-date laws discussed on this page</td><td><a href="https://weber-county-hive.github.io/candidates2026/sd11-buss-benson.html" target="_blank" rel="noopener">SD-11: Buss vs. Benson</a></td></tr>
+    </table>
+    <p style="font-size:0.9rem;color:var(--ink-soft);">More Eagle Mountain officials, with their roles in the city's finances, are on the <a href="eagle-mountain-finance-history.html#people">finance history page</a>.</p>
   </section>
 
   <section id="questions">
@@ -497,25 +556,37 @@ flowchart TD
       <li><b>Ask the Eagle Mountain City Recorder's office:</b> has the referendum petition, signature sheets, and pamphlet been transmitted to the sponsors, and on what date?</li>
       <li><b>Ask the City Council:</b> has any ordinance or resolution been adopted declaring a disaster and unanimously setting an August 2027 election date under &sect; 20A-1-204(1)(c)? If not, on what authority does the pamphlet cite that date?</li>
       <li><b>Ask the City Attorney's office:</b> for a copy of the September 14, 2026 referability determination letter itself.</li>
+      <li><b>Ask the Utah County Clerk's elections office:</b> whether any Eagle Mountain referendum has been submitted for a future ballot, and on what date it would appear.</li>
+      <li><b>Ask your state senator (Sen. Emily Buss, District 11):</b> whether the Legislature plans to clarify when a local tax referendum may be voted on.</li>
       <li><b>Ask the City:</b> for the specific VPA boundary documents provided to sponsors, and the date they were last updated.</li>
     </ul>
   </section>
 
+  <div class="callout good" id="send-updates">
+    <strong>Have an update? Send it to us</strong>
+    Know about a referendum in your city or county, or have news on one listed here &mdash; a petition filing, a signature count, a clerk's notice, or a court ruling? Email <a href="mailto:webercountyhive@gmail.com">webercountyhive@gmail.com</a>. The Hive reports from public records, so please include a link to the document or a copy of it if you have one.
+  </div>
+
   <details class="sources" id="sources">
     <summary>Sources (click to expand)</summary>
     <ol>
-      <li>Referendum sponsors' press release, "Citizens of Eagle Mountain Celebrate 2nd Referendum Referability Determination," Sept. 14, 2026 (Bruce Carlson, Missy Parry, Ashley McMillan, Brett Mansfield, Joy Rasmussen, Nikki Jepson).</li>
-      <li>Utah Code &sect; 20A-1-204, "Date of special election &mdash; Legal effect," le.utah.gov.</li>
-      <li>Utah Code &sect; 20A-1-203(5), "Calling a special election."</li>
-      <li>Utah Code &sect; 20A-7-613(7), Title 20A Ch. 7 (referenda procedures).</li>
-      <li>Daily Herald / Herald Extra: "Eagle Mountain City Council approves 183% rate increase to property taxes," Aug. 7, 2026.</li>
-      <li>Daily Herald / Herald Extra: "Eagle Mountain City Council repeals initial property tax raise, agrees on lower rate hike," Aug. 20, 2026.</li>
-      <li>Salt Lake Tribune: "Eagle Mountain Utah raises property taxes 183% while Meta, Google get incentives," Aug. 22, 2026.</li>
-      <li>Eagle Mountain City, "Your Property Tax, Explained" and "Truth In Taxation" pages, eaglemountain.gov.</li>
-      <li>Utah Public Notice Website: Eagle Mountain City Council Meeting agenda, Aug. 18, 2026 (Resolution R-62-2026 background).</li>
-      <li>Utah Public Notice Website: Eagle Mountain City Council Meeting agenda, June 16, 2026 (MHTN feasibility study / executive compensation items).</li>
-      <li>Utah Public Notice Website: Notice of Public Hearing and Bonds to be Issued, Water and Sewer Revenue Bonds Series 2026, Feb. 17, 2026 / March 5, 2026 hearing.</li>
-      <li>Eagle Mountain City, "Unified Fire Authority" page, eaglemountain.gov (current provider description, checked Sept. 2026).</li>
+      <li>Referendum sponsors' press release, "Citizens of Eagle Mountain Celebrate 2nd Referendum Referability Determination," Sept. 14, 2026 (Bruce Carlson, Missy Parry, Ashley McMillan, Brett Mansfield, Joy Rasmussen, Nikki Jepson). (no public link located)</li>
+      <li>Utah Code &sect; 20A-1-204, "Date of special election &mdash; Legal effect," le.utah.gov. <a href="https://le.utah.gov/xcode/Title20A/Chapter1/20A-1-S204.html" target="_blank" rel="noopener">Link</a></li>
+      <li>Utah Code &sect; 20A-1-203(5), "Calling a special election." <a href="https://le.utah.gov/xcode/Title20A/Chapter1/20A-1-S203.html" target="_blank" rel="noopener">Link</a></li>
+      <li>Utah Code &sect; 20A-7-613(7), Title 20A Ch. 7 (referenda procedures). <a href="https://le.utah.gov/xcode/Title20A/Chapter7/20A-7-S613.html" target="_blank" rel="noopener">Link</a></li>
+      <li>Daily Herald / Herald Extra: "Eagle Mountain City Council approves 183% rate increase to property taxes," Aug. 7, 2026. <a href="https://www.heraldextra.com/news/2026/aug/07/eagle-mountain-city-council-approves-183-rate-increase-to-property-taxes/" target="_blank" rel="noopener">Link</a></li>
+      <li>Daily Herald / Herald Extra: "Eagle Mountain City Council repeals initial property tax raise, agrees on lower rate hike," Aug. 20, 2026. <a href="https://www.heraldextra.com/news/2026/aug/20/eagle-mountain-city-council-repeals-initial-property-tax-raise-agrees-on-lower-rate-hike/" target="_blank" rel="noopener">Link</a></li>
+      <li>Salt Lake Tribune: "Eagle Mountain Utah raises property taxes 183% while Meta, Google get incentives," Aug. 22, 2026. (no public link located)</li>
+      <li>Eagle Mountain City, "Your Property Tax, Explained" and "Truth In Taxation" pages, eaglemountain.gov. <a href="https://eaglemountain.gov/your-property-taxes-explained/" target="_blank" rel="noopener">Link</a></li>
+      <li>Utah Public Notice Website: Eagle Mountain City Council Meeting agenda, Aug. 18, 2026 (Resolution R-62-2026 background). <a href="https://www.utah.gov/pmn/files/1474645.pdf" target="_blank" rel="noopener">Link</a></li>
+      <li>Utah Public Notice Website: Eagle Mountain City Council Meeting agenda, June 16, 2026 (MHTN feasibility study / executive compensation items). (no public link located)</li>
+      <li>Utah Public Notice Website: Notice of Public Hearing and Bonds to be Issued, Water and Sewer Revenue Bonds Series 2026, Feb. 17, 2026 / March 5, 2026 hearing. <a href="https://www.utah.gov/pmn/files/1393137.pdf" target="_blank" rel="noopener">Link</a></li>
+      <li>Utah County Clerk, "2026 General Election Candidate Certification," Aaron R. Davidson, Clerk (Ballot Questions: Proposition #8, Salem Residents), utahcounty.gov. Read from the rendered page, Oct. 1, 2026. <a href="https://www.utahcounty.gov/cms/uploads/Utah_County_2026_General_Election_Candidate_Certification_4e705c1719.pdf" target="_blank" rel="noopener">Link</a></li>
+      <li>Office of the Lieutenant Governor, "2026 General Election Certification," Deidre M. Henderson, Aug. 28, 2026 (no statewide ballot propositions qualified). <a href="https://www.utah.gov/pmn/files/1482453.pdf" target="_blank" rel="noopener">Link</a></li>
+      <li>Utah County Elections, Public Notices page, vote.utahcounty.gov/public-notices (checked Oct. 1, 2026). <a href="https://vote.utahcounty.gov/public-notices" target="_blank" rel="noopener">Link</a></li>
+      <li>Eagle Mountain City, "Unified Fire Authority" page, eaglemountain.gov (current provider description, checked Sept. 2026). (no public link located)</li>
+      <li>KSL.com, "Eagle Mountain residents push for referendum following 183% property tax increase" (news). <a href="https://ksl.com/article/51610115/eagle-mountain-residents-push-for-referendum-following-183-property-tax-increase" target="_blank" rel="noopener">Link</a></li>
+      <li>Daily Herald / Herald Extra, "Eagle Mountain residents file referendum to repeal 183% property tax increase," Aug. 13, 2026 (news; this concerns the first referendum). <a href="https://www.heraldextra.com/news/2026/aug/13/eagle-mountain-residents-file-referendum-to-repeal-183-property-tax-increase/" target="_blank" rel="noopener">Link</a></li>
     </ol>
   </details>
 
@@ -529,19 +600,53 @@ flowchart TD
 
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({
-    startOnLoad: true,
+  mermaid.initialize({ startOnLoad: false,
     theme: 'base',
-    flowchart: { htmlLabels: true, useMaxWidth: false, diagramPadding: 16, nodeSpacing: 40, rankSpacing: 55 },
+    flowchart: { htmlLabels: true, useMaxWidth: false, diagramPadding: 12, nodeSpacing: 30, rankSpacing: 40, wrappingWidth: 300 },
     themeVariables: {
       primaryColor: '#fbf9f3',
       primaryTextColor: '#1c1c1c',
       primaryBorderColor: '#16273f',
       lineColor: '#16273f',
-      fontFamily: 'Source Sans 3, sans-serif',
-      fontSize: '13px'
+      fontFamily: '"Source Sans 3", Arial, sans-serif',
+      fontSize: '22px'
     }
   });
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function(){ mermaid.run({ querySelector: 'pre.mermaid' }); });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="utah-geo.js"></script>
+<script>
+(function(){
+  if (!window.L || typeof addUtahOutlines !== 'function') return;
+  var PINS = [{"n": "Eagle Mountain", "lat": 40.314, "lng": -112.006, "t": "Eagle Mountain tax referendum (not on the Nov. 3 ballot)", "u": "eagle-mountain-tax-referendum-2.html"}];
+  var map = L.map('locmap', { scrollWheelZoom: false, zoomSnap: 0.25 });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+  addUtahOutlines(map, { highlightCounty: "Utah", alwaysLabel: ["Eagle Mountain"] });
+  var pts = [];
+  PINS.forEach(function(p){
+    var m = L.marker([p.lat, p.lng], { icon: L.divIcon({ className: 'loc-pin', html: '<span></span>', iconSize: null }), title: p.t }).addTo(map);
+    m.bindPopup('<b>' + p.t + '</b><br><a href="' + p.u + '">Open the case file</a>');
+    pts.push([p.lat, p.lng]);
+  });
+  var hi = "Utah";
+  if (hi) {
+    var f = UTAH_GEO.counties.features.filter(function(x){ return x.properties.n === hi; })[0];
+    map.fitBounds(L.geoJSON(f).getBounds(), { padding: [20, 20] });
+  } else if (pts.length > 1) {
+    map.fitBounds(L.latLngBounds(pts).pad(0.35));
+  }
+  if (PINS.length === 5) map.fitBounds(L.geoJSON(UTAH_GEO.state).getBounds());
+})();
+</script>
+<script>
+document.querySelectorAll('table.compare').forEach(function(t){
+  var head = t.querySelector('tr');
+  if (!head || !head.querySelector('th')) return;
+  var labels = [].map.call(head.children, function(c){ return c.textContent.trim(); });
+  [].forEach.call(t.querySelectorAll('tr'), function(r, i){ if (i === 0) return;
+    [].forEach.call(r.children, function(c, j){ if (labels[j]) c.setAttribute('data-label', labels[j]); }); });
+});
 </script>
 </body>
 </html>
