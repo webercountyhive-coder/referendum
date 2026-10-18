@@ -280,14 +280,112 @@
   }
   pre.mermaid, .mermaid-wrap .nodeLabel, .mermaid-wrap .edgeLabel, .mermaid-wrap foreignObject div { font-family: 'Source Sans 3', Arial, sans-serif !important; }
 </style>
+<style>
+/* Hive standard (Oct. 2026) in the referendum repo's navy + manila palette */
+html{font-size:112.5%}
+body{font-size:19px;line-height:1.65}
+.hb-bar{background:#0d0b0a;border-bottom:1px solid #3a2f1c;padding:10px 20px;}
+.hb-bar a{display:flex;align-items:center;gap:12px;max-width:1100px;margin:0 auto;text-decoration:none;}
+.hb-bar img{width:52px;height:52px;border-radius:4px;display:block;flex:none;}
+.hb-name{font-family:'Cinzel','Trajan Pro',Georgia,serif;color:#d4af37;font-size:16px;letter-spacing:.14em;text-transform:uppercase;line-height:1.2;display:block;}
+.hb-sub{font-family:Georgia,serif;font-style:italic;color:#b8956a;font-size:12.5px;letter-spacing:.02em;display:block;margin-top:2px;}
+.hb-foot{background:#0d0b0a;color:#b8956a;text-align:center;padding:26px 20px 30px;font-family:Georgia,serif;}
+.hb-foot img{width:52px;height:52px;display:block;margin:0 auto 10px;}
+.hb-foot .hb-name{font-size:14px;}
+.hb-foot .hb-tag{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8a7650;margin-top:8px;display:block;}
+@media(max-width:600px){.hb-bar{padding:8px 16px}.hb-bar img{width:38px;height:38px}.hb-name{font-size:13px}.hb-sub{font-size:11.5px}}
+.topbar{font-size:.8rem}
+header.masthead{border-bottom:5px solid var(--amber)}
+.caselabel{display:inline-block;margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--navy);background:var(--amber);padding:5px 14px;border-radius:20px;}
+.hs-date{font-family:Arial,sans-serif;font-size:.9rem;margin-top:14px;color:#e8e2d2}
+.dek{font-size:1.1rem}
+.meta-row{font-size:.82rem}
+.pub-date{font-size:.8rem}
+.hs-short{background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--navy);padding:18px 22px;margin:0 0 20px}
+.hs-short ul{margin:0;padding-left:22px}
+.hs-short li{margin-bottom:8px;max-width:68ch}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:18px 0;}
+.stat{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--rust);padding:16px 18px;}
+.stat .num{font-family:'Source Serif 4',serif;font-size:1.5rem;font-weight:700;color:var(--rust);line-height:1.15;}
+.stat .label{margin-top:6px;font-size:.8rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.03em;font-family:'Source Sans 3',sans-serif}
+.hs-toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.hs-toc b{width:100%;font-family:Arial,sans-serif;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--navy)}
+.hs-toc a{font-family:Arial,sans-serif;font-size:.85rem;padding:8px 13px;border:1px solid var(--line);background:var(--paper);color:var(--navy);text-decoration:none;border-radius:999px}
+.hs-toc a:hover{border-color:var(--rust)}
+.hs-plain{display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:var(--paper);border:1px dashed var(--navy);padding:14px 18px;margin:0 0 20px;font-size:1rem;font-family:'Source Sans 3',sans-serif}
+.hs-btn{display:inline-block;background:var(--navy);color:#fff !important;text-decoration:none;font-family:Arial,sans-serif;font-weight:bold;padding:11px 18px;border-radius:6px}
+.hs-pages{background:var(--paper);border:1px solid var(--line);margin:0 0 24px}
+.hs-pages summary{cursor:pointer;padding:13px 18px;font-family:Arial,sans-serif;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);font-weight:bold}
+.hs-pages ol{margin:0;padding:4px 18px 16px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 18px}
+.hs-pages li{font-size:.95rem;line-height:1.35}
+.hs-pages li.cur{font-weight:bold}
+.hs-pages li.cur a{color:var(--navy);text-decoration:none}
+.hs-pages small{display:block;font-size:.8rem;color:var(--ink-soft);font-weight:normal}
+.hs-flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.hs-flip{text-align:left;background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--navy);padding:14px 16px;cursor:pointer;font:inherit;color:var(--ink);min-height:96px}
+.hs-flip .ft{font-weight:bold;font-size:1.05rem;font-family:'Source Sans 3',sans-serif}
+.hs-flip .fh{font-family:Arial,sans-serif;font-size:.78rem;color:var(--ink-soft);margin-top:6px}
+.hs-flip .fd{display:none;margin-top:8px;font-size:.95rem}
+.hs-flip[aria-expanded="true"] .fd{display:block}
+.hs-flip[aria-expanded="true"] .fh{display:none}
+.hs-qa{display:grid;gap:10px}
+.hs-qa div{background:var(--paper);border-left:4px solid var(--navy);padding:12px 16px}
+.hs-qa b{display:block;font-family:Arial,sans-serif;font-size:.88rem;color:var(--rust);margin-bottom:4px}
+.hs-counter{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.hs-counter div{background:var(--navy);color:#fff;padding:14px;text-align:center}
+.hs-counter .n{font-family:Arial,sans-serif;font-size:1.7rem;font-weight:bold}
+.hs-counter .l{font-size:.82rem;font-family:'Source Sans 3',sans-serif}
+.hs-updates{font-family:Arial,sans-serif;font-size:.88rem;color:var(--ink-soft);margin-top:14px}
+.hs-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.hs-cards a{display:block;background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--navy);padding:14px 16px;text-decoration:none;color:var(--ink)}
+.hs-cards a b{display:block;margin-bottom:4px;font-family:'Source Sans 3',sans-serif}
+.hs-cards a span{font-size:.9rem;color:var(--ink-soft)}
+.hs-upd{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.hs-upd li{background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--rust);padding:12px 16px}
+.hs-upd .d{display:block;font-family:Arial,sans-serif;font-weight:bold;font-size:.85rem;color:var(--rust);margin-bottom:4px}
+.hs-upd .s{display:block;font-size:.85rem;color:var(--ink-soft);margin-top:4px}
+.full-sources{border:1px solid var(--line);background:var(--paper);margin:10px 0 0;}
+.full-sources summary{cursor:pointer;padding:15px 22px;font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;color:var(--navy);font-weight:600}
+.full-sources ol{padding:6px 24px 20px 44px;font-size:.92rem}
+.full-sources li{margin-bottom:10px}
+/* status labels: short badge, readable note below */
+.status-badge{display:inline-block;font-size:.78rem;padding:3px 10px;white-space:nowrap}
+.st-note{display:block;margin-top:6px;font-family:'Source Sans 3',sans-serif;font-size:.95rem;color:var(--ink);line-height:1.45;text-transform:none;letter-spacing:0}
+table.compare{font-size:1rem}
+.callout{font-size:1rem}
+.timeline .date{font-size:.85rem}
+.chart-title{font-size:.95rem}
+.bar-row .bar-label{font-size:.9rem}
+.stat-cell .lbl{font-size:.8rem}
+.qwa-list li{font-size:1rem}
+details.sources ol{font-size:.95rem}
+.tl-label{font-size:.8rem}
+footer.site-footer{font-size:.82rem}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="hive-bee.png">
+<style>
+.mermaid-wrap{overflow-x:auto;max-width:100%}
+.hs-bars .tr{flex-wrap:wrap;min-width:0}
+.hs-bars .v{white-space:normal}
+@media(max-width:600px){.bar-row{grid-template-columns:96px 1fr auto}.bar-row .bar-value{font-size:.72rem}}
+</style>
+<style>
+.hs-parts{background:var(--paper);border:2px solid var(--navy);border-radius:6px;padding:14px 16px;margin:0 0 24px;font-family:Arial,sans-serif}
+.hs-parts .lab{font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;font-weight:bold;color:var(--navy);margin:0 0 8px}
+.hs-parts ol{margin:0 0 10px;padding-left:24px;font-size:1rem;line-height:1.45}
+.hs-parts li.cur{font-weight:bold}
+.hs-parts .nav{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.hs-parts .nav a{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;font-weight:bold;padding:10px 16px;border-radius:6px}
+.hs-partline{font-family:Arial,sans-serif;font-size:.95rem;color:var(--amber);font-weight:bold;margin-top:10px}
+</style>
 </head>
 <body>
-
+<div class="hb-bar"><a href="https://webercountyhive.substack.com/" target="_blank" rel="noopener"><img src="uhp-badge.png" alt="Utah Hive Politics logo"><span><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span></span></a></div>
 <div class="topbar">
   <span>THE WEBER COUNTY HIVE &middot; REFERENDUM DOCKET</span>
   <a href="index.html">&larr; All referendums tracked</a>
 </div>
-
 <header class="masthead">
   <div class="masthead-inner">
     <div class="eyebrow">Uintah County &middot; Citizen Petition &middot; On the Nov. 3, 2026 Ballot</div>
@@ -299,58 +397,27 @@
       <span>PETITION CERTIFIED JUL 22, 2026</span>
       <span>VOTE NOV 3, 2026</span>
     </div>
+    <span class="caselabel">Uintah County</span>
+    <p class="hs-date">Posted Oct. 1, 2026 &middot; Updated Oct. 18, 2026</p>
     <div class="pub-date">Published Oct. 1, 2026 &middot; Updated Oct. 1, 2026 (diagrams, map, people and linked sources added)</div>
   </div>
 </header>
 
-<nav class="jump">
-  <div class="inner">
-    <a href="#new-here">Start Here</a>
-    <a href="#how-it-qualified">How It Qualified</a>
-    <a href="#what-changes">What Changes</a>
-    <a href="#cant-decide">What the Plan Can't Decide</a>
-    <a href="#cost">The Cost Estimate</a>
-    <a href="#arguments">Both Sides</a>
-    <a href="#people">People</a>
-    <a href="#status-table">What's Confirmed</a>
-    <a href="#questions">Questions</a>
-    <a href="#sources">Sources</a>
-  </div>
-</nav>
-
 <main>
-
-  <div class="flip-grid" id="glossary">
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="flip-inner">
-        <div class="flip-front">Optional Plan</div>
-        <div class="flip-back">The written document that spells out a new form of county government. Voters approve or reject the plan as a whole.</div>
-      </div>
-    </div>
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="flip-inner">
-        <div class="flip-front">Council-Manager</div>
-        <div class="flip-back">An elected county council makes the laws and budget; a manager hired by the council runs day-to-day county operations.</div>
-      </div>
-    </div>
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="flip-inner">
-        <div class="flip-front">County Commission</div>
-        <div class="flip-back">Uintah's current form: three commissioners elected countywide who hold both lawmaking and executive duties.</div>
-      </div>
-    </div>
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="flip-inner">
-        <div class="flip-front">Participation Area</div>
-        <div class="flip-back">One of four geographic areas the county used to check that petition signatures came from across the county, not just one part of it.</div>
-      </div>
-    </div>
-  </div>
-
+<div class="hs-plain">New to this? <a class="hs-btn" href="uintah-prop-9-form-of-government-plain.html">Read it in plain words</a> About 300 words, with simple charts.</div>
+<nav class="hs-toc" aria-label="On this page"><b>On this page</b><a href="#short">The short version</a><a href="#new-here">Start Here</a><a href="#how-it-qualified">How It Qualified</a><a href="#what-changes">What Changes</a><a href="#cant-decide">What the Plan Can't Decide</a><a href="#cost">The Cost Estimate</a><a href="#arguments">Both Sides</a><a href="#people">People</a><a href="#status-table">What's Confirmed</a><a href="#questions">Questions</a><a href="#sources">Sources</a><a href="#updates">Updates since posted</a><a href="#words">Words to know</a><a href="#connected">Connected Hive work</a><a href="#behind">Behind this piece</a></nav>
+<details class="hs-pages"><summary>Referendum docket pages (7) · tap to open</summary><ol><li><a href="index.html">Referendum docket</a><small>Every referendum the Hive tracks, searchable</small></li><li><a href="eagle-mountain-tax-referendum-2.html">Eagle Mountain's Second Tax Referendum</a> · <a href="eagle-mountain-tax-referendum-2-plain.html">plain words</a><small>The fight over a ballot date and the city's pamphlet</small></li><li><a href="eagle-mountain-finance-history.html">Eagle Mountain's Finance History</a> · <a href="eagle-mountain-finance-history-plain.html">plain words</a><small>Where the property tax goes before the General Fund</small></li><li><a href="roy-prop-10-tax-referendum.html">Roy Prop 10</a> · <a href="roy-prop-10-tax-referendum-plain.html">plain words</a><small>Keep or reject a $1.75 million tax increase</small></li><li class=cur><a href="uintah-prop-9-form-of-government.html">Uintah County Prop 9</a> · <a href="uintah-prop-9-form-of-government-plain.html">plain words</a><small>Whether to replace the county commission</small></li><li><a href="pid-mida-referendums-blocked.html">Two Referendums, Zero Votes</a> · <a href="pid-mida-referendums-blocked-plain.html">plain words</a><small>Box Elder's Stratos fight and Summit County's Kimball Junction</small></li><li><a href="utah-referendum-law-history.html">The Rules Keep Changing</a> · <a href="utah-referendum-law-history-part-2.html">Part 2</a> · <a href="utah-referendum-law-history-plain.html">plain words</a><small>How Utah's referendum law got harder to use</small></li></ol></details>
+<section id="short">
+  <h2>The short version</h2>
+  <div class="hs-short"><ul>
+<li>Uintah County is run today by three commissioners elected countywide.</li><li>A citizen petition put Proposition #9 on the Nov. 3, 2026 ballot: 2,103 signatures counted, 2,101 required, with 3 of 4 areas over their thresholds.</li><li>If voters say yes, five council members would be elected by district in 2028, the council would hire a county manager, and the change would take effect Jan. 1, 2029.</li><li>State law does not let the plan set council pay, benefits or part-time status. Those would be set later by the council.</li><li>The county estimates about $560,000 a year, a figure that counts only manager and assistant-manager pay and benefits.</li>
+</ul></div>
+  <div class="stat-row"><div class="stat"><div class="num">2,103</div><div class="label">Signatures counted (2,101 required)</div></div><div class="stat"><div class="num">$560,000</div><div class="label">County's yearly cost estimate</div></div><div class="stat"><div class="num">5</div><div class="label">Council members, by district</div></div><div class="stat"><div class="num">Jan. 1, 2029</div><div class="label">Change would take effect</div></div></div>
   <div class="newhere" id="new-here">
     <strong>New Here? The Short Version</strong>
     <p style="margin:0;">Uintah County is run today by three commissioners elected countywide. Five residents filed a plan to change that, and a petition with 2,103 counted signatures put it on the ballot. If voters say yes to Proposition #9, the county would elect five council members by district in 2028, the council would hire a county manager, the commissioner offices would end, and the change would take effect January 1, 2029. Other county offices, like the sheriff, clerk-auditor and attorney, would still be elected. The county estimates the change would cost about $560,000 a year, a figure that counts only manager and assistant-manager pay and benefits.</p>
   </div>
+</section>
 
   <section class="locator" id="where">
     <h2>Where This Is</h2>
@@ -548,36 +615,48 @@ flowchart TD
     <h2>6. What's Confirmed, What Isn't</h2>
     <table class="compare">
       <tr><th>Item</th><th>Status</th></tr>
-      <tr><td>Proposition #9 is on the Nov. 3, 2026 Uintah County ballot, with the question text quoted on this page</td><td><span class="status-badge status-confirmed">Confirmed &mdash; county sample ballot and pamphlet</span></td></tr>
-      <tr><td>Petition certified July 22, 2026; 2,103 counted vs. 2,101 required; 3 of 4 areas met</td><td><span class="status-badge status-confirmed">Confirmed &mdash; clerk's certification letter and tally (pasted text; totals re-added)</span></td></tr>
-      <tr><td>Plan terms: five districts, partisan, staggered four-year terms, manager hired and removed by council majority, effective Jan. 1, 2029</td><td><span class="status-badge status-confirmed">Confirmed &mdash; optional plan, rendered pages 1&ndash;7</span></td></tr>
-      <tr><td>$560,000 annual fiscal estimate and what it covers</td><td><span class="status-badge status-confirmed">Confirmed &mdash; voter pamphlet, rendered page</span></td></tr>
-      <tr><td>Districts would match school board districts</td><td><span class="status-badge status-unverified">Recommended only &mdash; the plan does not set district lines</span></td></tr>
-      <tr><td>Council would be part-time with limited pay</td><td><span class="status-badge status-disputed">Not in the plan; set later by the council</span></td></tr>
-      <tr><td>Commissioners' own positions on Prop 9</td><td><span class="status-badge status-unverified">Not found in any official record read for this page</span></td></tr>
-      <tr><td>Money raised or spent for or against Prop 9</td><td><span class="status-badge status-unverified">Not yet checked; sponsors' county financial reports are posted but were not read</span></td></tr>
+      <tr><td>Proposition #9 is on the Nov. 3, 2026 Uintah County ballot, with the question text quoted on this page</td><td><span class="status-badge status-confirmed">Confirmed</span><span class="st-note">Confirmed &mdash; county sample ballot and pamphlet</span></td></tr>
+      <tr><td>Petition certified July 22, 2026; 2,103 counted vs. 2,101 required; 3 of 4 areas met</td><td><span class="status-badge status-confirmed">Confirmed</span><span class="st-note">Confirmed &mdash; clerk's certification letter and tally (pasted text; totals re-added)</span></td></tr>
+      <tr><td>Plan terms: five districts, partisan, staggered four-year terms, manager hired and removed by council majority, effective Jan. 1, 2029</td><td><span class="status-badge status-confirmed">Confirmed</span><span class="st-note">Confirmed &mdash; optional plan, rendered pages 1&ndash;7</span></td></tr>
+      <tr><td>$560,000 annual fiscal estimate and what it covers</td><td><span class="status-badge status-confirmed">Confirmed</span><span class="st-note">Confirmed &mdash; voter pamphlet, rendered page</span></td></tr>
+      <tr><td>Districts would match school board districts</td><td><span class="status-badge status-unverified">Recommended only</span><span class="st-note">Recommended only &mdash; the plan does not set district lines</span></td></tr>
+      <tr><td>Council would be part-time with limited pay</td><td><span class="status-badge status-disputed">Not in the plan</span><span class="st-note">Not in the plan; set later by the council</span></td></tr>
+      <tr><td>Commissioners' own positions on Prop 9</td><td><span class="status-badge status-unverified">Not verified</span><span class="st-note">Not found in any official record read for this page</span></td></tr>
+      <tr><td>Money raised or spent for or against Prop 9</td><td><span class="status-badge status-unverified">Not yet checked</span><span class="st-note">Not yet checked; sponsors' county financial reports are posted but were not read</span></td></tr>
     </table>
   </section>
 
-  <section id="questions">
-    <h2>Questions Worth Asking, and Who to Ask</h2>
-    <ul class="qwa-list">
-      <li><b>Ask the Uintah County Clerk-Auditor's office:</b> which three counties the $560,000 manager and assistant-manager average comes from, and what the three commissioners' salaries and benefits cost the county today.</li>
-      <li><b>Ask the Uintah County Clerk-Auditor's office:</b> for the sponsors' campaign financial reports listed on the county's referenda page, and whether any group opposing Prop 9 has filed one.</li>
-      <li><b>Ask the Uintah County Attorney's office:</b> if Prop 9 passes, who draws the five district lines, when, and whether the public gets a hearing on the map.</li>
-      <li><b>Ask the Uintah County Commission:</b> whether the commission has taken any official position on Prop 9, and where that is recorded.</li>
-      <li><b>Ask your state senator (Sen. Ron Winterton, District 20) or state representative:</b> why H.B. 356 (2025) requires district-only elections for council-manager counties of Uintah's size.</li>
-      <li><b>Check the hearing record yourself:</b> audio for all four August hearings and minutes for three are posted on uintah.gov.</li>
-    </ul>
-  </section>
-
+  <section id="updates">
+  <h2>Updates since this was posted</h2>
+  <p>Changes and new records since this page was first posted, with dates.</p>
+<ul class="hs-upd"><li><span class="d">Oct. 1, 2026</span>Diagrams, the map, the people table and linked sources were added the day the page was posted.</li><li><span class="d">Oct. 18, 2026</span>This page was moved to the Hive's standard layout: larger print, a short version, words to know, connected work and a plain-words version. No earlier text or figures were removed. Long status labels were shortened, with their full original wording kept beneath each label.</li></ul>
+</section>
+<section id="words">
+  <h2>Words to know</h2>
+  <p>Tap a card to see what it means.</p>
+<div class="hs-flips"><button class="hs-flip" aria-expanded="false"><div class="ft">Optional Plan</div><div class="fh">Tap to see</div><div class="fd">The written document that spells out a new form of county government. Voters approve or reject the plan as a whole.</div></button><button class="hs-flip" aria-expanded="false"><div class="ft">Council-Manager</div><div class="fh">Tap to see</div><div class="fd">An elected county council makes the laws and budget; a manager hired by the council runs day-to-day county operations.</div></button><button class="hs-flip" aria-expanded="false"><div class="ft">County Commission</div><div class="fh">Tap to see</div><div class="fd">Uintah's current form: three commissioners elected countywide who hold both lawmaking and executive duties.</div></button><button class="hs-flip" aria-expanded="false"><div class="ft">Participation Area</div><div class="fh">Tap to see</div><div class="fd">One of four geographic areas the county used to check that petition signatures came from across the county, not just one part of it.</div></button><button class="hs-flip" aria-expanded="false"><div class="ft">Proposition #9</div><div class="fh">Tap to see</div><div class="fd">The number on Uintah County's Nov. 3, 2026 ballot for the plan to switch to a council-manager form.</div></button><button class="hs-flip" aria-expanded="false"><div class="ft">Fiscal impact statement</div><div class="fh">Tap to see</div><div class="fd">The county's required estimate of what a measure would cost. For Prop 9, it is $560,000 a year.</div></button></div>
+</section>
+<section id="questions">
+  <h2>Questions Worth Asking, and Who to Ask</h2>
+<div class="hs-qa"><div><b>Ask the Uintah County Clerk-Auditor's office:</b>which three counties the $560,000 manager and assistant-manager average comes from, and what the three commissioners' salaries and benefits cost the county today.</div><div><b>Ask the Uintah County Clerk-Auditor's office:</b>for the sponsors' campaign financial reports listed on the county's referenda page, and whether any group opposing Prop 9 has filed one.</div><div><b>Ask the Uintah County Attorney's office:</b>if Prop 9 passes, who draws the five district lines, when, and whether the public gets a hearing on the map.</div><div><b>Ask the Uintah County Commission:</b>whether the commission has taken any official position on Prop 9, and where that is recorded.</div><div><b>Ask your state senator (Sen. Ron Winterton, District 20) or state representative:</b>why H.B. 356 (2025) requires district-only elections for council-manager counties of Uintah's size.</div><div><b>Check the hearing record yourself:</b>audio for all four August hearings and minutes for three are posted on uintah.gov.</div></div>
+</section>
 
   <div class="callout good" id="send-updates">
     <strong>Have an update? Send it to us</strong>
     Know about a referendum in your city or county, or have news on one listed here &mdash; a petition filing, a signature count, a clerk's notice, or a court ruling? Email <a href="mailto:webercountyhive@gmail.com">webercountyhive@gmail.com</a>. The Hive reports from public records, so please include a link to the document or a copy of it if you have one.
   </div>
-
-  <details class="sources" id="sources">
+<section id="connected">
+  <h2>Connected Hive work</h2>
+<div class="hs-cards"><a href="index.html"><b>Referendum docket</b><span>Every referendum the Hive tracks across Utah</span></a><a href="https://weber-county-hive.github.io/candidates2026/sd20-winterton-mcrae.html" target="_blank" rel="noopener"><b>SD-20: Winterton vs. McRae</b><span>candidates2026: Uintah County's state senate race</span></a><a href="utah-referendum-law-history.html"><b>The Rules Keep Changing</b><span>How Utah's referendum law got harder to use</span></a><a href="roy-prop-10-tax-referendum.html"><b>Roy Prop 10</b><span>Another citizen measure on the Nov. 3 ballot</span></a><a href="https://weber-county-hive.github.io/utah-maps/citizen-referendums.html" target="_blank" rel="noopener"><b>MAP 006: Citizen Referendums</b><span>Utah Maps repo</span></a></div>
+</section>
+<section id="behind">
+  <h2>Behind this piece</h2>
+<div class="hs-counter"><div><div class="n">15</div><div class="l">Sources listed below</div></div><div><div class="n">6</div><div class="l">Questions to ask, with whom to ask</div></div><div><div class="n">9</div><div class="l">Rows in "People in this record"</div></div><div><div class="n">3</div><div class="l">Large-print diagrams</div></div></div>
+  <p class="hs-updates">Posted Oct. 1, 2026. Updated Oct. 18, 2026 (layout only). See "Updates since this was posted" above.</p>
+</section>
+<section id="sources">
+  <h2>Sources</h2>
+  <details class="sources full-sources">
     <summary>Sources (click to expand)</summary>
     <ol>
       <li>"Proposed Optional Plan to Adopt a Council-Manager Form of Government for Uintah County, Utah," 7 pages, dated and received April 20, 2026. Read from rendered page images. <a href="https://cms1files.revize.com/uintahcountyut/Departments/a_-_e_departments/commissioners/Petition/Proposed%20Optional%20Plan%20to%20chg%20County%20Gov.pdf" target="_blank" rel="noopener">cms1files.revize.com/uintahcountyut/Departments/a_-_e_departments/comm&hellip;</a></li>
@@ -597,14 +676,16 @@ flowchart TD
       <li>Hive case file: SD-20, Winterton vs. McRae. <a href="https://weber-county-hive.github.io/candidates2026/sd20-winterton-mcrae.html" target="_blank" rel="noopener">weber-county-hive.github.io/candidates2026/sd20-winterton-mcrae.html</a></li>
     </ol>
   </details>
-
+</section>
 </main>
 
 <footer class="site-footer">
   The Weber County Hive &middot; Referendum Docket &middot; Reporting from public records only &mdash; no outreach to referendum subjects.<br>
   <a href="index.html">Back to all referendums tracked</a>
 </footer>
+<div class="hb-foot"><img src="hive-bee.png" alt=""><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span><span class="hb-tag">Independent · Accountability · Journalism</span></div>
 
+<script>document.querySelectorAll('.hs-flip').forEach(f=>f.addEventListener('click',()=>f.setAttribute('aria-expanded',f.getAttribute('aria-expanded')==='true'?'false':'true')));</script>
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
   mermaid.initialize({ startOnLoad: false, theme: 'base',

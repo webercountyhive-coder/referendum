@@ -40,11 +40,11 @@ const REFERENDUMS = [
     resolution: "Resolution 26-24 (adopted Aug. 11, 2026); Ballot Proposition #10",
     filedDate: "N/A",
     referableDate: "N/A",
-    lastUpdated: "2026-10-01",
+    lastUpdated: "2026-10-18",
     tags: ["property tax", "on the Nov. 3 ballot", "Weber County"],
     status: "confirmed",
     keyFigure: "$1,749,050 more per year (34.25%); 2025 attempt fell short, 576 of 1,743 signatures",
-    summary: "Roy's council adopted a 34.25% property-tax increase 4-1 to fund employee raises. Weber County's certified ballot lists Proposition #10, a referendum on it. Signature gathering is under way as of Oct. 1, 2026; news reports say signatures are due Oct. 8. A 2025 referendum on Roy's prior increase was declared insufficient.",
+    summary: "Roy's council adopted a 34.25% property-tax increase 4-1 to fund employee raises. Weber County's certified ballot lists Proposition #10, a referendum on it. Signature gathering is under way as of Oct. 1, 2026; news reports say signatures are due Oct. 8. A 2025 referendum on Roy's prior increase was declared insufficient. Update Oct. 18, 2026: the petition met the requirements, per the Weber County Clerk-Auditor (KSL, Oct. 13), so Prop #10 stays on the Nov. 3 ballot.",
     link: "roy-prop-10-tax-referendum.html"
   },
   {
