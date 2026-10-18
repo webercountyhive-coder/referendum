@@ -274,14 +274,98 @@
   }
   pre.mermaid, .mermaid-wrap .nodeLabel, .mermaid-wrap .edgeLabel, .mermaid-wrap foreignObject div { font-family: 'Source Sans 3', Arial, sans-serif !important; }
 </style>
+
+<style>
+/* Hive standard (Oct. 2026) in the referendum repo's navy + manila palette */
+html{font-size:112.5%}
+body{font-size:19px;line-height:1.65}
+.hb-bar{background:#0d0b0a;border-bottom:1px solid #3a2f1c;padding:10px 20px;}
+.hb-bar a{display:flex;align-items:center;gap:12px;max-width:1100px;margin:0 auto;text-decoration:none;}
+.hb-bar img{width:52px;height:52px;border-radius:4px;display:block;flex:none;}
+.hb-name{font-family:'Cinzel','Trajan Pro',Georgia,serif;color:#d4af37;font-size:16px;letter-spacing:.14em;text-transform:uppercase;line-height:1.2;display:block;}
+.hb-sub{font-family:Georgia,serif;font-style:italic;color:#b8956a;font-size:12.5px;letter-spacing:.02em;display:block;margin-top:2px;}
+.hb-foot{background:#0d0b0a;color:#b8956a;text-align:center;padding:26px 20px 30px;font-family:Georgia,serif;}
+.hb-foot img{width:52px;height:52px;display:block;margin:0 auto 10px;}
+.hb-foot .hb-name{font-size:14px;}
+.hb-foot .hb-tag{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8a7650;margin-top:8px;display:block;}
+@media(max-width:600px){.hb-bar{padding:8px 16px}.hb-bar img{width:38px;height:38px}.hb-name{font-size:13px}.hb-sub{font-size:11.5px}}
+.topbar{font-size:.8rem}
+header.masthead{border-bottom:5px solid var(--amber)}
+.caselabel{display:inline-block;margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--navy);background:var(--amber);padding:5px 14px;border-radius:20px;}
+.hs-date{font-family:Arial,sans-serif;font-size:.9rem;margin-top:14px;color:#e8e2d2}
+.dek{font-size:1.1rem}
+.meta-row{font-size:.82rem}
+.pub-date{font-size:.8rem}
+.hs-short{background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--navy);padding:18px 22px;margin:0 0 20px}
+.hs-short ul{margin:0;padding-left:22px}
+.hs-short li{margin-bottom:8px;max-width:68ch}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:18px 0;}
+.stat{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--rust);padding:16px 18px;}
+.stat .num{font-family:'Source Serif 4',serif;font-size:1.5rem;font-weight:700;color:var(--rust);line-height:1.15;}
+.stat .label{margin-top:6px;font-size:.8rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.03em;font-family:'Source Sans 3',sans-serif}
+.hs-toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.hs-toc b{width:100%;font-family:Arial,sans-serif;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--navy)}
+.hs-toc a{font-family:Arial,sans-serif;font-size:.85rem;padding:8px 13px;border:1px solid var(--line);background:var(--paper);color:var(--navy);text-decoration:none;border-radius:999px}
+.hs-toc a:hover{border-color:var(--rust)}
+.hs-plain{display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:var(--paper);border:1px dashed var(--navy);padding:14px 18px;margin:0 0 20px;font-size:1rem;font-family:'Source Sans 3',sans-serif}
+.hs-btn{display:inline-block;background:var(--navy);color:#fff !important;text-decoration:none;font-family:Arial,sans-serif;font-weight:bold;padding:11px 18px;border-radius:6px}
+.hs-pages{background:var(--paper);border:1px solid var(--line);margin:0 0 24px}
+.hs-pages summary{cursor:pointer;padding:13px 18px;font-family:Arial,sans-serif;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);font-weight:bold}
+.hs-pages ol{margin:0;padding:4px 18px 16px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 18px}
+.hs-pages li{font-size:.95rem;line-height:1.35}
+.hs-pages li.cur{font-weight:bold}
+.hs-pages li.cur a{color:var(--navy);text-decoration:none}
+.hs-pages small{display:block;font-size:.8rem;color:var(--ink-soft);font-weight:normal}
+.hs-flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.hs-flip{text-align:left;background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--navy);padding:14px 16px;cursor:pointer;font:inherit;color:var(--ink);min-height:96px}
+.hs-flip .ft{font-weight:bold;font-size:1.05rem;font-family:'Source Sans 3',sans-serif}
+.hs-flip .fh{font-family:Arial,sans-serif;font-size:.78rem;color:var(--ink-soft);margin-top:6px}
+.hs-flip .fd{display:none;margin-top:8px;font-size:.95rem}
+.hs-flip[aria-expanded="true"] .fd{display:block}
+.hs-flip[aria-expanded="true"] .fh{display:none}
+.hs-qa{display:grid;gap:10px}
+.hs-qa div{background:var(--paper);border-left:4px solid var(--navy);padding:12px 16px}
+.hs-qa b{display:block;font-family:Arial,sans-serif;font-size:.88rem;color:var(--rust);margin-bottom:4px}
+.hs-counter{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.hs-counter div{background:var(--navy);color:#fff;padding:14px;text-align:center}
+.hs-counter .n{font-family:Arial,sans-serif;font-size:1.7rem;font-weight:bold}
+.hs-counter .l{font-size:.82rem;font-family:'Source Sans 3',sans-serif}
+.hs-updates{font-family:Arial,sans-serif;font-size:.88rem;color:var(--ink-soft);margin-top:14px}
+.hs-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.hs-cards a{display:block;background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--navy);padding:14px 16px;text-decoration:none;color:var(--ink)}
+.hs-cards a b{display:block;margin-bottom:4px;font-family:'Source Sans 3',sans-serif}
+.hs-cards a span{font-size:.9rem;color:var(--ink-soft)}
+.hs-upd{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.hs-upd li{background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--rust);padding:12px 16px}
+.hs-upd .d{display:block;font-family:Arial,sans-serif;font-weight:bold;font-size:.85rem;color:var(--rust);margin-bottom:4px}
+.hs-upd .s{display:block;font-size:.85rem;color:var(--ink-soft);margin-top:4px}
+.full-sources{border:1px solid var(--line);background:var(--paper);margin:10px 0 0;}
+.full-sources summary{cursor:pointer;padding:15px 22px;font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;color:var(--navy);font-weight:600}
+.full-sources ol{padding:6px 24px 20px 44px;font-size:.92rem}
+.full-sources li{margin-bottom:10px}
+/* status labels: short badge, readable note below */
+.status-badge{display:inline-block;font-size:.78rem;padding:3px 10px;white-space:nowrap}
+.st-note{display:block;margin-top:6px;font-family:'Source Sans 3',sans-serif;font-size:.95rem;color:var(--ink);line-height:1.45;text-transform:none;letter-spacing:0}
+table.compare{font-size:1rem}
+.callout{font-size:1rem}
+.timeline .date{font-size:.85rem}
+.chart-title{font-size:.95rem}
+.bar-row .bar-label{font-size:.9rem}
+.stat-cell .lbl{font-size:.8rem}
+.qwa-list li{font-size:1rem}
+details.sources ol{font-size:.95rem}
+.tl-label{font-size:.8rem}
+footer.site-footer{font-size:.82rem}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="hive-bee.png">
 </head>
 <body>
-
+<div class="hb-bar"><a href="https://webercountyhive.substack.com/" target="_blank" rel="noopener"><img src="uhp-badge.png" alt="Utah Hive Politics logo"><span><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span></span></a></div>
 <div class="topbar">
   <span>THE WEBER COUNTY HIVE &middot; REFERENDUM DOCKET</span>
   <a href="index.html">&larr; All referendums tracked</a>
 </div>
-
 <header class="masthead">
   <div class="masthead-inner">
     <div class="eyebrow">Eagle Mountain, Utah County &middot; Referendum Docket</div>
@@ -292,61 +376,36 @@
       <span>ADOPTED AUG 18, 2026</span>
       <span>REFERABILITY DETERMINED SEPT 14, 2026</span>
     </div>
+    <span class="caselabel">Utah County &middot; Eagle Mountain</span>
+    <p class="hs-date">Posted Sept. 17, 2026 &middot; Updated Oct. 18, 2026</p>
     <div class="pub-date">Published Sept. 17, 2026 &middot; Updated Oct. 1, 2026 (Nov. 3 ballot status, map, people and linked sources added) &middot; Updated Oct. 18, 2026 (city&rsquo;s posted pamphlet read page by page; argument dates and sponsor-information findings added in Section 6)</div>
   </div>
 </header>
 
-<nav class="jump">
-  <div class="inner">
-    <a href="#new-here">Start Here</a>
-    <a href="#oct1-update">Oct. 1 Update</a>
-    <a href="#rate-history">The Rate</a>
-    <a href="#date-problem">The Date Problem</a>
-    <a href="#materials-dispute">Materials Fight</a>
-    <a href="#context">Other Spending</a>
-    <a href="#status-table">What's Confirmed</a>
-    <a href="#posted-pamphlet">Posted Pamphlet</a>
-    <a href="#people">People</a>
-    <a href="#questions">Questions</a>
-    <a href="#sources">Sources</a>
-    <a href="eagle-mountain-finance-history.html" style="color:var(--rust);">Finance History &rarr;</a>
-  </div>
-</nav>
-
 <main>
-
-  <div class="flip-grid" id="glossary">
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="flip-inner">
-        <div class="flip-front">Referability</div>
-        <div class="flip-back">A city attorney's legal determination that a proposed referendum is allowed to go before voters under Utah Code Title 20A, Ch. 7 &mdash; a procedural green light, not a ruling on the outcome.</div>
-      </div>
-    </div>
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="flip-inner">
-        <div class="flip-front">VPA</div>
-        <div class="flip-back">Voter Participation Area &mdash; the geographic unit Utah uses to organize by-mail ballot counts and precinct-level boundaries.</div>
-      </div>
-    </div>
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="flip-inner">
-        <div class="flip-front">Truth in Taxation</div>
-        <div class="flip-back">Utah's required public-hearing process before a city can adopt a property-tax rate above its certified (revenue-neutral) rate.</div>
-      </div>
-    </div>
-    <div class="flip-card" onclick="this.classList.toggle('flipped')">
-      <div class="flip-inner">
-        <div class="flip-front">Certified Rate</div>
-        <div class="flip-back">The property-tax rate that would raise the same total revenue as last year, before new growth &mdash; the baseline any increase is measured against.</div>
-      </div>
-    </div>
+<div class="hs-plain">New to this? <a class="hs-btn" href="eagle-mountain-tax-referendum-2-plain.html">Read it in plain words</a> About 400 words, with simple charts.</div>
+<nav class="hs-toc" aria-label="On this page"><b>On this page</b><a href="#short">The short version</a><a href="#new-here">Start Here</a><a href="#where">Where this is</a><a href="#oct1-update">Oct. 1 Update</a><a href="#rate-history">1. The rate</a><a href="#date-problem">2. The date problem</a><a href="#materials-dispute">3. Materials fight</a><a href="#context">4. Other spending</a><a href="#status-table">5. What's confirmed</a><a href="#posted-pamphlet">6. Posted pamphlet</a><a href="#people">People</a><a href="#updates">Updates since posted</a><a href="#words">Words to know</a><a href="#questions">Questions to ask</a><a href="#connected">Connected Hive work</a><a href="#behind">Behind this piece</a><a href="#sources">Sources</a><a href="eagle-mountain-finance-history.html">Finance History &rarr;</a></nav>
+<details class="hs-pages"><summary>Referendum docket pages (7) · tap to open</summary><ol><li><a href="index.html">Referendum docket</a><small>Every referendum the Hive tracks, searchable</small></li><li class=cur><a href="eagle-mountain-tax-referendum-2.html">Eagle Mountain's Second Tax Referendum</a> · <a href="eagle-mountain-tax-referendum-2-plain.html">plain words</a><small>The fight over a ballot date and the city's pamphlet</small></li><li><a href="eagle-mountain-finance-history.html">Eagle Mountain's Balanced Budget</a><small>Where 16 years of "no tax increase" money went</small></li><li><a href="roy-prop-10-tax-referendum.html">Roy Prop 10</a><small>Keep or reject a $1.75 million tax increase</small></li><li><a href="uintah-prop-9-form-of-government.html">Uintah County Prop 9</a><small>Whether to replace the county commission</small></li><li><a href="pid-mida-referendums-blocked.html">Referendums That Never Reached Voters</a><small>Box Elder's B.E.A.R. and Summit County</small></li><li><a href="utah-referendum-law-history.html">The Rules Keep Changing</a><small>How Utah's referendum law got harder to use</small></li></ol></details>
+<section id="short">
+  <h2>The short version</h2>
+  <div class="hs-short"><ul>
+<li>Eagle Mountain's City Council adopted a 69.81% property-tax increase on Aug. 18, 2026 (Resolution R-62-2026), worth $2,132,876 a year, to help pay for the Utah County Sheriff's Office contract.</li>
+<li>Residents filed a second referendum to repeal it. The city attorney found it legally referable on Sept. 14, 2026.</li>
+<li>The city's referendum petition lists an Aug. 10, 2027 special election, and sponsors say the draft pamphlet did too. Utah law appears to allow a tax measure only on the November date unless a declared-disaster exception is used, and no record of one was found.</li>
+<li>The referendum is not on Utah County's Nov. 3, 2026 ballot.</li>
+<li>The city's posted pamphlet includes the sponsors' home addresses, as state law requires, and leaves out the sponsors' argument as "[not timely submitted]." The city's own argument arrived on time.</li>
+</ul></div>
+  <div class="stat-row">
+    <div class="stat"><div class="num">69.81%</div><div class="label">Increase adopted Aug. 18, 2026</div></div>
+    <div class="stat"><div class="num">$2,132,876</div><div class="label">Added property tax per year</div></div>
+    <div class="stat"><div class="num">$99.31</div><div class="label">Per year on an average $488,000 home</div></div>
+    <div class="stat"><div class="num">Aug. 10, 2027</div><div class="label">Election date on the city's petition</div></div>
   </div>
-
   <div class="newhere" id="new-here">
     <strong>New Here? The Short Version</strong>
     <p style="margin:0;">Eagle Mountain's City Council raised its property-tax rate 69.81% on August 18, 2026, to help fund a Utah County Sheriff's Office contract. A group of residents is trying to force a public vote to repeal it &mdash; their second such attempt this cycle. The city's own attorney says the referendum is legally allowed to proceed. But sponsors say the city still hasn't handed over the petition forms, signature sheets, or an accurate ballot pamphlet it's required to provide within five days of that determination &mdash; and that the draft pamphlet lists an August 2027 election date for a tax measure that Utah law appears to only allow in November.</p>
   </div>
-
+</section>
 
   <section class="locator" id="where">
     <h2>Where This Is</h2>
@@ -477,12 +536,12 @@ flowchart TD
     <p>Under Utah Code &sect; 20A-7-613(7), once a referendum is determined referable, the City Recorder must provide the referendum petition, signature sheets, and an accurate Proposition Information Pamphlet within five calendar days. Sponsors say that hasn't happened, and that what has been provided is defective.</p>
     <table class="compare">
       <tr><th>Sponsors' claim</th><th>Status</th></tr>
-      <tr><td>Pamphlet cover mislabels R-62-2026 as merely setting the certified rate, not approving an increase above it</td><td><span class="status-badge status-confirmed">Wording confirmed in the posted pamphlet &mdash; see Section 6</span></td></tr>
+      <tr><td>Pamphlet cover mislabels R-62-2026 as merely setting the certified rate, not approving an increase above it</td><td><span class="status-badge status-confirmed">Confirmed</span><span class="st-note">Wording confirmed in the posted pamphlet &mdash; see Section 6</span></td></tr>
       <tr><td>Fiscal/legal impact statement doesn't itemize funding sources or percentages behind the $2,132,876 repeal cost</td><td><span class="status-badge status-disputed">Disputed by sponsors</span></td></tr>
       <tr><td>No disclosed source data or calculation behind the $99.31/year, $8.28/month per-household figures</td><td><span class="status-badge status-disputed">Disputed by sponsors</span></td></tr>
-      <tr><td>Pamphlet references an Aug. 10, 2027 special election</td><td><span class="status-badge status-confirmed">Confirmed contrary to statute &mdash; see Section 2</span></td></tr>
-      <tr><td>City says it doesn't maintain active-voter-count records; directs sponsors to Utah County Clerk</td><td><span class="status-badge status-unverified">Sponsors' account, not independently verified</span></td></tr>
-      <tr><td>VPA boundary documents "already provided" per the city, but outdated/insufficient per sponsors</td><td><span class="status-badge status-unverified">Disputed, both sides' claims unverified here</span></td></tr>
+      <tr><td>Pamphlet references an Aug. 10, 2027 special election</td><td><span class="status-badge status-confirmed">Confirmed</span><span class="st-note">Confirmed contrary to statute &mdash; see Section 2</span></td></tr>
+      <tr><td>City says it doesn't maintain active-voter-count records; directs sponsors to Utah County Clerk</td><td><span class="status-badge status-unverified">Not verified</span><span class="st-note">Sponsors' account, not independently verified</span></td></tr>
+      <tr><td>VPA boundary documents "already provided" per the city, but outdated/insufficient per sponsors</td><td><span class="status-badge status-unverified">Not verified</span><span class="st-note">Disputed, both sides' claims unverified here</span></td></tr>
     </table>
     <p>The $99.31/$8.28 figures track closely with independent reporting on the adopted rate's effect on a median-priced home (see Section 1), which lends some outside support to the pamphlet's math even though sponsors say its underlying sourcing wasn't disclosed to them as required.</p>
     <div class="quote">
@@ -529,17 +588,17 @@ flowchart TD
       <tr><th>Item</th><th>Status</th></tr>
       <tr><td>Resolution R-62-2026 adopted the 0.000900 rate on Aug. 18, 2026</td><td><span class="status-badge status-confirmed">Confirmed</span></td></tr>
       <tr><td>69.81% increase over the 0.000530 certified rate</td><td><span class="status-badge status-confirmed">Confirmed</span></td></tr>
-      <tr><td>City Attorney's Sept. 14, 2026 referability determination</td><td><span class="status-badge status-confirmed">Per sponsors' press release; city's own letter not independently obtained</span></td></tr>
+      <tr><td>City Attorney's Sept. 14, 2026 referability determination</td><td><span class="status-badge status-confirmed">Per sponsors' release</span><span class="st-note">Per sponsors' press release; city's own letter not independently obtained</span></td></tr>
       <tr><td>The statute&rsquo;s text does not allow an August 2027 date for a tax referendum absent a declared disaster + unanimous vote</td><td><span class="status-badge status-confirmed">Confirmed against statute text</span></td></tr>
-      <tr><td>No disaster declaration or special-election ordinance found in the record</td><td><span class="status-badge status-unverified">Absence noted, not exhaustively confirmed &mdash; city minutes not yet obtained</span></td></tr>
-      <tr><td>Pamphlet's specific defects (mislabeled cover, missing fiscal breakdown)</td><td><span class="status-badge status-disputed">Sponsors' characterization. Update Oct. 18: the posted pamphlet was read page by page. The cover wording is confirmed (Section 6); the fiscal-breakdown complaint remains the sponsors' characterization.</span></td></tr>
-      <tr><td>City's argument against the referendum turned in on time</td><td><span class="status-badge status-confirmed">Stamped received Sept. 8, 2026 &mdash; within the 15-day window (Section 6)</span></td></tr>
-      <tr><td>Sponsors' argument in favor not included in the pamphlet</td><td><span class="status-badge status-confirmed">City's table of contents marks it &ldquo;[not timely submitted]&rdquo;; the reason is not stated</span></td></tr>
-      <tr><td>Sponsors' home addresses, and the sponsor liaison's phone and email, appear in the posted pamphlet</td><td><span class="status-badge status-confirmed">Confirmed &mdash; rendered pages 3&ndash;12; state law requires a copy of the application in the pamphlet</span></td></tr>
-      <tr><td>Pamphlet (with sponsor information) went out before it should have</td><td><span class="status-badge status-unverified">Not supported by the records read &mdash; posted Sept. 14, the same day as the referability determination (Section 6)</span></td></tr>
-      <tr><td>A 9x12 city mailer went to every home</td><td><span class="status-badge status-unverified">Still checking &mdash; the mailer itself has not been seen</span></td></tr>
-      <tr><td>Referendum is not on Utah County's Nov. 3, 2026 certified ballot (only Salem Prop #8 is listed)</td><td><span class="status-badge status-confirmed">Confirmed &mdash; rendered page 1 of county certification, Oct. 1, 2026</span></td></tr>
-      <tr><td>UFSA exit / $4M savings claim</td><td><span class="status-badge status-unverified">Not found in any public record checked</span></td></tr>
+      <tr><td>No disaster declaration or special-election ordinance found in the record</td><td><span class="status-badge status-unverified">Not confirmed</span><span class="st-note">Absence noted, not exhaustively confirmed &mdash; city minutes not yet obtained</span></td></tr>
+      <tr><td>Pamphlet's specific defects (mislabeled cover, missing fiscal breakdown)</td><td><span class="status-badge status-disputed">Partly confirmed</span><span class="st-note">Sponsors' characterization. Update Oct. 18: the posted pamphlet was read page by page. The cover wording is confirmed (Section 6); the fiscal-breakdown complaint remains the sponsors' characterization.</span></td></tr>
+      <tr><td>City's argument against the referendum turned in on time</td><td><span class="status-badge status-confirmed">On time</span><span class="st-note">Stamped received Sept. 8, 2026 &mdash; within the 15-day window (Section 6)</span></td></tr>
+      <tr><td>Sponsors' argument in favor not included in the pamphlet</td><td><span class="status-badge status-confirmed">Confirmed</span><span class="st-note">City's table of contents marks it &ldquo;[not timely submitted]&rdquo;; the reason is not stated</span></td></tr>
+      <tr><td>Sponsors' home addresses, and the sponsor liaison's phone and email, appear in the posted pamphlet</td><td><span class="status-badge status-confirmed">Confirmed</span><span class="st-note">Confirmed &mdash; rendered pages 3&ndash;12; state law requires a copy of the application in the pamphlet</span></td></tr>
+      <tr><td>Pamphlet (with sponsor information) went out before it should have</td><td><span class="status-badge status-unverified">Not supported</span><span class="st-note">Not supported by the records read &mdash; posted Sept. 14, the same day as the referability determination (Section 6)</span></td></tr>
+      <tr><td>A 9x12 city mailer went to every home</td><td><span class="status-badge status-unverified">Still checking</span><span class="st-note">Still checking &mdash; the mailer itself has not been seen</span></td></tr>
+      <tr><td>Referendum is not on Utah County's Nov. 3, 2026 certified ballot (only Salem Prop #8 is listed)</td><td><span class="status-badge status-confirmed">Confirmed</span><span class="st-note">Confirmed &mdash; rendered page 1 of county certification, Oct. 1, 2026</span></td></tr>
+      <tr><td>UFSA exit / $4M savings claim</td><td><span class="status-badge status-unverified">Not found</span><span class="st-note">Not found in any public record checked</span></td></tr>
     </table>
   </section>
 
@@ -572,6 +631,9 @@ flowchart TD
     <p>The records do not show the city did anything the law doesn't require here. What they show is how the law works: residents who sponsor a referendum against their city have their home addresses posted on the city's website.</p>
     <p>The pamphlet also does not appear to have gone out early. The law says a city publishes the pamphlet within 10 days after the referendum is found referable (&sect; 20A-7-401.5(5)). The sponsors' own press release dates that determination Sept. 14, and the posted PDF is dated Sept. 14.</p>
 
+    <h3>The city's signature-removal instructions</h3>
+    <p>Under the pamphlet and petition links, the city's Referendum Information page also explains how a signer can have their name removed from a petition (Utah Code &sect; 20A-7-105(8) and &sect; 20A-1-1003). It says removal requests must be made in writing and delivered to the Utah County Clerk, not by email, and that &ldquo;We highly encourage you to submit your request as soon as possible.&rdquo; State law does allow signers to remove their names. This page reports what the city's page says and draws no conclusion from it.</p>
+
     <h3>Still open</h3>
     <ul>
       <li><strong>The 9x12 mailer.</strong> A city may not spend public money to influence a ballot proposition, but it may distribute the pamphlet. Whether the mailer was the pamphlet or something more can only be answered by seeing it.</li>
@@ -593,25 +655,50 @@ flowchart TD
     <p style="font-size:0.9rem;color:var(--ink-soft);">More Eagle Mountain officials, with their roles in the city's finances, are on the <a href="eagle-mountain-finance-history.html#people">finance history page</a>.</p>
   </section>
 
-  <section id="questions">
-    <h2>Questions Worth Asking</h2>
-    <ul class="qwa-list">
-      <li><b>Ask the Eagle Mountain City Recorder's office:</b> has the referendum petition, signature sheets, and pamphlet been transmitted to the sponsors, and on what date?</li>
-      <li><b>Ask the City Council:</b> has any ordinance or resolution been adopted declaring a disaster and unanimously setting an August 2027 election date under &sect; 20A-1-204(1)(c)? If not, on what authority does the pamphlet cite that date?</li>
-      <li><b>Ask the City Attorney's office:</b> for a copy of the September 14, 2026 referability determination letter itself.</li>
-      <li><b>Ask the Utah County Clerk's elections office:</b> whether any Eagle Mountain referendum has been submitted for a future ballot, and on what date it would appear.</li>
-      <li><b>Ask your state legislators:</b> should a referendum sponsor&rsquo;s home address and phone number be removed from the copy of the application the city posts online, the way some other public forms allow?</li>
-      <li><b>Ask your state senator (Sen. Emily Buss, District 11):</b> whether the Legislature plans to clarify when a local tax referendum may be voted on.</li>
-      <li><b>Ask the City:</b> for the specific VPA boundary documents provided to sponsors, and the date they were last updated.</li>
-    </ul>
-  </section>
+  <section id="updates">
+  <h2>Updates since this was posted</h2>
+  <p>Records and news found after this page was first posted on Sept. 17, 2026, with dates.</p>
+<ul class="hs-upd">
+<li><span class="d">Oct. 1, 2026</span>Utah County's certified Nov. 3, 2026 ballot lists one local question, Salem's Proposition #8, and no Eagle Mountain referendum. A locator map, the people table and linked sources were added the same day. See the Oct. 1 box above.<span class="s">Source: Utah County Clerk, 2026 General Election Candidate Certification</span></li>
+<li><span class="d">Oct. 18, 2026</span>The Hive read the city's posted Proposition Information Pamphlet page by page. The city's argument is stamped received Sept. 8, within the 15-day window. The sponsors' argument is marked "[not timely submitted]." The sponsors' home addresses are in the pamphlet, as state law requires. The cover wording the sponsors questioned is confirmed. See Section 6.<span class="s">Source: <a href="https://eaglemountain.gov/wp-content/uploads/2026/09/Proposition-Information-Pamphlet.pdf" target="_blank" rel="noopener">Eagle Mountain City, Proposition Information Pamphlet</a></span></li>
+<li><span class="d">Oct. 18, 2026</span>The city's Referendum Information page explains how signers can have their names removed from the petition. See Section 6.<span class="s">Source: <a href="https://eaglemountain.gov/" target="_blank" rel="noopener">Eagle Mountain City homepage</a></span></li>
+<li><span class="d">Oct. 18, 2026</span>This page was moved to the Hive's standard layout: larger print, a short version, words to know, connected work and a plain-words version. No earlier text or figures were removed. Status labels were shortened, with their full original wording kept beneath each label.</li>
+</ul>
+</section>
+<section id="words">
+  <h2>Words to know</h2>
+  <p>Tap a card to see what it means.</p>
+<div class="hs-flips"><button class="hs-flip" aria-expanded="false"><div class="ft">Referendum</div><div class="fh">Tap to see</div><div class="fd">A citizen petition that asks voters to keep or repeal a law or resolution a city council (or the Legislature) has already passed.</div></button><button class="hs-flip" aria-expanded="false"><div class="ft">Referability</div><div class="fh">Tap to see</div><div class="fd">A city attorney's legal determination that a proposed referendum is allowed to go before voters under Utah Code Title 20A, Ch. 7 &mdash; a procedural green light, not a ruling on the outcome.</div></button><button class="hs-flip" aria-expanded="false"><div class="ft">Proposition information pamphlet</div><div class="fh">Tap to see</div><div class="fd">The official packet a city must publish for a local referendum: a copy of the application, the arguments for and against, and a fiscal and legal impact statement (Utah Code &sect; 20A-7-401.5).</div></button><button class="hs-flip" aria-expanded="false"><div class="ft">Certified Rate</div><div class="fh">Tap to see</div><div class="fd">The property-tax rate that would raise the same total revenue as last year, before new growth &mdash; the baseline any increase is measured against.</div></button><button class="hs-flip" aria-expanded="false"><div class="ft">Truth in Taxation</div><div class="fh">Tap to see</div><div class="fd">Utah's required public-hearing process before a city can adopt a property-tax rate above its certified (revenue-neutral) rate.</div></button><button class="hs-flip" aria-expanded="false"><div class="ft">Sponsor liaison</div><div class="fh">Tap to see</div><div class="fd">The one referendum sponsor named on the application as the main contact with the city.</div></button><button class="hs-flip" aria-expanded="false"><div class="ft">Special election</div><div class="fh">Tap to see</div><div class="fd">An election held on a date other than the regular general election. For a tax measure, Utah law allows only the November date unless a disaster exception applies.</div></button><button class="hs-flip" aria-expanded="false"><div class="ft">Signature removal</div><div class="fh">Tap to see</div><div class="fd">State law lets someone who signed a petition ask, in writing, to have their name taken off before the deadline (Utah Code &sect; 20A-7-105(8) and &sect; 20A-1-1003).</div></button><button class="hs-flip" aria-expanded="false"><div class="ft">VPA</div><div class="fh">Tap to see</div><div class="fd">Voter Participation Area &mdash; the geographic unit Utah uses to organize by-mail ballot counts and precinct-level boundaries.</div></button></div>
+</section>
+<section id="questions">
+  <h2>Questions Worth Asking, and Whom to Ask</h2>
+<div class="hs-qa"><div><b>Ask the Eagle Mountain City Recorder's office:</b>has the referendum petition, signature sheets, and pamphlet been transmitted to the sponsors, and on what date?</div><div><b>Ask the City Council:</b>has any ordinance or resolution been adopted declaring a disaster and unanimously setting an August 2027 election date under &sect; 20A-1-204(1)(c)? If not, on what authority does the pamphlet cite that date?</div><div><b>Ask the City Attorney's office:</b>for a copy of the September 14, 2026 referability determination letter itself.</div><div><b>Ask the Utah County Clerk's elections office:</b>whether any Eagle Mountain referendum has been submitted for a future ballot, and on what date it would appear.</div><div><b>Ask your state legislators:</b>should a referendum sponsor&rsquo;s home address and phone number be removed from the copy of the application the city posts online, the way some other public forms allow?</div><div><b>Ask your state senator (Sen. Emily Buss, District 11):</b>whether the Legislature plans to clarify when a local tax referendum may be voted on.</div><div><b>Ask the City:</b>for the specific VPA boundary documents provided to sponsors, and the date they were last updated.</div></div>
+</section>
 
   <div class="callout good" id="send-updates">
     <strong>Have an update? Send it to us</strong>
     Know about a referendum in your city or county, or have news on one listed here &mdash; a petition filing, a signature count, a clerk's notice, or a court ruling? Email <a href="mailto:webercountyhive@gmail.com">webercountyhive@gmail.com</a>. The Hive reports from public records, so please include a link to the document or a copy of it if you have one.
   </div>
-
-  <details class="sources" id="sources">
+<section id="connected">
+  <h2>Connected Hive work</h2>
+<div class="hs-cards">
+<a href="index.html"><b>Referendum docket</b><span>Every referendum the Hive tracks across Utah</span></a>
+<a href="eagle-mountain-finance-history.html"><b>Eagle Mountain's Balanced Budget</b><span>Where 16 years of "no tax increase" money went</span></a>
+<a href="utah-referendum-law-history.html"><b>The Rules Keep Changing</b><span>How Utah's referendum law got harder to use</span></a>
+<a href="roy-prop-10-tax-referendum.html"><b>Roy Prop 10</b><span>Another 2026 property-tax referendum, on the Nov. 3 ballot</span></a>
+<a href="https://webercountyhive-coder.github.io/Data-Centers/weber-hive-dc-meta-eagle-mountain.html" target="_blank" rel="noopener"><b>Meta's Eagle Mountain data center</b><span>Data-Centers repo</span></a>
+<a href="https://weber-county-hive.github.io/Transparency/tyson-eagle-mountain-closure.html" target="_blank" rel="noopener"><b>Tyson Leaves Eagle Mountain</b><span>Transparency repo</span></a>
+<a href="https://weber-county-hive.github.io/utah-maps/citizen-referendums.html" target="_blank" rel="noopener"><b>MAP 006: Citizen Referendums</b><span>Utah Maps repo</span></a>
+</div>
+</section>
+<section id="behind">
+  <h2>Behind this piece</h2>
+<div class="hs-counter"><div><div class="n">22</div><div class="l">Sources listed below</div></div><div><div class="n">18</div><div class="l">Pamphlet pages read (15 as page images)</div></div><div><div class="n">3</div><div class="l">Petition pages read</div></div><div><div class="n">4</div><div class="l">Utah Code sections quoted or cited</div></div><div><div class="n">5</div><div class="l">Searches run for the Oct. 18 update (estimate)</div></div></div>
+  <p class="hs-updates">Posted Sept. 17, 2026. Updated Oct. 1, 2026 and Oct. 18, 2026. See "Updates since this was posted" above.</p>
+</section>
+<section id="sources">
+  <h2>Sources</h2>
+  <details class="sources full-sources">
     <summary>Sources (click to expand)</summary>
     <ol>
       <li>Referendum sponsors' press release, "Citizens of Eagle Mountain Celebrate 2nd Referendum Referability Determination," Sept. 14, 2026 (Bruce Carlson, Missy Parry, Ashley McMillan, Brett Mansfield, Joy Rasmussen, Nikki Jepson). (no public link located)</li>
@@ -638,15 +725,16 @@ flowchart TD
       <li>Office of the Lieutenant Governor, &ldquo;Instructions for a Local Referendum&rdquo; (45-day packet deadline; last updated Jan. 12, 2025). <a href="https://vote.utah.gov/instructions-for-a-local-referendum" target="_blank" rel="noopener">Link</a></li>
     </ol>
   </details>
-
+</section>
 </main>
 
 <footer class="site-footer">
   The Weber County Hive &middot; Referendum Docket &middot; Reporting from public records only &mdash; no outreach to referendum subjects.<br>
   <a href="index.html">Back to all referendums tracked</a>
 </footer>
+<div class="hb-foot"><img src="hive-bee.png" alt=""><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span><span class="hb-tag">Independent · Accountability · Journalism</span></div>
 
-
+<script>document.querySelectorAll('.hs-flip').forEach(f=>f.addEventListener('click',()=>f.setAttribute('aria-expanded',f.getAttribute('aria-expanded')==='true'?'false':'true')));</script>
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
   mermaid.initialize({ startOnLoad: false,
