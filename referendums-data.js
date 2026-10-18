@@ -8,7 +8,7 @@ const REFERENDUMS = [
     resolution: "Resolution R-62-2026",
     filedDate: "2026-08-24",
     referableDate: "2026-09-14",
-    lastUpdated: "2026-10-01",
+    lastUpdated: "2026-10-18",
     tags: ["property tax", "referability determination", "election date dispute", "Utah County", "Nov. 3 ballot status"],
     status: "confirmed",
     keyFigure: "69.81% rate increase / $2,132,876 at stake",
