@@ -8,11 +8,11 @@ const REFERENDUMS = [
     resolution: "Resolution R-62-2026",
     filedDate: "2026-08-24",
     referableDate: "2026-09-14",
-    lastUpdated: "2026-10-18",
-    tags: ["property tax", "referability determination", "election date dispute", "Utah County", "Nov. 3 ballot status"],
+    lastUpdated: "2026-10-24",
+    tags: ["property tax", "referability determination", "election date dispute", "Utah County", "Nov. 3 ballot status", "referendum agreement"],
     status: "confirmed",
     keyFigure: "69.81% rate increase / $2,132,876 at stake",
-    summary: "Referendum against a 69.81% property-tax increase (Resolution R-62-2026). City Attorney found it legally referable Sept. 14, 2026, but sponsors say the city hasn't provided the required petition, signature sheets, or an accurate pamphlet — whose draft cites an August 2027 election date that Utah Code appears to disallow for a tax measure without a declared disaster and unanimous council vote. Oct. 1, 2026 update: Utah County's certified Nov. 3 ballot lists one local question, Salem Prop #8; no Eagle Mountain referendum is listed.",
+    summary: "Referendum against a 69.81% property-tax increase (Resolution R-62-2026). City Attorney found it legally referable Sept. 14, 2026, but sponsors say the city hasn't provided the required petition, signature sheets, or an accurate pamphlet — whose draft cites an August 2027 election date that Utah Code appears to disallow for a tax measure without a declared disaster and unanimous council vote. Oct. 1, 2026 update: Utah County's certified Nov. 3 ballot lists one local question, Salem Prop #8; no Eagle Mountain referendum is listed. Oct. 24, 2026 update: the city's required pre-circulation agreement added terms beyond the two Utah Code 20A-7-604 lists (limits on remedies, immunity, choice of court, notary); the city wrote it would not remove them but would discuss wording.",
     link: "eagle-mountain-tax-referendum-2.html"
   },
   {
