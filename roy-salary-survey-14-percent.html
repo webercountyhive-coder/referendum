@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roy Salary Survey: The 14%</title>
+<meta name="description" content="The one-page Roy City salary survey behind the 14% wage gap used to justify the 34% Prop 10 tax increase: every row, how the number was figured, and what it leaves out.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #16273f;
+    --navy-2: #1f3856;
+    --manila: #f4f0e6;
+    --paper: #fbf9f3;
+    --ink: #1c1c1c;
+    --ink-soft: #4a4a44;
+    --rust: #a8431f;
+    --amber: #c8912b;
+    --line: #d8d0bc;
+    --good: #3d6b46;
+    --bad: #a8431f;
+    --unclear: #8a7a3d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--manila);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    line-height: 1.6;
+  }
+  a { color: var(--navy-2); }
+  .topbar {
+    background: var(--navy);
+    color: var(--manila);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .topbar a { color: var(--manila); text-decoration: none; opacity: 0.85; }
+  .topbar a:hover { opacity: 1; text-decoration: underline; }
+  header.masthead {
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: var(--manila);
+    padding: 40px 20px 32px;
+  }
+  .masthead-inner { max-width: 880px; margin: 0 auto; }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    color: var(--amber);
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin: 0 0 14px;
+    line-height: 1.2;
+  }
+  .dek {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.05rem;
+    color: #d8dde5;
+    max-width: 700px;
+    margin: 0 0 18px;
+  }
+  .meta-row {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: #b9c2cf;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .pub-date {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: #9fb0c4;
+    margin-top: 10px;
+  }
+  nav.jump {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  nav.jump .inner { max-width: 880px; margin: 0 auto; padding: 10px 20px; display: flex; gap: 18px; }
+  nav.jump a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--navy);
+    text-decoration: none;
+  }
+  nav.jump a:hover { color: var(--rust); }
+  main { max-width: 880px; margin: 0 auto; padding: 32px 20px 60px; }
+  .newhere {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--amber);
+    padding: 18px 20px;
+    margin: 0 0 32px;
+    font-size: 0.98rem;
+  }
+  .newhere strong { font-family: 'Source Sans 3', sans-serif; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.08em; color: var(--rust); display: block; margin-bottom: 8px; }
+  section { margin-bottom: 44px; }
+  h2 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 8px;
+    margin: 0 0 18px;
+  }
+  h3 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin: 24px 0 10px;
+  }
+  p { margin: 0 0 14px; }
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .stat-cell {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .stat-cell .num { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 1.3rem; color: var(--rust); display: block; }
+  .stat-cell .lbl { font-family: 'Source Sans 3', sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); }
+  .quote {
+    font-style: italic;
+    border-left: 3px solid var(--navy);
+    padding: 4px 0 4px 18px;
+    margin: 16px 0;
+    color: var(--ink-soft);
+  }
+  .quote cite { display: block; font-style: normal; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; margin-top: 6px; color: var(--ink-soft); }
+  .statute-box {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 16px 18px;
+    margin: 14px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.65;
+  }
+  .statute-box .cite { color: var(--navy-2); font-weight: 600; display: block; margin-bottom: 8px; }
+  .callout {
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-left: 4px solid var(--rust);
+    background: #fbeee6;
+    font-size: 0.95rem;
+  }
+  .callout.finding { border-left-color: var(--bad); background: #fbeee6; }
+  .callout.note { border-left-color: var(--unclear); background: #f7f1de; }
+  .callout.good { border-left-color: var(--good); background: #eaf1ea; }
+  .callout strong { display: block; font-family: 'Source Sans 3', sans-serif; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.06em; margin-bottom: 6px; }
+  table.compare { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92rem; }
+  table.compare th, table.compare td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+  table.compare th { background: var(--navy); color: var(--manila); font-family: 'Source Sans 3', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  table.compare tr:nth-child(even) td { background: var(--paper); }
+  .status-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; padding: 2px 8px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .status-confirmed { background: #eaf1ea; color: var(--good); border: 1px solid var(--good); }
+  .status-disputed { background: #fbeee6; color: var(--bad); border: 1px solid var(--bad); }
+  .status-unverified { background: #f7f1de; color: var(--unclear); border: 1px solid var(--unclear); }
+  .timeline { list-style: none; padding: 0; margin: 16px 0; }
+  .timeline li { padding: 10px 0 10px 20px; border-left: 2px solid var(--line); position: relative; margin-left: 6px; }
+  .timeline li::before { content: ''; position: absolute; left: -6px; top: 16px; width: 10px; height: 10px; border-radius: 50%; background: var(--navy); }
+  .timeline .date { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--rust); display: block; margin-bottom: 3px; }
+  .flip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 16px 0; }
+  .flip-card { perspective: 1000px; height: 180px; cursor: pointer; }
+  .flip-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.5s; transform-style: preserve-3d; }
+  .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+  .flip-front, .flip-back {
+    position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
+    display: flex; align-items: center; justify-content: center; padding: 16px;
+    border: 1px solid var(--navy); font-family: 'Source Sans 3', sans-serif;
+    overflow-y: auto;
+  }
+  .flip-front { background: var(--navy); color: var(--manila); font-weight: 600; font-size: 1.05rem; }
+  .flip-back { background: var(--paper); color: var(--ink); transform: rotateY(180deg); font-size: 0.92rem; line-height: 1.5; }
+  details.sources { margin-top: 10px; }
+  details.sources summary { cursor: pointer; font-family: 'Source Sans 3', sans-serif; font-weight: 600; color: var(--navy); }
+  details.sources ol { padding-left: 20px; font-size: 0.88rem; }
+  details.sources li { margin-bottom: 10px; }
+  .qwa-list { list-style: none; padding: 0; }
+  .qwa-list li { background: var(--paper); border: 1px solid var(--line); padding: 12px 16px; margin-bottom: 10px; font-size: 0.95rem; }
+  .qwa-list b { color: var(--navy-2); }
+  footer.site-footer {
+    background: var(--navy);
+    color: #b9c2cf;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 24px 20px;
+  }
+  footer.site-footer a { color: var(--amber); }
+
+  /* --- chart components --- */
+  .chart-block { margin: 20px 0 28px; }
+  .chart-title { font-family: 'Source Sans 3', sans-serif; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--navy); margin-bottom: 12px; }
+  .bar-row { display: grid; grid-template-columns: 190px 1fr 90px; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bar-row .bar-label { font-family: 'Source Sans 3', sans-serif; font-size: 0.82rem; color: var(--ink-soft); text-align: right; }
+  .bar-track { background: var(--paper); border: 1px solid var(--line); height: 26px; position: relative; }
+  .bar-fill { height: 100%; display: flex; align-items: center; }
+  .bar-row .bar-value { font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; font-weight: 600; color: var(--ink); }
+  .stack-bar { display: flex; height: 34px; border: 1px solid var(--line); overflow: hidden; }
+  .stack-seg { display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; font-weight: 600; color: #fff; }
+  .legend-row { display: flex; gap: 20px; margin-top: 10px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-family: 'Source Sans 3', sans-serif; font-size: 0.82rem; color: var(--ink-soft); }
+  .legend-swatch { width: 12px; height: 12px; display: inline-block; border-radius: 2px; }
+  .timeline-viz { position: relative; height: 4px; margin: 80px 12px 70px; border-top: 3px solid var(--line); }
+  .tl-point { position: absolute; top: -3px; width: 14px; height: 14px; border-radius: 50%; transform: translateX(-50%); border: 2px solid var(--paper); z-index: 2; }
+  .tl-point.allowed { background: var(--good); }
+  .tl-point.blocked { background: var(--bad); }
+  .tl-point.today { background: var(--navy); }
+  .tl-label { position: absolute; transform: translateX(-50%); font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; text-align: center; width: 140px; line-height: 1.5; }
+  .tl-label.above { top: -66px; }
+  .tl-label.below { top: 16px; }
+  .tl-label .tl-date { display: block; font-weight: 600; color: var(--ink); }
+  .tl-label .tl-tag { display: block; margin-top: 2px; }
+  .tl-label.allowed .tl-tag { color: var(--good); }
+  .tl-label.blocked .tl-tag { color: var(--bad); }
+  .mermaid-wrap { background: var(--paper); border: 1px solid var(--line); padding: 16px; margin: 16px 0; overflow-x: auto; }
+  .mermaid-wrap svg{max-width:100%!important;height:auto;display:block;margin:0 auto;}
+  .diagram-cap { font-family: 'Source Sans 3', sans-serif; font-weight: 700; color: var(--navy); margin: 18px 0 4px; font-size: 1.05rem; }
+  @media (max-width: 640px) {
+    .bar-row { grid-template-columns: 110px 1fr 70px; }
+    .bar-row .bar-label { font-size: 0.72rem; }
+  }
+  .bar-marker { position:absolute; top:-4px; bottom:-4px; width:2px; background: var(--navy); }
+  .plain-list li { margin-bottom: 8px; }
+  .arg-box { background: var(--paper); border: 1px solid var(--line); padding: 16px 18px; margin: 14px 0; }
+  .arg-box h3 { margin-top: 0; }
+  .arg-box .signers { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--ink-soft); margin-top: 10px; }
+
+  .hs-graphic{margin:18px auto 22px;max-width:560px;text-align:center}.hs-graphic img{width:100%;height:auto;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.12)}.hs-graphic figcaption{font-size:.9rem;margin-top:6px;opacity:.8}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  .locator { margin: 0 0 36px; }
+  .locator h2 { font-size: 1.3rem; }
+  #locmap { height: 380px; border: 1px solid var(--line); background: #eef1f4; }
+  .locator .loc-foot { font-family: 'Source Sans 3', sans-serif; font-size: 0.95rem; margin-top: 8px; }
+  .county-label{background:none;border:none;}
+  .county-label span{display:block;transform:translate(-50%,-50%);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#14213D;opacity:.7;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 3px #fff;pointer-events:none;}
+  .city-label{background:none;border:none;}
+  .city-label.key span{font-weight:600;font-size:11.5px;color:#14213D;}
+  .city-label span{display:block;transform:translate(-50%,-50%);font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#4a2f55;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff;pointer-events:none;}
+  .loc-pin{background:none;border:none;}
+  .loc-pin span{display:block;width:22px;height:22px;border-radius:50%;background:#a8431f;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.5);transform:translate(-50%,-50%);}
+  @media (max-width:640px){ #locmap{height:300px;} }
+</style>
+<style>
+  @media (max-width: 640px) {
+    table.compare, table.compare tbody, table.compare tr, table.compare td { display: block; width: 100%; }
+    table.compare tr:first-child:has(th) { display: none; }
+    table.compare tr { border: 1px solid var(--line); margin-bottom: 12px; background: var(--paper); }
+    table.compare td { border: none; border-bottom: 1px dashed var(--line); }
+    table.compare td[data-label]::before { content: attr(data-label); display: block; font-family: 'Source Sans 3', sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); margin-bottom: 2px; }
+    table.compare th { display: block; }
+    .timeline-viz { margin-left: 56px; margin-right: 56px; }
+  }
+  pre.mermaid, .mermaid-wrap .nodeLabel, .mermaid-wrap .edgeLabel, .mermaid-wrap foreignObject div { font-family: 'Source Sans 3', Arial, sans-serif !important; }
+</style>
+<style>
+/* Hive standard (Oct. 2026) in the referendum repo's navy + manila palette */
+html{font-size:112.5%}
+body{font-size:19px;line-height:1.65}
+.hb-bar{background:#0d0b0a;border-bottom:1px solid #3a2f1c;padding:10px 20px;}
+.hb-bar a{display:flex;align-items:center;gap:12px;max-width:1100px;margin:0 auto;text-decoration:none;}
+.hb-bar img{width:52px;height:52px;border-radius:4px;display:block;flex:none;}
+.hb-name{font-family:'Cinzel','Trajan Pro',Georgia,serif;color:#d4af37;font-size:16px;letter-spacing:.14em;text-transform:uppercase;line-height:1.2;display:block;}
+.hb-sub{font-family:Georgia,serif;font-style:italic;color:#b8956a;font-size:12.5px;letter-spacing:.02em;display:block;margin-top:2px;}
+.hb-foot{background:#0d0b0a;color:#b8956a;text-align:center;padding:26px 20px 30px;font-family:Georgia,serif;}
+.hb-foot img{width:52px;height:52px;display:block;margin:0 auto 10px;}
+.hb-foot .hb-name{font-size:14px;}
+.hb-foot .hb-tag{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8a7650;margin-top:8px;display:block;}
+@media(max-width:600px){.hb-bar{padding:8px 16px}.hb-bar img{width:38px;height:38px}.hb-name{font-size:13px}.hb-sub{font-size:11.5px}}
+.topbar{font-size:.8rem}
+header.masthead{border-bottom:5px solid var(--amber)}
+.caselabel{display:inline-block;margin-top:16px;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--navy);background:var(--amber);padding:5px 14px;border-radius:20px;}
+.hs-date{font-family:Arial,sans-serif;font-size:.9rem;margin-top:14px;color:#e8e2d2}
+.dek{font-size:1.1rem}
+.meta-row{font-size:.82rem}
+.pub-date{font-size:.8rem}
+.hs-short{background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--navy);padding:18px 22px;margin:0 0 20px}
+.hs-short ul{margin:0;padding-left:22px}
+.hs-short li{margin-bottom:8px;max-width:68ch}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:18px 0;}
+.stat{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--rust);padding:16px 18px;}
+.stat .num{font-family:'Source Serif 4',serif;font-size:1.5rem;font-weight:700;color:var(--rust);line-height:1.15;}
+.stat .label{margin-top:6px;font-size:.8rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.03em;font-family:'Source Sans 3',sans-serif}
+.hs-toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.hs-toc b{width:100%;font-family:Arial,sans-serif;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--navy)}
+.hs-toc a{font-family:Arial,sans-serif;font-size:.85rem;padding:8px 13px;border:1px solid var(--line);background:var(--paper);color:var(--navy);text-decoration:none;border-radius:999px}
+.hs-toc a:hover{border-color:var(--rust)}
+.hs-plain{display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:var(--paper);border:1px dashed var(--navy);padding:14px 18px;margin:0 0 20px;font-size:1rem;font-family:'Source Sans 3',sans-serif}
+.hs-btn{display:inline-block;background:var(--navy);color:#fff !important;text-decoration:none;font-family:Arial,sans-serif;font-weight:bold;padding:11px 18px;border-radius:6px}
+.hs-pages{background:var(--paper);border:1px solid var(--line);margin:0 0 24px}
+.hs-pages summary{cursor:pointer;padding:13px 18px;font-family:Arial,sans-serif;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);font-weight:bold}
+.hs-pages ol{margin:0;padding:4px 18px 16px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 18px}
+.hs-pages li{font-size:.95rem;line-height:1.35}
+.hs-pages li.cur{font-weight:bold}
+.hs-pages li.cur a{color:var(--navy);text-decoration:none}
+.hs-pages small{display:block;font-size:.8rem;color:var(--ink-soft);font-weight:normal}
+.hs-flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.hs-flip{text-align:left;background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--navy);padding:14px 16px;cursor:pointer;font:inherit;color:var(--ink);min-height:96px}
+.hs-flip .ft{font-weight:bold;font-size:1.05rem;font-family:'Source Sans 3',sans-serif}
+.hs-flip .fh{font-family:Arial,sans-serif;font-size:.78rem;color:var(--ink-soft);margin-top:6px}
+.hs-flip .fd{display:none;margin-top:8px;font-size:.95rem}
+.hs-flip[aria-expanded="true"] .fd{display:block}
+.hs-flip[aria-expanded="true"] .fh{display:none}
+.hs-qa{display:grid;gap:10px}
+.hs-qa div{background:var(--paper);border-left:4px solid var(--navy);padding:12px 16px}
+.hs-qa b{display:block;font-family:Arial,sans-serif;font-size:.88rem;color:var(--rust);margin-bottom:4px}
+.hs-counter{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.hs-counter div{background:var(--navy);color:#fff;padding:14px;text-align:center}
+.hs-counter .n{font-family:Arial,sans-serif;font-size:1.7rem;font-weight:bold}
+.hs-counter .l{font-size:.82rem;font-family:'Source Sans 3',sans-serif}
+.hs-updates{font-family:Arial,sans-serif;font-size:.88rem;color:var(--ink-soft);margin-top:14px}
+.hs-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.hs-cards a{display:block;background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--navy);padding:14px 16px;text-decoration:none;color:var(--ink)}
+.hs-cards a b{display:block;margin-bottom:4px;font-family:'Source Sans 3',sans-serif}
+.hs-cards a span{font-size:.9rem;color:var(--ink-soft)}
+.hs-upd{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.hs-upd li{background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--rust);padding:12px 16px}
+.hs-upd .d{display:block;font-family:Arial,sans-serif;font-weight:bold;font-size:.85rem;color:var(--rust);margin-bottom:4px}
+.hs-upd .s{display:block;font-size:.85rem;color:var(--ink-soft);margin-top:4px}
+.full-sources{border:1px solid var(--line);background:var(--paper);margin:10px 0 0;}
+.full-sources summary{cursor:pointer;padding:15px 22px;font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;color:var(--navy);font-weight:600}
+.full-sources ol{padding:6px 24px 20px 44px;font-size:.92rem}
+.full-sources li{margin-bottom:10px}
+/* status labels: short badge, readable note below */
+.status-badge{display:inline-block;font-size:.78rem;padding:3px 10px;white-space:nowrap}
+.st-note{display:block;margin-top:6px;font-family:'Source Sans 3',sans-serif;font-size:.95rem;color:var(--ink);line-height:1.45;text-transform:none;letter-spacing:0}
+table.compare{font-size:1rem}
+.callout{font-size:1rem}
+.timeline .date{font-size:.85rem}
+.chart-title{font-size:.95rem}
+.bar-row .bar-label{font-size:.9rem}
+.stat-cell .lbl{font-size:.8rem}
+.qwa-list li{font-size:1rem}
+details.sources ol{font-size:.95rem}
+.tl-label{font-size:.8rem}
+footer.site-footer{font-size:.82rem}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="hive-bee.png">
+<style>
+.mermaid-wrap{overflow-x:auto;max-width:100%}
+.hs-bars .tr{flex-wrap:wrap;min-width:0}
+.hs-bars .v{white-space:normal}
+@media(max-width:600px){.bar-row{grid-template-columns:96px 1fr auto}.bar-row .bar-value{font-size:.72rem}}
+</style>
+<style>
+.hs-parts{background:var(--paper);border:2px solid var(--navy);border-radius:6px;padding:14px 16px;margin:0 0 24px;font-family:Arial,sans-serif}
+.hs-parts .lab{font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;font-weight:bold;color:var(--navy);margin:0 0 8px}
+.hs-parts ol{margin:0 0 10px;padding-left:24px;font-size:1rem;line-height:1.45}
+.hs-parts li.cur{font-weight:bold}
+.hs-parts .nav{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.hs-parts .nav a{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;font-weight:bold;padding:10px 16px;border-radius:6px}
+.hs-partline{font-family:Arial,sans-serif;font-size:.95rem;color:var(--amber);font-weight:bold;margin-top:10px}
+details.sources ol, .full-sources ol{padding-left:64px !important}
+.vpa-wrap{margin:18px 0;border:2px solid var(--navy);background:var(--paper);padding:14px}
+.vpa-wrap svg{width:100%;height:auto;display:block}
+.vpa-cap{font-size:1.05rem;font-weight:700;color:var(--navy);margin:0 0 8px}
+.vpa-note{font-size:.95rem;color:var(--ink-soft);margin:8px 0 0}
+.big-num-box{border:3px solid var(--navy);background:#fff;padding:18px 20px;margin:18px 0}
+.big-num-box .bn{font-size:2.1rem;font-weight:800;color:var(--rust);line-height:1}
+.big-num-box p{margin:8px 0 0;font-size:1.1rem}
+</style>
+</head>
+<style>
+  .sv-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:#fff;margin:12px 0}
+  table.sv{border-collapse:collapse;width:100%;font-family:'Source Sans 3',sans-serif;font-size:1.05rem}
+  table.sv th,table.sv td{padding:8px 10px;border-bottom:1px solid #e6e0d0;text-align:right;white-space:nowrap}
+  table.sv th{background:var(--navy);color:#fff;position:sticky;top:0;cursor:pointer;font-weight:700}
+  table.sv th.l,table.sv td.l{text-align:left;white-space:normal;min-width:190px}
+  table.sv tr:nth-child(even) td{background:#faf8f2}
+  table.sv td.gray{background:#d9d9d9 !important;color:#555;text-decoration:line-through}
+  table.sv td.big{font-weight:800;font-size:1.15rem}
+  table.sv td.neg{color:var(--good)}
+  table.sv td.hi{color:var(--rust)}
+  .sv-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0;font-family:'Source Sans 3',sans-serif;font-size:1.05rem}
+  .sv-tools input,.sv-tools select{font-size:1.05rem;padding:8px 10px;border:1px solid var(--line);border-radius:6px}
+  .sv-tools label{display:flex;gap:6px;align-items:center}
+  .flag{display:inline-block;font-size:.8rem;font-weight:700;padding:2px 6px;border-radius:4px;margin-left:6px;background:#f3e3d8;color:var(--rust)}
+  .flag.b{background:#e3e9f2;color:var(--navy-2)}
+  .muted{color:var(--ink-soft);font-size:.9em}
+  .sv-note{font-size:.95rem;color:var(--ink-soft);white-space:normal;text-align:left;max-width:320px}
+  .stepbox{background:#fff;border:2px solid var(--navy);border-radius:8px;padding:16px 18px;margin:14px 0;font-family:'Source Sans 3',sans-serif;font-size:1.15rem}
+  .stepbox ol{margin:8px 0 0 22px;padding:0}.stepbox li{margin:6px 0}
+  .bigfacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0}
+  .bigfacts div{background:var(--navy);color:#fff;border-radius:8px;padding:14px 16px;font-family:'Source Sans 3',sans-serif}
+  .bigfacts b{display:block;font-size:2.3rem;color:var(--amber);line-height:1.1}
+  .sheetimg{width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+  @media(max-width:600px){table.sv{font-size:.98rem}}
+</style>
+<body>
+<div class="hb-bar"><a href="https://webercountyhive.substack.com/" target="_blank" rel="noopener"><img src="uhp-badge.png" alt="Utah Hive Politics logo"><span><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span></span></a></div>
+<div class="topbar">
+  <span>THE WEBER COUNTY HIVE &middot; REFERENDUM DOCKET</span>
+  <a href="roy-prop-10-tax-referendum.html">&larr; Back to the Roy Prop 10 case file</a>
+</div>
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="eyebrow">Roy, Weber County &middot; Prop 10 &middot; The Salary Survey</div>
+    <h1>The Sheet Behind Roy's "14%"</h1>
+    <p class="dek">Roy says its workers are paid about 14% less than workers in nearby cities, and that number is why the council raised property taxes 34%. Here is the one-page salary survey the city released under a public records request, every number on it, and how the 14% was figured.</p>
+    <div class="meta-row"><span>SALARY SURVEY FALL 2024</span><span>81 JOB ROWS</span><span>12 CITIES</span><span>RESOLUTION 26-24</span></div>
+    <span class="caselabel">Weber County &middot; Roy</span>
+    <p class="hs-date">Posted Oct. 27, 2026</p>
+  </div>
+</header>
+
+<main>
+<nav class="hs-toc" aria-label="On this page"><b>On this page</b><a href="#short">The short version</a><a href="#what">What the survey looked like</a><a href="#how">How the 14% is figured</a><a href="#tax">How 14% became 34%</a><a href="#found">What the numbers show</a><a href="#retire">Retirement</a><a href="#payroll">Actual payroll</a><a href="#exec-pay">Top officials' raises</a><a href="#cities">City by city</a><a href="#money">Where the raise money goes</a><a href="#table">Every row</a><a href="#questions">Questions</a><a href="#sources">Sources</a></nav>
+
+<section id="short">
+  <h2>The short version</h2>
+  <div class="bigfacts">
+    <div><b>14.1%</b>The sheet's 81 "variance" numbers, averaged. That is the city's 14%.</div>
+    <div><b>81</b>Job rows. Each counts the same, whether one person holds the job or many.</div>
+    <div><b>12</b>Rows with no other city to compare, or only one.</div>
+    <div><b>25</b>Rows where the city swapped in a figure shared across departments.</div>
+  </div>
+  <p>The 14% is real arithmetic on this sheet: it adds up. What the sheet doesn't show is how many people hold each job, and the comparison cities, job matches and adjustments were all chosen in-house. Measured the other way, as a share of the other cities' pay, the same numbers come out to <b>12%</b>.</p>
+</section>
+
+<section id="what">
+  <h2>What the survey looked like</h2>
+  <p>It is a single printed page titled <b>"ROY CITY &middot; SALARY SURVEY FALL 2024."</b> Each row is one Roy job title and department. Across the row are hourly pay rates for the same kind of job in up to 12 cities, then an average, sometimes an "adjustment," Roy's own rate, the "variance" (the gap) and a note.</p>
+  <p><b>The 12 cities:</b> Bountiful, Centerville, Clearfield, Clinton, Kaysville, Layton and Syracuse in Davis County; North Ogden, Ogden, Pleasant View, Riverdale and South Ogden in Weber County.</p>
+  <figure class="hs-graphic" style="max-width:880px"><a href="roy-salary-survey-fall-2024-sheet.png" target="_blank" rel="noopener"><img class="sheetimg" src="roy-salary-survey-fall-2024-sheet.png" alt="Roy City Salary Survey Fall 2024, one page with 81 job rows and 12 comparison cities" loading="lazy"></a><figcaption>The sheet as released (tap to open full size). Gray cells are cities the city left out of an average.</figcaption></figure>
+  <div class="callout note"><strong>It isn't a questionnaire</strong>No one was asked any questions: not employees, not residents, not other cities. It is a pay table. The city looked up pay for similar jobs in other cities in a database called "TechNet," matched jobs by job description, and wrote down hourly rates. The only columns are job, department, each city's hourly rate, the average, an adjustment, Roy's rate, the gap and a note. It has no benefits, no headcounts, no years of service, no workload and no private-sector pay.</div>
+  <p><b>What the notes at the bottom say</b> (word for word):</p>
+  <ul class="plain-list">
+    <li>"Source - TechNet"</li>
+    <li>"Cities used for comparison were selected by the City Council for past surveys and used again for this survey."</li>
+    <li>"Positions are compared using job descriptions in TechNet that best match Roy City job descriptions."</li>
+    <li>"Any City 20% above or below the average is considered outside of the statistical mean and not included in the final average; these are highlighted gray."</li>
+    <li>"Information was gathered Fall 2024 and compared to Roy City as of the same time."</li>
+    <li>"Variances will be added to wages after any COLA's are given to adjust for other cities also giving COLA's so to keep info current and up to date."</li>
+    <li>"Roy wages are as of July 1, 2025."</li>
+  </ul>
+  <div class="callout note"><strong>Who made it</strong>The sheet lists TechNet as its source and doesn't name who built it. The public record already shows it was done in-house: at an Aug. 5, 2025 work session, then-Mayor Robert Dandoy questioned "the accuracy of how the data had been compiled," and then-Councilmember Randy Scadden recommended "a one-time, professional salary survey." In the Aug. 19, 2025 minutes, Dandoy called the survey "only a draft." The Hive found no record that a professional survey was done. This sheet has no "draft" label, and its date is Fall 2024.</div>
+</section>
+
+<section id="how">
+  <h2>How the 14% is figured</h2>
+  <div class="stepbox"><b>Take one row: Sergeant (Police)</b>
+    <ol>
+      <li>Write down what 11 cities pay a sergeant an hour: $33.59 (Clinton) up to $46.22 (Layton).</li>
+      <li>Leave out any city 20% above or below the average (shaded gray). None here.</li>
+      <li>Average what's left: <b>$39.48</b>.</li>
+      <li>Roy pays a sergeant <b>$34.55</b>.</li>
+      <li>Gap: $39.48 &minus; $34.55 = $4.93. The sheet divides by <b>Roy's</b> pay: $4.93 &divide; $34.55 = <b>14.27%</b>.</li>
+    </ol>
+  </div>
+  <p>Do that for all 81 rows, then average the 81 gaps: <b>14.1%</b>. That is the city's "14% below."</p>
+  <div class="mermaid-wrap"><pre class="mermaid">
+flowchart TD
+  A["Pay for one job in up to 12 cities"] --> B["Leave out gray cities<br/>(20% above or below)"]
+  B --> C["Average what's left"]
+  C --> D["Compare to Roy's pay<br/>= that job's 'variance'"]
+  D --> E["Average all 81 variances<br/>= about 14%"]
+  E --> F["'Wage correction' raises<br/>$1,207,371 in the tax increase"]
+  </pre></div>
+  <p class="diagram-cap">How a one-page sheet becomes a property-tax increase.</p>
+</section>
+
+<section id="tax">
+  <h2>How a 14% pay gap became a 34% tax increase</h2>
+  <p>The two percentages measure different things. The 14% is how far behind Roy says its pay is. The 34% is how much more property tax it takes to pay for the raises. Roy's property tax brings in about <b>$5.1 million</b> a year ($5,106,044), so every dollar of raises is a much bigger share of that tax.</p>
+  <table class="compare"><tr><th>What the increase pays for</th><th>Dollars</th><th>Share of Roy's property tax</th></tr>
+  <tr><td>"Wage correction" raises (the 14% gap)</td><td>$1,207,371</td><td>23.65%</td></tr>
+  <tr><td>2.8% cost-of-living raise</td><td>$348,179</td><td>6.82%</td></tr>
+  <tr><td>March 2026 2.5% raise, already given</td><td>$195,550</td><td>3.83%</td></tr>
+  <tr><td><b>Total</b></td><td><b>$1,751,100</b></td><td><b>34.29%</b></td></tr></table>
+  <p class="diagram-cap">Source: Roy City Council Aug. 11, 2026 agenda packet, alternative schedule (the plan adopted).</p>
+  <p>The survey's own note says the gaps "will be added to wages after any COLA's are given," which is why the cost-of-living raise and the wage corrections are counted separately.</p>
+</section>
+
+<section id="found">
+  <h2>What the numbers show</h2>
+  <p>The Hive copied every number on the sheet and redid the math. The averages check out: every average on the sheet matches once the gray cells are left out, and every variance matches its row. These are the things the math doesn't show on its face.</p>
+  <ol class="plain-list">
+    <li><b>The gap is measured from Roy's pay, not the other cities'.</b> If Roy pays $100 and others average $114, the sheet calls it 14% (14 &divide; 100). Measured as a share of what other cities pay (14 &divide; 114), Roy is about 12% lower. Across the sheet, that way comes out to <b>12.0%</b>.</li>
+    <li><b>Every job title counts the same.</b> The sheet doesn't show how many employees hold each job. IT Supervisor (+44.41%) moves the average as much as Police Officer (+3.80%).</li>
+    <li><b>12 rows have no outside city to compare, or only one.</b> Ten rows have none, including both janitor jobs, Customer Service Clerk II, Master Officer, Senior Paramedic and GIS Specialist. Their gaps were set by rule, for example "5% above Janitor I" or "kept in line with wage scale position."</li>
+    <li><b>25 rows use a figure shared across departments.</b> The "Adjustments" column replaces the row's own average "to keep depts uniform." Those 25 rows average a 16.5% gap. Rows that use their own city comparison average about 13.5%.</li>
+    <li><b>The gray cells don't always follow the 20% rule.</b> Some cities more than 20% off were kept, like Riverdale for Firefighter/EMT (+26.7%), and some within 20% were dropped, like Kaysville for Accounting Manager (+5.4%). Applying the rule the same way to every row moves the total from 14.11% to 14.18%. It doesn't change the bottom line.</li>
+    <li><b>"Median" vs. "average."</b> The city's argument says Roy is "14% below median wages," but the sheet uses averages. Using medians instead gives about 14.3%, so that wording doesn't change the result.</li>
+    <li><b>Two dates.</b> One note says the city data "was gathered Fall 2024 and compared to Roy City as of the same time." The next says "Roy wages are as of July 1, 2025."</li>
+    <li><b>Fire jobs are in the survey, but not in the plan that passed.</b> Eight fire rows average a 15.4% gap. Roy's Aug. 11 packet removed Fire from the alternative schedule the council adopted (Fire's original share was $133,344 for the cost-of-living raise and $663,530 for wage corrections), listing it as a "Reduction of Fire Department"; Roy's fire service is set to move to the Weber Fire District. Without the fire rows, the sheet's average is 14.0%.</li>
+  </ol>
+</section>
+
+<section id="retire">
+  <h2>What the survey leaves out: retirement</h2>
+  <p>The survey compares hourly wages only. On top of wages, Roy pays into state retirement for its employees. These figures are from Roy's audited financial report for the year ended June 30, 2025 (pages 69&ndash;79).</p>
+  <table class="compare"><tr><th>Retirement, year ended June 30, 2025</th><th>Roy City paid</th><th>Employees paid</th></tr>
+  <tr><td>State pension systems (Utah Retirement Systems)</td><td>$2,023,991</td><td>$308,356</td></tr>
+  <tr><td>401(k) plan</td><td>$106,740</td><td>$53,624</td></tr>
+  <tr><td>457 plan</td><td>$0</td><td>$49,837</td></tr>
+  <tr><td><b>Total</b></td><td><b>$2,130,731</b></td><td><b>$411,817</b></td></tr></table>
+  <ul class="plain-list">
+    <li>For most longtime (Tier 1) employees, the city pays <b>16.97%</b> of pay into the pension and the employee pays nothing. For longtime police it is <b>35.21%</b>.</li>
+    <li>For newer (Tier 2) employees in the 401(k)-only option, the city pays <b>10%</b> of pay into the employee's 401(k) (14% for police and fire), plus 5.19% (12.49% for police) that goes toward older pension costs. The employee isn't required to add anything.</li>
+    <li>The city's 401(k) payments rose from $63,990 in 2023 to $95,378 in 2024 and $106,740 in 2025.</li>
+  </ul>
+  <p class="diagram-cap">Source: Roy City Annual Comprehensive Financial Report, FY2025, Note 4 (contribution rates as of June 30, 2025; contributions for the year).</p>
+</section>
+
+<section id="payroll">
+  <h2>Weighted by Roy's actual payroll</h2>
+  <p>The survey counts every job title once. Roy's own pay records on Transparent Utah (State Auditor) show how many people hold each job. For fiscal 2026 (July 2025 to June 2026), the Hive matched Roy's full-time pay records (those with at least $30,000 in wages) to the survey's job rows.</p>
+  <div class="bigfacts">
+    <div><b>13.0%</b>The survey's gap, weighted by how many people hold each job (149 matched records).</div>
+    <div><b>12.4%</b>The same, leaving out fire jobs, which are moving to the Weber Fire District.</div>
+    <div><b>6.6%</b>The gap for sworn police (41 records: officers, master officers, sergeants, captains, chief).</div>
+  </div>
+  <p>The two largest groups are Master Officer (19 records, a 3.79% gap on the survey) and Police Officer (11 records, 3.80%). Police &amp; Animal Services gets the largest share of the wage-correction raises, $488,257.</p>
+  <p><b>Pay and benefits, all Roy City records:</b> fiscal 2026 wages of $13,746,947 and benefits of $6,051,776. Benefits add about 44 cents for every dollar of wages. The survey compares wages only.</p>
+  <p class="diagram-cap">Source: Transparent Utah, Office of the State Auditor, employee compensation records for Roy City, fiscal years 2024&ndash;2026, pulled Oct. 27, 2026 by job-title search. Records are by job title, so a person who changed jobs during the year can appear twice. Six records (a billing clerk, the judge, a shop foreman and three "Captain" records with no department) had no clear match and were left out of the weighted figure.</p>
+</section>
+
+<section id="exec-pay">
+  <h2>The separate hearing on top officials' raises</h2>
+  <p>State law requires a separate public hearing, with at least 7 days' notice, on raises for the city manager, city attorney, department heads and their deputies. The law says it comes "before a governing body may adopt a final budget or a final amended budget that includes a compensation increase" for those officers (Utah Code 10-3-818(2)).</p>
+  <ul class="plain-list">
+    <li><b>Aug. 11, 2026:</b> the council adopted the final FY2027 budget (Resolution 26-24), with a 2.8% cost-of-living raise and "wage correction adjustments to all full-time employees." The agenda lists one public hearing, on the budget and tax increase.</li>
+    <li><b>Oct. 20, 2026:</b> the agenda lists a public hearing on Ordinance 26-15, "Enacting Compensation Increases for Specific City Officers." The staff memo says state law "requires the positions listed in Exhibit A to have a separate public hearing." The agenda was posted Oct. 17.</li>
+    <li><b>What Exhibit A lists:</b> merit increases of up to 2.5% (city manager, attorneys, directors and deputies, recorder, treasurer) and up to 3.75% (police chief, police captains, fire chief, fire deputy chief, justice court judge). It doesn't list the 2.8% cost-of-living raise or the wage corrections.</li>
+    <li><b>Mayor and council:</b> the memo says they are "not eligible for merit increases" and their pay stays at $13,804 (mayor) and $9,364 (each council member) a year.</li>
+  </ul>
+  <p><b>Not yet known:</b> whether the Oct. 20 ordinance passed (minutes not posted), whether a separate notice ran 7 days ahead, and whether the cost-of-living raise and wage corrections for these officers had their own hearing before Aug. 11. The Hive found none in Roy's posted 2026 agendas and minutes from May 5 through Aug. 11.</p>
+</section>
+
+<section id="cities">
+  <h2>City by city: how far above Roy each one pays</h2>
+  <p>Average gap across the jobs each city could be matched on. Which cities are on the list changes the answer: Clinton and Pleasant View pay close to Roy; Ogden and North Ogden pay a lot more. The sheet says the City Council picked these cities.</p>
+  <div class="chart-block"><div class="bar-row"><div class="bar-label">North Ogden <span class="muted">(31 jobs)</span></div><div class="bar-track"><div class="bar-fill" style="width:87%;background:var(--rust)"></div></div><div class="bar-value">+26.0%</div></div><div class="bar-row"><div class="bar-label">Ogden <span class="muted">(63 jobs)</span></div><div class="bar-track"><div class="bar-fill" style="width:81%;background:var(--rust)"></div></div><div class="bar-value">+24.3%</div></div><div class="bar-row"><div class="bar-label">Layton <span class="muted">(55 jobs)</span></div><div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--rust)"></div></div><div class="bar-value">+21.1%</div></div><div class="bar-row"><div class="bar-label">Kaysville <span class="muted">(37 jobs)</span></div><div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--rust)"></div></div><div class="bar-value">+20.2%</div></div><div class="bar-row"><div class="bar-label">Centerville <span class="muted">(29 jobs)</span></div><div class="bar-track"><div class="bar-fill" style="width:46%;background:var(--navy-2)"></div></div><div class="bar-value">+13.9%</div></div><div class="bar-row"><div class="bar-label">Riverdale <span class="muted">(30 jobs)</span></div><div class="bar-track"><div class="bar-fill" style="width:44%;background:var(--navy-2)"></div></div><div class="bar-value">+13.3%</div></div><div class="bar-row"><div class="bar-label">Clearfield <span class="muted">(47 jobs)</span></div><div class="bar-track"><div class="bar-fill" style="width:38%;background:var(--navy-2)"></div></div><div class="bar-value">+11.4%</div></div><div class="bar-row"><div class="bar-label">Syracuse <span class="muted">(42 jobs)</span></div><div class="bar-track"><div class="bar-fill" style="width:37%;background:var(--navy-2)"></div></div><div class="bar-value">+11.0%</div></div><div class="bar-row"><div class="bar-label">Bountiful <span class="muted">(38 jobs)</span></div><div class="bar-track"><div class="bar-fill" style="width:33%;background:var(--navy-2)"></div></div><div class="bar-value">+9.9%</div></div><div class="bar-row"><div class="bar-label">South Ogden <span class="muted">(32 jobs)</span></div><div class="bar-track"><div class="bar-fill" style="width:26%;background:var(--navy-2)"></div></div><div class="bar-value">+7.7%</div></div><div class="bar-row"><div class="bar-label">Pleasant View <span class="muted">(17 jobs)</span></div><div class="bar-track"><div class="bar-fill" style="width:14%;background:var(--navy-2)"></div></div><div class="bar-value">+4.1%</div></div><div class="bar-row"><div class="bar-label">Clinton <span class="muted">(28 jobs)</span></div><div class="bar-track"><div class="bar-fill" style="width:7%;background:var(--navy-2)"></div></div><div class="bar-value">+2.1%</div></div></div>
+  <h3>Who pays less than Roy?</h3>
+  <p>No city on the list pays less overall. Job by job, the sheet has 449 city-to-Roy comparisons, and in <b>65</b> the other city pays less. Clinton pays less on 14 of its 28 matched jobs, including City Manager, Chief of Police, Fire Chief and Sergeant. Clearfield pays less on 12 of 47, South Ogden on 7 of 32 (including Police Officer), and Pleasant View on 6 of 17 (including City Manager, Police Officer and Chief of Police).</p>
+  <p>Of the 34 gray cells the city left out of its averages, 13 were cities paying less than Roy and 21 were cities paying more. On the City Manager row, Roy pays $57.69 an hour. The only two cities that pay less, Clinton ($52.12) and Pleasant View ($50.30), were both left out, along with Layton ($117.97).</p>
+  <p>The city's August 2025 compensation worksheet also listed West Haven, South Weber and West Bountiful. They are not on this sheet; North Ogden, the city with the biggest gap (+26.0%), is.</p>
+  <h3>Are these cities Roy's size?</h3>
+  <table class="compare"><tr><th>City</th><th>People (2020 Census, rounded)</th><th>Gap over Roy</th></tr>
+  <tr><td><b>Roy</b></td><td><b>39,000</b></td><td>&mdash;</td></tr>
+  <tr><td>Ogden</td><td>87,000</td><td>+24.3%</td></tr><tr><td>Layton</td><td>82,000</td><td>+21.1%</td></tr><tr><td>Bountiful</td><td>46,000</td><td>+9.9%</td></tr>
+  <tr><td>Kaysville</td><td>33,000</td><td>+20.2%</td></tr><tr><td>Syracuse</td><td>32,000</td><td>+11.0%</td></tr><tr><td>Clearfield</td><td>32,000</td><td>+11.4%</td></tr>
+  <tr><td>Clinton</td><td>23,000</td><td>+2.1%</td></tr><tr><td>North Ogden</td><td>21,000</td><td>+26.0%</td></tr><tr><td>South Ogden</td><td>17,500</td><td>+7.7%</td></tr>
+  <tr><td>Centerville</td><td>17,000</td><td>+13.9%</td></tr><tr><td>Pleasant View</td><td>11,000</td><td>+4.1%</td></tr><tr><td>Riverdale</td><td>9,400</td><td>+13.3%</td></tr></table>
+  <p>Four cities are near Roy's size (Bountiful, Kaysville, Syracuse, Clearfield). Ogden and Layton are about twice as big, and half the list is under 25,000 people. Size doesn't line up with the gap: North Ogden is about half Roy's size and shows the largest gap.</p>
+  <div class="locator"><svg viewBox="0 0 760 968" role="img" aria-label="Map of Roy and the 12 comparison cities, shaded by how much more each pays than Roy" style="width:100%;height:auto;background:#fff;border:1px solid var(--line);border-radius:8px"><polygon points="327.0,141.7 327.2,136.1 339.3,135.1 337.8,126.1 346.3,126.8 346.4,125.2 337.8,124.8 334.1,102.3 335.6,87.9 333.1,86.5 332.9,78.3 340.0,85.1 339.7,53.5 346.2,53.7 346.0,51.2 364.5,51.2 365.4,61.1 376.9,65.1 376.8,59.9 390.8,59.9 390.8,86.3 392.2,86.3 397.0,95.7 393.3,95.7 392.8,98.6 395.1,99.3 395.1,104.9 398.4,104.7 396.7,106.1 396.8,113.4 398.1,113.4 397.1,117.4 391.2,117.0 392.8,117.4 391.2,118.2 391.7,120.8 383.9,136.3 384.0,148.8 349.3,147.8 349.3,145.9 346.5,145.7 349.3,145.3 349.4,141.5 339.1,141.2 339.2,147.9 336.3,149.0 333.2,147.9 333.3,141.9 327.0,141.7" fill="#16273f" stroke="#fff" stroke-width="1.5"><title>North Ogden</title></polygon><polygon points="193.0,345.7 202.9,343.6 202.9,340.5 199.4,341.2 199.4,332.7 202.5,332.7 202.5,330.9 211.8,330.9 212.0,328.9 224.5,327.6 224.5,336.0 241.2,317.6 249.7,305.2 253.7,302.6 262.5,302.6 262.5,306.8 272.7,293.4 270.5,293.3 275.1,286.7 274.9,301.3 278.5,301.3 281.4,307.9 281.2,324.5 289.6,324.5 283.2,333.2 279.4,349.2 283.2,346.2 280.4,358.2 281.1,378.0 199.1,378.0 199.3,358.7 196.1,358.7 196.1,356.3 199.3,356.1 199.4,349.9 193.0,349.9 193.0,345.7" fill="#a8431f" stroke="#fff" stroke-width="1.5"><title>Roy</title></polygon><polygon points="263.8,58.7 288.7,58.0 288.9,47.4 320.4,47.2 322.1,34.7 339.5,35.2 339.6,45.7 326.0,42.9 325.6,44.3 326.9,44.1 326.9,47.2 346.0,47.6 346.2,53.7 339.7,53.5 340.0,78.8 332.9,78.3 333.1,86.5 335.6,87.9 334.0,97.4 335.3,115.3 304.7,114.8 313.7,128.0 304.9,129.9 295.4,110.3 282.0,110.6 277.7,97.9 274.7,98.1 273.6,88.0 263.8,58.7" fill="#9fb3cc" stroke="#fff" stroke-width="1.5"><title>Pleasant View</title></polygon><polygon points="279.4,348.8 283.8,331.8 309.9,299.5 313.0,299.5 313.0,297.6 315.9,295.7 318.8,294.5 319.1,312.0 317.1,313.2 324.3,314.6 325.9,307.9 333.6,308.7 338.0,312.4 334.2,318.3 335.3,319.0 331.9,321.7 331.5,328.2 325.2,328.2 325.1,342.6 320.2,342.6 320.2,349.9 318.7,349.9 318.5,356.1 321.8,356.1 322.6,349.9 324.9,349.9 324.8,362.5 318.5,362.4 318.5,368.6 324.8,368.6 324.8,378.0 281.1,378.0 280.4,358.2 283.2,346.2 279.4,348.8" fill="#3f5f86" stroke="#fff" stroke-width="1.5"><title>Riverdale</title></polygon><polygon points="331.1,324.5 338.0,312.9 333.3,308.5 335.7,304.6 335.8,299.5 361.5,300.0 361.3,303.7 364.1,303.7 363.0,314.8 366.7,315.7 366.3,333.2 364.4,339.1 369.1,337.4 369.1,343.6 376.4,343.6 384.3,356.8 387.8,356.8 392.0,363.1 400.5,364.8 400.0,369.3 402.1,370.9 400.4,373.0 400.6,377.3 396.6,375.7 394.1,371.6 396.0,378.0 398.7,380.4 394.9,382.2 387.8,380.1 387.8,382.9 379.8,383.7 369.1,381.5 369.1,378.9 365.4,381.1 364.6,376.3 361.9,374.7 359.2,368.6 354.9,366.7 354.9,362.7 352.0,362.7 353.2,351.4 350.0,351.3 350.1,347.1 346.5,341.2 346.4,321.9 341.7,321.9 331.8,326.8 331.1,324.5" fill="#9fb3cc" stroke="#fff" stroke-width="1.5"><title>South Ogden</title></polygon><polygon points="437.0,896.1 439.9,894.7 439.2,892.5 444.3,892.5 444.3,890.4 440.4,890.4 449.2,876.0 455.1,860.7 450.0,860.7 450.0,847.5 442.4,844.4 448.9,844.2 448.4,840.0 450.0,840.0 448.4,839.2 448.4,834.0 450.0,831.5 447.9,830.3 450.0,830.3 450.2,804.6 452.6,804.4 452.7,800.6 456.4,800.6 456.7,798.9 462.9,800.6 462.9,805.3 467.3,805.3 468.0,810.2 471.7,810.2 471.7,807.4 475.9,806.2 488.1,805.5 488.2,810.7 503.3,810.7 503.5,816.8 508.4,816.8 508.2,819.7 513.3,825.3 512.3,831.9 515.3,831.9 515.3,834.5 513.3,834.5 513.2,848.0 519.5,848.0 519.4,854.3 525.7,854.4 525.9,841.8 550.5,841.8 550.3,866.9 525.4,866.8 525.5,879.4 519.4,879.4 519.5,886.2 525.7,886.4 525.8,893.0 500.8,892.5 500.8,905.0 507.1,905.1 507.2,917.8 500.9,917.6 500.8,930.1 475.9,930.3 475.9,933.1 472.2,933.3 472.2,930.3 468.0,927.5 461.0,928.2 461.2,907.4 457.3,907.4 454.2,904.5 448.3,906.5 446.6,905.5 447.8,901.2 445.9,901.2 447.8,899.6 447.2,896.1 444.9,900.3 437.0,900.3 437.0,896.1" fill="#9fb3cc" stroke="#fff" stroke-width="1.5"><title>Bountiful</title></polygon><polygon points="316.0,579.4 321.5,574.5 324.7,576.5 322.6,573.7 325.3,571.4 325.1,568.3 334.0,564.0 340.3,557.7 344.8,564.7 348.1,559.4 352.2,566.0 357.8,562.2 356.6,560.3 362.8,556.5 364.6,563.8 371.6,564.0 369.1,559.3 374.6,556.7 376.5,558.7 386.7,550.8 385.6,548.5 392.0,547.5 390.1,550.2 390.9,553.0 387.7,552.3 390.1,561.7 391.3,560.5 390.4,563.8 402.6,562.6 403.9,560.0 399.2,556.3 404.3,557.7 412.3,556.0 412.1,552.0 406.0,552.3 406.0,549.7 400.5,551.3 400.1,549.7 412.7,547.6 412.5,545.6 417.2,543.5 425.9,543.1 426.0,549.9 431.4,548.9 431.5,545.0 440.7,545.0 440.8,553.4 437.7,553.2 437.5,556.5 433.0,564.0 431.4,564.0 431.4,558.9 426.5,560.3 426.8,564.0 422.4,565.0 424.6,567.6 420.9,571.1 421.0,573.2 412.5,577.7 412.4,581.5 420.4,592.6 415.8,596.3 416.2,599.2 409.5,600.8 409.0,603.2 406.2,604.4 421.2,620.7 414.0,620.9 413.6,625.8 409.8,628.9 405.7,628.9 405.7,633.6 399.0,633.4 405.7,639.3 405.7,643.5 399.3,643.5 400.4,648.9 391.8,649.7 391.8,652.5 377.3,652.5 375.1,650.4 377.2,650.1 376.1,643.7 377.7,643.7 377.4,635.8 373.8,637.2 368.3,635.5 365.8,630.1 362.3,631.3 337.0,598.7 337.0,595.2 331.0,589.0 321.5,589.0 316.7,583.2 318.1,582.0 316.0,579.4" fill="#16273f" stroke="#fff" stroke-width="1.5"><title>Kaysville</title></polygon><polygon points="261.8,540.0 262.1,509.8 272.6,509.8 274.5,513.4 280.8,513.4 280.8,500.9 299.8,500.9 299.8,485.6 312.4,484.4 312.4,482.0 324.8,481.8 324.9,463.3 359.4,463.4 359.2,472.5 362.3,471.4 361.5,473.5 363.6,473.5 363.6,475.8 377.3,475.2 373.1,473.3 372.6,469.5 370.2,469.5 370.2,464.8 368.3,464.5 366.8,457.0 368.8,457.0 368.8,450.1 365.5,450.4 365.7,440.7 387.8,441.4 387.8,457.2 400.5,457.3 400.6,450.7 404.3,450.9 404.9,445.9 413.1,443.1 425.8,443.3 425.6,447.5 428.1,447.5 427.7,453.4 431.0,453.4 431.0,449.0 433.0,449.0 432.8,446.6 438.2,446.4 438.2,457.0 428.0,457.0 427.1,458.7 426.7,469.0 429.0,470.0 431.8,481.0 437.9,481.0 437.9,488.4 434.8,488.4 434.8,494.7 437.8,494.7 437.8,506.3 436.9,511.3 427.5,513.6 427.5,516.7 429.2,516.7 429.4,525.9 426.3,525.9 426.3,527.8 430.2,528.9 429.2,532.0 437.7,532.0 437.7,545.0 425.9,545.0 425.6,540.7 415.8,542.9 412.9,538.6 405.9,538.8 405.5,544.0 399.7,545.7 398.4,544.2 394.5,545.0 394.9,546.8 385.6,548.5 386.7,550.8 384.6,553.0 376.5,558.7 374.6,556.7 369.1,559.3 371.6,564.0 366.6,564.5 364.6,563.8 362.8,556.5 351.7,564.7 348.1,559.4 344.8,564.7 340.3,557.7 335.3,562.7 333.2,559.8 334.1,558.7 332.0,558.2 332.8,556.8 325.5,556.3 326.6,560.8 331.6,559.3 330.4,561.5 333.1,564.5 325.1,568.3 325.3,571.4 322.6,573.7 324.7,576.5 321.5,574.5 315.4,579.9 303.3,565.0 298.4,565.0 296.7,557.9 287.0,557.9 284.0,555.6 284.1,539.8 276.0,539.8 276.0,550.1 273.2,550.1 273.4,545.7 264.6,545.9 263.2,544.0 263.7,540.5 261.8,540.0" fill="#16273f" stroke="#fff" stroke-width="1.5"><title>Layton</title></polygon><polygon points="419.1,784.6 419.1,781.3 432.2,773.4 432.8,770.4 429.9,761.7 438.5,750.1 436.4,737.8 431.8,731.0 425.5,726.1 439.8,726.1 446.6,723.7 447.2,721.8 448.3,726.1 471.3,725.4 473.8,732.4 475.5,732.4 478.0,749.0 483.4,747.1 483.5,753.2 478.6,753.4 479.6,761.6 481.1,763.3 479.4,763.3 479.2,765.9 481.7,765.7 482.1,778.4 484.9,778.4 485.7,791.1 500.8,791.1 500.6,803.7 488.1,803.7 488.1,805.5 475.9,806.2 471.7,807.4 471.7,810.2 468.0,810.2 467.3,805.3 462.9,805.3 462.9,800.6 456.4,798.9 456.4,800.6 452.7,800.6 452.6,804.4 450.2,804.6 449.6,794.0 446.6,793.8 446.6,789.2 437.3,789.2 437.7,786.2 433.2,789.0 427.7,789.0 427.7,784.8 419.1,784.6" fill="#3f5f86" stroke="#fff" stroke-width="1.5"><title>Centerville</title></polygon><polygon points="237.0,469.8 238.5,469.5 238.5,463.3 249.5,459.8 249.5,450.6 237.0,450.4 238.5,431.8 243.3,431.8 243.3,427.1 249.5,427.1 249.5,425.6 290.6,425.4 290.6,433.0 292.3,436.5 299.9,437.9 299.9,450.1 312.4,450.4 325.6,462.4 324.8,481.8 312.4,482.0 312.4,484.4 299.8,485.6 299.8,500.9 280.8,500.9 280.8,513.4 274.5,513.4 274.5,509.8 262.1,509.8 262.0,488.3 249.5,488.3 249.5,475.8 237.0,475.8 237.0,469.8" fill="#3f5f86" stroke="#fff" stroke-width="1.5"><title>Clearfield</title></polygon><polygon points="167.7,393.6 169.3,387.7 174.0,387.7 174.0,378.0 259.7,378.2 261.6,387.5 262.4,425.6 243.3,427.1 243.3,431.8 238.5,431.8 239.1,438.1 237.0,438.1 237.0,431.8 230.7,431.8 230.8,425.6 199.1,425.6 199.1,412.9 186.6,412.9 186.6,394.0 167.7,393.6" fill="#9fb3cc" stroke="#fff" stroke-width="1.5"><title>Clinton</title></polygon><polygon points="157.1,475.8 170.7,475.6 170.9,469.3 167.7,469.3 167.6,463.1 187.0,463.1 187.0,450.4 249.5,450.6 249.5,459.8 238.5,463.3 237.0,475.8 249.5,475.8 249.5,488.3 262.0,488.3 261.8,551.1 259.1,551.1 258.7,539.3 252.4,538.6 252.4,551.1 250.8,551.1 251.0,538.6 211.6,538.6 205.3,536.2 205.3,525.9 211.6,525.9 211.6,522.8 195.3,521.6 196.5,516.6 201.1,516.9 199.0,516.0 201.1,514.3 197.3,514.5 199.0,513.4 199.1,495.7 196.6,495.7 196.6,493.6 199.1,493.6 199.1,488.3 192.8,488.3 194.3,513.4 192.7,513.4 192.7,509.6 186.4,509.6 186.4,513.4 171.8,513.3 171.8,500.6 173.9,500.6 173.9,496.2 171.8,495.7 171.8,488.3 159.2,488.1 157.1,475.8" fill="#3f5f86" stroke="#fff" stroke-width="1.5"><title>Syracuse</title></polygon><polygon points="275.1,286.7 275.2,261.7 277.7,261.7 277.7,255.4 287.8,254.4 290.3,256.8 293.5,254.7 295.1,257.5 303.0,250.9 308.1,248.1 313.3,246.0 314.0,218.8 306.9,218.6 306.9,221.4 305.3,221.4 305.3,218.6 304.1,218.6 304.1,224.5 302.8,224.3 303.0,218.6 296.4,217.4 298.2,146.5 306.4,146.7 315.0,150.4 319.4,160.1 321.9,179.9 348.8,180.2 349.3,147.8 384.0,148.8 384.0,160.4 373.9,161.3 377.3,161.3 377.3,167.6 383.5,167.7 383.6,180.4 402.2,180.4 401.8,230.6 403.4,230.6 403.5,237.2 401.5,237.2 401.5,246.2 403.5,243.8 407.8,243.8 408.0,262.4 401.9,262.5 400.5,337.5 413.1,337.7 413.1,365.1 409.4,365.1 409.1,363.1 400.5,363.2 400.5,357.9 392.2,357.9 390.1,356.8 390.1,353.7 387.5,354.0 387.8,356.8 386.2,356.8 383.2,354.9 376.4,343.6 369.1,343.6 369.1,337.4 366.3,337.4 366.7,315.7 363.0,314.8 364.1,303.7 361.3,303.7 361.5,300.0 335.8,299.5 335.7,304.6 333.5,308.5 319.3,307.2 318.8,294.5 313.0,297.6 313.0,299.5 309.9,299.5 289.6,324.5 281.2,324.5 281.4,307.9 278.5,301.3 275.5,301.3 285.5,294.0 284.4,293.1 284.2,286.8 275.1,286.7" fill="#16273f" stroke="#fff" stroke-width="1.5"><title>Ogden</title></polygon><line x1="363" y1="110" x2="399" y2="104" stroke="#555" stroke-width="1"/><text x="403" y="110" text-anchor="start" font-size="19" font-weight="400" fill="#1c1c1c" font-family="Source Sans 3,sans-serif" paint-order="stroke" stroke="#fff" stroke-width="4">North Ogden <tspan font-weight="800">+26.0%</tspan></text><line x1="237" y1="332" x2="191" y2="326" stroke="#555" stroke-width="1"/><text x="187" y="332" text-anchor="end" font-size="22" font-weight="800" fill="#a8431f" font-family="Source Sans 3,sans-serif" paint-order="stroke" stroke="#fff" stroke-width="4">ROY</text><line x1="314" y1="74" x2="258" y2="68" stroke="#555" stroke-width="1"/><text x="254" y="74" text-anchor="end" font-size="19" font-weight="400" fill="#1c1c1c" font-family="Source Sans 3,sans-serif" paint-order="stroke" stroke="#fff" stroke-width="4">Pleasant View <tspan font-weight="800">+4.1%</tspan></text><line x1="316" y1="335" x2="422" y2="389" stroke="#555" stroke-width="1"/><text x="426" y="395" text-anchor="start" font-size="19" font-weight="400" fill="#1c1c1c" font-family="Source Sans 3,sans-serif" paint-order="stroke" stroke="#fff" stroke-width="4">Riverdale <tspan font-weight="800">+13.3%</tspan></text><line x1="368" y1="350" x2="404" y2="354" stroke="#555" stroke-width="1"/><text x="408" y="360" text-anchor="start" font-size="19" font-weight="400" fill="#1c1c1c" font-family="Source Sans 3,sans-serif" paint-order="stroke" stroke="#fff" stroke-width="4">South Ogden <tspan font-weight="800">+7.7%</tspan></text><line x1="477" y1="863" x2="523" y2="857" stroke="#555" stroke-width="1"/><text x="527" y="863" text-anchor="start" font-size="19" font-weight="400" fill="#1c1c1c" font-family="Source Sans 3,sans-serif" paint-order="stroke" stroke="#fff" stroke-width="4">Bountiful <tspan font-weight="800">+9.9%</tspan></text><line x1="388" y1="583" x2="424" y2="577" stroke="#555" stroke-width="1"/><text x="428" y="583" text-anchor="start" font-size="19" font-weight="400" fill="#1c1c1c" font-family="Source Sans 3,sans-serif" paint-order="stroke" stroke="#fff" stroke-width="4">Kaysville <tspan font-weight="800">+20.2%</tspan></text><line x1="367" y1="513" x2="423" y2="507" stroke="#555" stroke-width="1"/><text x="427" y="513" text-anchor="start" font-size="19" font-weight="400" fill="#1c1c1c" font-family="Source Sans 3,sans-serif" paint-order="stroke" stroke="#fff" stroke-width="4">Layton <tspan font-weight="800">+21.1%</tspan></text><line x1="458" y1="774" x2="494" y2="768" stroke="#555" stroke-width="1"/><text x="498" y="774" text-anchor="start" font-size="19" font-weight="400" fill="#1c1c1c" font-family="Source Sans 3,sans-serif" paint-order="stroke" stroke="#fff" stroke-width="4">Centerville <tspan font-weight="800">+13.9%</tspan></text><line x1="271" y1="466" x2="185" y2="452" stroke="#555" stroke-width="1"/><text x="181" y="458" text-anchor="end" font-size="19" font-weight="400" fill="#1c1c1c" font-family="Source Sans 3,sans-serif" paint-order="stroke" stroke="#fff" stroke-width="4">Clearfield <tspan font-weight="800">+11.4%</tspan></text><line x1="215" y1="412" x2="179" y2="406" stroke="#555" stroke-width="1"/><text x="175" y="412" text-anchor="end" font-size="19" font-weight="400" fill="#1c1c1c" font-family="Source Sans 3,sans-serif" paint-order="stroke" stroke="#fff" stroke-width="4">Clinton <tspan font-weight="800">+2.1%</tspan></text><line x1="205" y1="502" x2="159" y2="496" stroke="#555" stroke-width="1"/><text x="155" y="502" text-anchor="end" font-size="19" font-weight="400" fill="#1c1c1c" font-family="Source Sans 3,sans-serif" paint-order="stroke" stroke="#fff" stroke-width="4">Syracuse <tspan font-weight="800">+11.0%</tspan></text><line x1="343" y1="267" x2="389" y2="261" stroke="#555" stroke-width="1"/><text x="393" y="267" text-anchor="start" font-size="19" font-weight="400" fill="#1c1c1c" font-family="Source Sans 3,sans-serif" paint-order="stroke" stroke="#fff" stroke-width="4">Ogden <tspan font-weight="800">+24.3%</tspan></text><text x="746" y="30" text-anchor="end" font-size="20" font-weight="700" fill="#16273f" font-family="Source Sans 3,sans-serif">Weber County</text><text x="746" y="952" text-anchor="end" font-size="20" font-weight="700" fill="#16273f" font-family="Source Sans 3,sans-serif">Davis County</text></svg><p class="legend-row" style="font-family:Source Sans 3,sans-serif;font-size:1.05rem;margin-top:8px"><span style="display:inline-block;width:16px;height:16px;background:#a8431f;vertical-align:middle"></span> Roy &nbsp; <span style="display:inline-block;width:16px;height:16px;background:#16273f;vertical-align:middle"></span> pays 20%+ more &nbsp; <span style="display:inline-block;width:16px;height:16px;background:#3f5f86;vertical-align:middle"></span> 10-20% more &nbsp; <span style="display:inline-block;width:16px;height:16px;background:#9fb3cc;vertical-align:middle"></span> under 10% more</p></div>
+  <p class="diagram-cap">Roy and the 12 comparison cities, shaded by each city's average gap over Roy. City lines: U.S. Census Bureau.</p>
+</section>
+
+<section id="money">
+  <h2>Where the raise money goes</h2>
+  <p>In the plan the council adopted, $1,207,371 of the $1,751,100 increase is "wage correction" raises, split across 13 general-fund departments (Roy City Aug. 11, 2026 packet, alternative schedule). The biggest share, <b>$488,257 (40%)</b>, goes to Police &amp; Animal Services. On the sheet, the police jobs with the smallest gaps are Police Officer (+3.80%) and Master Officer (+3.79%). The sheet doesn't show how many officers there are or how the $488,257 was split among police jobs.</p>
+  <div class="chart-block"><div class="bar-row"><div class="bar-label">Police &amp; Animal Services</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--rust)"></div></div><div class="bar-value">$488,257</div></div><div class="bar-row"><div class="bar-label">Parks &amp; Recreation</div><div class="bar-track"><div class="bar-fill" style="width:21%;background:var(--navy-2)"></div></div><div class="bar-value">$104,022</div></div><div class="bar-row"><div class="bar-label">Streets</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--navy-2)"></div></div><div class="bar-value">$97,653</div></div><div class="bar-row"><div class="bar-label">Public Works Admin.</div><div class="bar-track"><div class="bar-fill" style="width:18%;background:var(--navy-2)"></div></div><div class="bar-value">$89,349</div></div><div class="bar-row"><div class="bar-label">Community Development</div><div class="bar-track"><div class="bar-fill" style="width:14%;background:var(--navy-2)"></div></div><div class="bar-value">$69,409</div></div><div class="bar-row"><div class="bar-label">Legal</div><div class="bar-track"><div class="bar-fill" style="width:13%;background:var(--navy-2)"></div></div><div class="bar-value">$63,235</div></div><div class="bar-row"><div class="bar-label">Finance</div><div class="bar-track"><div class="bar-fill" style="width:13%;background:var(--navy-2)"></div></div><div class="bar-value">$61,148</div></div><div class="bar-row"><div class="bar-label">Justice Court</div><div class="bar-track"><div class="bar-fill" style="width:10%;background:var(--navy-2)"></div></div><div class="bar-value">$50,643</div></div><div class="bar-row"><div class="bar-label">Building Maintenance</div><div class="bar-track"><div class="bar-fill" style="width:10%;background:var(--navy-2)"></div></div><div class="bar-value">$46,424</div></div><div class="bar-row"><div class="bar-label">Fleet Services</div><div class="bar-track"><div class="bar-fill" style="width:9%;background:var(--navy-2)"></div></div><div class="bar-value">$42,357</div></div><div class="bar-row"><div class="bar-label">Legislative</div><div class="bar-track"><div class="bar-fill" style="width:8%;background:var(--navy-2)"></div></div><div class="bar-value">$40,646</div></div><div class="bar-row"><div class="bar-label">Recreation Complex</div><div class="bar-track"><div class="bar-fill" style="width:7%;background:var(--navy-2)"></div></div><div class="bar-value">$32,079</div></div><div class="bar-row"><div class="bar-label">Aquatic Center</div><div class="bar-track"><div class="bar-fill" style="width:5%;background:var(--navy-2)"></div></div><div class="bar-value">$22,149</div></div></div>
+  <p class="diagram-cap">Wage-correction raises by department, alternative schedule. Separate 2.8% cost-of-living raises total $348,179.</p>
+</section>
+
+<section id="table">
+  <h2>Every row on the sheet</h2>
+  <p>Tap any column heading to sort. Gray, crossed-out numbers are the cities the city left out of that average. Turn on "Show the 12 cities" to see every city's pay.</p>
+  <div class="sv-tools">
+    <input id="svq" type="search" placeholder="Search a job (e.g. police, clerk)" aria-label="Search jobs">
+    <select id="svd" aria-label="Department"><option value="">All departments</option></select>
+    <label><input type="checkbox" id="svc"> Show the 12 cities</label>
+    <span id="svn" class="muted" aria-live="polite"></span>
+  </div>
+  <div class="sv-wrap"><table class="sv" id="svt"></table></div>
+  <p class="muted">Pay is hourly. Fire rows are based on 2,880 hours a year, as the sheet notes. "Cities" is how many cities had a matching job. A blank Adjusted column means the row used its own average.</p>
+</section>
+
+<section id="questions">
+  <h2>Questions Worth Asking, and Who to Ask</h2>
+  <div class="hs-qa">
+    <div><b>Ask Roy City (City Manager's office or Human Resources):</b>how many employees hold each job on the survey, and what the 14% comes to when it's weighted by headcount.</div>
+    <div><b>Ask Roy City:</b>is this "Salary Survey Fall 2024" the same survey called "only a draft" in August 2025, and was it ever finished?</div>
+    <div><b>Ask Roy City:</b>how the $488,257 for Police &amp; Animal Services was figured when the sheet shows the Police Officer job about 3.8% behind.</div>
+    <div><b>Ask your Roy council members:</b>why these 12 cities, and why the gap is measured from Roy's pay rather than the other cities'.</div>
+    <div><b>Ask Roy City:</b>why some cities were shaded out even though they were within 20% of the average, and others more than 20% off were kept.</div>
+    <div><b>Ask Roy City (City Recorder):</b>whether Ordinance 26-15 passed on Oct. 20, when its hearing notice was published, and whether the 2.8% cost-of-living raise and wage corrections for the officers in Exhibit A had a separate hearing before the Aug. 11 budget vote.</div>
+    <div><b>Ask Roy City (City Recorder):</b>when the separate public hearing was held on raises for the city manager, city attorney, department heads and deputies. State law requires one, with 7 days' notice, before a budget with those raises is adopted (Utah Code 10-3-818(2)).</div>
+    <div><b>Ask your Roy council members:</b>why the salary survey compares wages only, when the city also pays about $2.1 million a year into employee retirement.</div>
+    <div><b>Ask your Roy council members:</b>whether the professional salary survey recommended in August 2025 will be done before any more wage increases.</div>
+  </div>
+</section>
+
+<section id="behind">
+  <h2>Behind this piece</h2>
+  <div class="hs-counter"><div><div class="n">972</div><div class="l">Numbers on the sheet copied and rechecked</div></div><div><div class="n">81</div><div class="l">Job rows recalculated</div></div><div><div class="n">34</div><div class="l">Gray cells matched to their rows</div></div><div><div class="n">13</div><div class="l">Department raise lines added up</div></div><div><div class="n">15,060</div><div class="l">Pay records pulled from Transparent Utah</div></div><div><div class="n">16</div><div class="l">Roy agendas and minutes read</div></div><div><div class="n">9</div><div class="l">Questions to ask, with whom</div></div></div>
+  <p class="hs-updates">Posted Oct. 27, 2026.</p>
+</section>
+
+<section id="sources">
+  <h2>Sources</h2>
+  <details class="sources full-sources">
+    <summary>Sources (click to expand)</summary>
+    <ol>
+      <li>Roy City, "Salary Survey Fall 2024" (one page), released under a GRAMA public records request. A tip came in with the document. Read from the page itself and checked against a high-resolution image for the gray cells. <a href="roy-salary-survey-fall-2024-sheet.png" target="_blank" rel="noopener">Image of the sheet</a></li>
+      <li>Roy City Council, Aug. 11, 2026 agenda packet: original and alternative property tax impact schedules, department COLA and wage-correction lines. <a href="https://www.utah.gov/pmn/files/1471580.pdf" target="_blank" rel="noopener">Link</a></li>
+      <li>Roy City, 2026 Referendum Petition Response &mdash; Insufficient (Oct. 20, 2026), including the city's argument ("14% below median wages"). <a href="https://cms7files1.revize.com/roycityut/Government/Referendums/2026%20Referendum%20Petition%20Response%20-%20Insufficient.pdf" target="_blank" rel="noopener">Link</a></li>
+      <li>Roy City Council, Oct. 20, 2026 agenda and packet: Ordinance 26-15, staff memo and Exhibit A. <a href="https://cms7files1.revize.com/roycityut/Agendas%20and%20Minutes/city%20council/2026/October%2020,%202026%20Roy%20City%20Council%20Agenda%20and%20Packet.pdf" target="_blank" rel="noopener">Link</a></li>
+      <li>Transparent Utah (Office of the State Auditor), Roy City employee compensation, FY2024&ndash;FY2026. <a href="https://transparent.utah.gov/" target="_blank" rel="noopener">Link</a></li>
+      <li>Roy City Annual Comprehensive Financial Report, FY2025, Note 4 (retirement). <a href="https://cms7files1.revize.com/roycityut/Departments/finance/cafr/Roy%20City%20ACFR%202025.pdf" target="_blank" rel="noopener">Link</a></li>
+      <li>Roy City Council work session packet, Aug. 5, 2025: compensation worksheet citing the "draft Salary Survey." <a href="https://www.utah.gov/pmn/files/1303555.pdf" target="_blank" rel="noopener">Link</a></li>
+      <li>Roy City Council, Aug. 5, 2025 minutes: Dandoy and Scadden on the survey. <a href="https://www.utah.gov/pmn/files/1323997.pdf" target="_blank" rel="noopener">Link</a></li>
+      <li>Roy City Council, Aug. 19, 2025 minutes (draft): the survey called "only a draft." <a href="https://www.utah.gov/pmn/files/1323999.pdf" target="_blank" rel="noopener">Link</a></li>
+      <li>U.S. Census Bureau, 2020 Census populations (rounded; as listed by <a href="https://www.citypopulation.de/en/usa/cities/utah" target="_blank" rel="noopener">citypopulation.de</a> and <a href="https://www.biggestuscities.com/ut/2020" target="_blank" rel="noopener">biggestuscities.com</a>).</li>
+      <li>Utah Code &sect; 10-3-818 (pay for municipal officers; separate hearing for executive pay increases). <a href="https://le.utah.gov/xcode/Title10/Chapter3/10-3-S818.html" target="_blank" rel="noopener">Link</a></li>
+      <li>Utah Code &sect; 59-2-919 (Truth in Taxation notice and hearing). <a href="https://le.utah.gov/xcode/Title59/Chapter2/59-2-S919.html" target="_blank" rel="noopener">Link</a></li>
+      <li>The Hive's Roy Prop 10 case file. <a href="roy-prop-10-tax-referendum.html">Link</a></li>
+    </ol>
+  </details>
+</section>
+</main>
+
+<footer class="site-footer">
+  The Weber County Hive &middot; Referendum Docket &middot; Reporting from public records only.<br>
+  <a href="roy-prop-10-tax-referendum.html">Back to the Roy Prop 10 case file</a> &middot; <a href="index.html">All referendums tracked</a>
+</footer>
+<div class="hb-foot"><img src="hive-bee.png" alt=""><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span><span class="hb-tag">Independent · Accountability · Journalism</span></div>
+
+<script>
+(function(){
+  var D={"rows":[{"i":0,"t":"Secretary I","d":"Complex","c":{"Bountiful":16.53,"North Ogden":16.87,"Ogden":19.14},"g":[],"a":17.51,"adj":null,"roy":15.12,"v":15.81,"n":3,"note":""},{"i":1,"t":"Janitor/Custodian","d":"Bldg Maint","c":{},"g":[],"a":17.79,"adj":null,"roy":15.92,"v":11.75,"n":0,"note":"No matching positions; kept in line with wage scale position"},{"i":2,"t":"Customer Service Clerk I","d":"Finance","c":{"Bountiful":19.33,"Clearfield":17.13,"Kaysville":23.5,"Layton":18.77,"Ogden":17.07},"g":["Kaysville"],"a":18.08,"adj":null,"roy":16.12,"v":12.16,"n":5,"note":""},{"i":3,"t":"Court Clerk","d":"Court","c":{"Centerville":19.99,"Clearfield":17.13,"Clinton":17.15,"North Ogden":20.46,"Ogden":20.91,"Riverdale":19.44,"South Ogden":20.9,"Syracuse":16.67},"g":[],"a":19.08,"adj":null,"roy":16.59,"v":15.01,"n":8,"note":""},{"i":4,"t":"Janitor/Custodian II","d":"Bldg Maint","c":{},"g":[],"a":18.68,"adj":null,"roy":16.72,"v":11.72,"n":0,"note":"5% above Janitor I"},{"i":5,"t":"Secretary II","d":"Various","c":{"Layton":18.7,"North Ogden":22.44,"Ogden":20.9,"South Ogden":18.56},"g":[],"a":20.15,"adj":null,"roy":16.9,"v":19.23,"n":4,"note":""},{"i":6,"t":"Records Clerk","d":"Police","c":{"Bountiful":18.42,"Clearfield":19.27,"Layton":20.17,"Ogden":20.91,"Riverdale":18.11},"g":[],"a":19.38,"adj":null,"roy":17.14,"v":13.07,"n":5,"note":""},{"i":7,"t":"Customer Service Clerk II","d":"Finance","c":{},"g":[],"a":18.98,"adj":null,"roy":17.14,"v":10.74,"n":0,"note":"5% above Customer Service Clerk I"},{"i":8,"t":"Evidence Technician","d":"Police","c":{"Bountiful":20.29,"Clearfield":23.55,"Kaysville":25.54,"Layton":21.15,"Ogden":22.37,"Riverdale":18.58},"g":[],"a":21.91,"adj":null,"roy":17.47,"v":25.41,"n":6,"note":""},{"i":9,"t":"Equipment Operator I","d":"Parks","c":{"Centerville":17.05,"North Ogden":20.0,"Ogden":20.91,"Riverdale":18.33,"South Ogden":18.63,"Syracuse":18.43},"g":[],"a":18.89,"adj":19.69,"roy":17.57,"v":12.07,"n":6,"note":"Averaged w/Parks, Streets, Water & Bldg to keep depts uniform"},{"i":10,"t":"Equipment Operator I","d":"Streets","c":{"Bountiful":22.37,"Clearfield":17.67,"Clinton":19.22,"Ogden":22.37,"Riverdale":18.81,"South Ogden":21.45,"Syracuse":18.43},"g":[],"a":20.05,"adj":19.69,"roy":17.57,"v":12.07,"n":7,"note":"Averaged w/Parks, Streets, Water & Bldg to keep depts uniform"},{"i":11,"t":"Operator I","d":"Water/Storm","c":{"Bountiful":22.37,"Centerville":20.64,"Clearfield":17.67,"Clinton":19.22,"Riverdale":18.81,"South Ogden":21.24,"Syracuse":18.43},"g":[],"a":19.77,"adj":19.69,"roy":17.57,"v":12.07,"n":7,"note":"Averaged w/Parks, Streets, Water & Bldg to keep depts uniform"},{"i":12,"t":"Maintenance Technician I","d":"Bldg Maint","c":{},"g":[],"a":20.06,"adj":19.69,"roy":17.57,"v":12.07,"n":0,"note":"5% below Maint Tech II; Averaged w/Parks, Streets, Water & Bldg to keep depts uniform"},{"i":13,"t":"Apprentice Mechanic","d":"Fleet Services","c":{"Centerville":21.78,"North Ogden":22.08},"g":[],"a":21.93,"adj":null,"roy":17.57,"v":24.82,"n":2,"note":""},{"i":14,"t":"Animal Control Officer","d":"Police","c":{"North Ogden":23.27,"Ogden":25.61,"Pleasant View":21.72,"Riverdale":20.53,"South Ogden":20.63},"g":[],"a":22.35,"adj":null,"roy":17.75,"v":25.92,"n":5,"note":""},{"i":15,"t":"Customer Service Clerk/Billing Asst","d":"Finance","c":{"Kaysville":23.5,"Layton":18.77,"North Ogden":18.5,"Ogden":22.37,"Riverdale":19.3,"Syracuse":19.27},"g":[],"a":20.29,"adj":null,"roy":18.25,"v":11.18,"n":6,"note":""},{"i":16,"t":"Heavy Equipment Operator II","d":"Parks","c":{"Bountiful":21.31,"Centerville":17.38,"Clearfield":17.67,"Layton":21.38,"North Ogden":25.1,"Ogden":20.91,"Pleasant View":20.04,"Riverdale":19.36,"South Ogden":20.02,"Syracuse":21.45},"g":[],"a":20.46,"adj":21.2,"roy":18.55,"v":14.29,"n":10,"note":"Averaged w/Parks, Streets, Water & Bldg to keep depts uniform"},{"i":17,"t":"Heavy Equipment Operator II","d":"Streets","c":{"Bountiful":24.68,"Clinton":20.75,"Ogden":23.94,"Riverdale":20.48,"South Ogden":20.61},"g":[],"a":22.09,"adj":21.2,"roy":18.55,"v":14.29,"n":5,"note":"Averaged w/Parks, Streets, Water & Bldg to keep depts uniform"},{"i":18,"t":"Operator II","d":"Water/Storm","c":{"Bountiful":22.37,"Centerville":21.79,"Clinton":20.75,"Layton":21.91,"Ogden":22.37,"Pleasant View":19.01,"Riverdale":20.48,"South Ogden":20.61,"Syracuse":21.45},"g":[],"a":21.19,"adj":21.2,"roy":18.55,"v":14.29,"n":9,"note":"Averaged w/Parks, Streets, Water & Bldg to keep depts uniform"},{"i":19,"t":"Maintenance Technician II","d":"Bldg Maint","c":{"Clearfield":21.41,"Layton":22.2,"Ogden":22.37,"Syracuse":18.24},"g":[],"a":21.06,"adj":21.2,"roy":18.55,"v":14.29,"n":4,"note":"Averaged w/Parks, Streets, Water & Bldg to keep depts uniform"},{"i":20,"t":"Accounting Technician","d":"Finance","c":{"Bountiful":19.33,"Centerville":22.84,"Clearfield":21.41,"Clinton":17.92,"Kaysville":20.54,"Layton":23.06,"Ogden":20.91},"g":[],"a":20.86,"adj":null,"roy":19.71,"v":5.83,"n":7,"note":""},{"i":21,"t":"Leadman (Operator III)","d":"Parks/Rec","c":{"Kaysville":24.99,"Layton":27.28,"North Ogden":23.1,"Ogden":27.41,"Syracuse":23.79},"g":[],"a":25.31,"adj":25.16,"roy":20.21,"v":24.49,"n":5,"note":"Averaged w/Parks, Streets & Water to keep depts uniform"},{"i":22,"t":"Leadman (Operator III)","d":"Streets","c":{"Clinton":22.88,"Kaysville":29.45,"Layton":26.65,"North Ogden":25.69,"Ogden":33.57,"Riverdale":25.14,"South Ogden":26.5},"g":["Ogden"],"a":26.05,"adj":25.16,"roy":20.21,"v":24.49,"n":7,"note":"Averaged w/Parks, Streets & Water to keep depts uniform"},{"i":23,"t":"Leadman (Operator III)","d":"Water","c":{"Bountiful":24.68,"Centerville":25.0,"Clinton":22.88,"Kaysville":26.82,"Layton":23.0,"North Ogden":25.69,"Ogden":23.94,"Pleasant View":21.18,"Riverdale":21.89,"South Ogden":26.5,"Syracuse":23.79},"g":[],"a":24.12,"adj":25.16,"roy":20.21,"v":24.49,"n":11,"note":"Averaged w/Parks, Streets & Water to keep depts uniform"},{"i":24,"t":"Office Manager/Admin Asst","d":"Police","c":{"Bountiful":21.0,"Centerville":20.05,"Clearfield":19.27,"Kaysville":23.5,"Layton":26.0,"North Ogden":34.12,"Ogden":20.91,"Pleasant View":21.26,"Riverdale":24.59,"South Ogden":18.56,"Syracuse":21.55},"g":["North Ogden"],"a":21.67,"adj":21.81,"roy":20.49,"v":6.44,"n":11,"note":"Averaged Police & Fire Admin Asst to keep departments uniform"},{"i":25,"t":"Office Manager/Admin Asst","d":"Fire","c":{"Bountiful":21.0,"Centerville":20.05,"Clearfield":18.0,"Kaysville":23.5,"Layton":26.0,"North Ogden":34.12,"Ogden":20.91,"Pleasant View":21.26,"Riverdale":24.59,"South Ogden":18.56,"Syracuse":21.55},"g":["Clearfield","North Ogden"],"a":21.94,"adj":21.81,"roy":20.49,"v":6.44,"n":11,"note":"Averaged Police & Fire Admin Asst to keep departments uniform"},{"i":26,"t":"Office Manager/Backflow Administrator","d":"PW Admin","c":{},"g":[],"a":null,"adj":21.81,"roy":21.07,"v":3.51,"n":0,"note":"Benchmarked w/Police & Fire Admin Asst"},{"i":27,"t":"Code Enforcement Official","d":"Comm Dev","c":{"Clearfield":21.41,"Kaysville":25.3,"Layton":21.64,"North Ogden":21.33,"Ogden":20.71,"Syracuse":21.55},"g":[],"a":21.99,"adj":null,"roy":21.21,"v":3.68,"n":6,"note":""},{"i":28,"t":"Program Supervisor I","d":"Complex","c":{"Layton":23.87},"g":[],"a":23.87,"adj":null,"roy":21.55,"v":10.77,"n":1,"note":""},{"i":29,"t":"Risk Specialist/Legal Assistant","d":"Legal","c":{"Clearfield":23.55,"Layton":22.72,"Ogden":22.37},"g":[],"a":22.88,"adj":null,"roy":22.1,"v":3.53,"n":3,"note":""},{"i":30,"t":"Office Manager","d":"Comm Dev","c":{},"g":[],"a":25.11,"adj":null,"roy":22.39,"v":12.15,"n":0,"note":"No matching positions; benchmarked with payroll/HR Tech"},{"i":31,"t":"Payroll/HR Technician","d":"Finance","c":{"Bountiful":22.37,"Clearfield":21.41,"Layton":27.33,"Ogden":29.32},"g":[],"a":25.11,"adj":null,"roy":22.39,"v":12.15,"n":4,"note":""},{"i":32,"t":"Journey Mechanic","d":"Fleet Services","c":{"Bountiful":25.91,"Centerville":25.88,"Clearfield":18.2,"Clinton":29.15,"Layton":23.82,"North Ogden":29.99,"Ogden":25.61,"Pleasant View":28.31,"Riverdale":22.57},"g":["Clearfield"],"a":26.41,"adj":null,"roy":22.63,"v":16.7,"n":9,"note":""},{"i":33,"t":"Foreman","d":"Parks","c":{"Bountiful":23.47,"Centerville":31.35,"Kaysville":28.5,"Layton":30.8,"North Ogden":30.35,"Ogden":33.57},"g":["Bountiful"],"a":30.91,"adj":28.32,"roy":22.63,"v":25.14,"n":6,"note":"Averaged w/Parks, Streets, Water & Bldg to keep depts uniform"},{"i":34,"t":"Foreman","d":"Streets","c":{"Bountiful":28.55,"Centerville":26.65,"Kaysville":29.45,"Layton":26.65,"Ogden":33.57,"Syracuse":29.43},"g":[],"a":29.05,"adj":28.32,"roy":22.63,"v":25.14,"n":6,"note":"Averaged w/Parks, Streets, Water & Bldg to keep depts uniform"},{"i":35,"t":"Foreman","d":"Bldg Maint","c":{"Bountiful":25.16,"Layton":28.34,"Ogden":27.41,"South Ogden":23.11},"g":[],"a":26.01,"adj":28.32,"roy":22.63,"v":25.14,"n":4,"note":"Averaged w/Parks, Streets, Water & Bldg to keep depts uniform"},{"i":36,"t":"Foreman","d":"Water/Storm","c":{"Bountiful":27.2,"Clearfield":26.77,"Kaysville":29.45,"Ogden":29.32,"Pleasant View":23.83},"g":[],"a":27.31,"adj":28.32,"roy":22.63,"v":25.14,"n":5,"note":"Averaged w/Parks, Streets, Water & Bldg to keep depts uniform"},{"i":37,"t":"Records Manager","d":"Police","c":{"Bountiful":22.37,"Clearfield":23.55,"Kaysville":30.39,"Layton":22.92,"Ogden":29.32},"g":[],"a":25.71,"adj":null,"roy":23.04,"v":11.59,"n":5,"note":""},{"i":38,"t":"Court Clerk Supervisor","d":"Court","c":{"Centerville":27.21,"Clearfield":29.98,"Clinton":29.15,"North Ogden":30.57,"Ogden":25.61,"South Ogden":23.97,"Syracuse":25.68},"g":[],"a":27.45,"adj":null,"roy":23.04,"v":19.14,"n":7,"note":""},{"i":39,"t":"IT Technician","d":"IT","c":{"Bountiful":28.55,"Centerville":31.02,"Clearfield":29.98,"Ogden":27.41,"Syracuse":21.64},"g":["Syracuse"],"a":29.24,"adj":null,"roy":23.37,"v":25.12,"n":5,"note":""},{"i":40,"t":"GIS Specialist","d":"Public Works","c":{},"g":[],"a":29.38,"adj":null,"roy":25.28,"v":16.22,"n":0,"note":"No matching positions; kept in line with wage scale position"},{"i":41,"t":"Executive Assistant/City Recorder","d":"Legislative","c":{"Bountiful":23.46,"Centerville":31.96,"Clearfield":23.55,"Clinton":29.15,"Kaysville":29.34,"Layton":32.1,"Ogden":48.41,"Pleasant View":37.5,"Riverdale":27.93,"South Ogden":28.02,"Syracuse":31.27},"g":["Bountiful","Ogden"],"a":30.09,"adj":null,"roy":25.95,"v":15.95,"n":11,"note":""},{"i":42,"t":"Supervisor","d":"Complex","c":{"Clearfield":26.77,"Layton":32.24,"North Ogden":34.26,"Ogden":31.37},"g":[],"a":31.16,"adj":null,"roy":26.45,"v":17.81,"n":4,"note":""},{"i":43,"t":"Building & Code Enforcement Official","d":"Comm Dev","c":{"Bountiful":29.97,"Clearfield":23.55,"Clinton":25.2,"Kaysville":30.56,"Layton":30.67,"North Ogden":34.53,"Ogden":31.38,"Riverdale":33.95,"South Ogden":34.79,"Syracuse":28.17},"g":[],"a":30.28,"adj":null,"roy":26.74,"v":13.24,"n":10,"note":""},{"i":44,"t":"Utility Billing Supervisor","d":"Finance","c":{"Clearfield":33.19,"Clinton":27.38,"Kaysville":27.51,"Layton":22.05,"Ogden":35.92,"Syracuse":23.12},"g":["Ogden"],"a":26.65,"adj":null,"roy":26.8,"v":-0.56,"n":6,"note":""},{"i":45,"t":"Human Resources Coordinator","d":"Finance","c":{"Clearfield":29.98,"Kaysville":27.51,"Layton":29.87,"North Ogden":32.12,"Ogden":44.0,"Riverdale":39.47,"Syracuse":26.39},"g":["Ogden","Riverdale"],"a":29.17,"adj":null,"roy":26.8,"v":8.84,"n":7,"note":""},{"i":46,"t":"Utility Billing Supervisor/City Treasurer","d":"Finance","c":{},"g":[],"a":27.98,"adj":null,"roy":28.18,"v":-0.71,"n":0,"note":"5% added to Utility Billing Supervisor for Treasurer responsibilities"},{"i":47,"t":"Supervisor","d":"Recreation","c":{"Clearfield":26.77,"Clinton":21.78,"Kaysville":38.64,"North Ogden":29.67,"Ogden":29.32,"South Ogden":24.5},"g":["Clinton","Kaysville"],"a":27.57,"adj":null,"roy":29.36,"v":-6.13,"n":6,"note":""},{"i":48,"t":"Public Works Inspector","d":"Water","c":{"Bountiful":29.87,"Clearfield":23.55,"Kaysville":30.01,"Layton":28.07,"Ogden":29.32},"g":["Clearfield"],"a":29.32,"adj":34.24,"roy":29.36,"v":16.62,"n":5,"note":"Benchmarked w/Superintendents"},{"i":49,"t":"Superintendent","d":"Public Facilities","c":{"Clearfield":37.47,"Layton":39.0,"Ogden":38.44},"g":[],"a":38.3,"adj":34.24,"roy":29.36,"v":16.62,"n":3,"note":"Benchmarked w/Superintendents"},{"i":50,"t":"Superintendent","d":"Parks","c":{"Clearfield":37.47,"Clinton":29.15,"Kaysville":38.45,"Layton":37.63,"Ogden":48.41,"Pleasant View":25.35,"Syracuse":32.52},"g":["Ogden","Pleasant View"],"a":35.04,"adj":34.24,"roy":29.36,"v":16.62,"n":7,"note":"Averaged w/Parks, Fleet, Streets, Water & Bldg to keep depts uniform"},{"i":51,"t":"Superintendent","d":"Fleet Services","c":{"Bountiful":29.96,"Layton":31.13,"Ogden":33.57},"g":[],"a":31.55,"adj":34.24,"roy":29.36,"v":16.62,"n":3,"note":"Averaged w/Parks, Fleet, Streets, Water & Bldg to keep depts uniform"},{"i":52,"t":"Superintendent","d":"Bldg Maint","c":{"Clearfield":37.47,"Layton":39.0,"Ogden":38.44},"g":[],"a":38.3,"adj":34.24,"roy":29.36,"v":16.62,"n":3,"note":"Averaged w/Parks, Fleet, Streets, Water & Bldg to keep depts uniform"},{"i":53,"t":"Superintendent","d":"Streets","c":{"Bountiful":34.35,"Centerville":32.3,"Clearfield":37.47,"Clinton":29.15,"Layton":35.47,"Pleasant View":26.75,"Syracuse":32.53},"g":[],"a":32.57,"adj":34.24,"roy":29.36,"v":16.62,"n":7,"note":"Averaged w/Parks, Fleet, Streets, Water & Bldg to keep depts uniform"},{"i":54,"t":"Superintendent","d":"Water/Storm","c":{"Centerville":32.3,"Clearfield":39.61,"Clinton":33.69,"Kaysville":33.86,"Layton":35.47,"North Ogden":44.69,"Pleasant View":28.82,"Syracuse":32.53},"g":["North Ogden"],"a":33.75,"adj":34.24,"roy":29.36,"v":16.62,"n":8,"note":"Averaged w/Parks, Fleet, Streets, Water & Bldg to keep depts uniform"},{"i":55,"t":"Master Electrician","d":"Public Works","c":{"Centerville":31.41},"g":[],"a":31.41,"adj":null,"roy":29.89,"v":5.09,"n":1,"note":""},{"i":56,"t":"IT Supervisor","d":"IT","c":{"Clearfield":50.32,"Kaysville":43.1,"Ogden":51.8,"Syracuse":39.6},"g":[],"a":46.21,"adj":null,"roy":32.0,"v":44.41,"n":4,"note":""},{"i":57,"t":"Accounting Manager","d":"Finance","c":{"Bountiful":37.87,"Clearfield":29.98,"Kaysville":38.56,"Layton":40.62,"Ogden":35.92},"g":["Kaysville"],"a":36.1,"adj":null,"roy":32.93,"v":9.63,"n":5,"note":""},{"i":58,"t":"Deputy Director","d":"Parks/Rec","c":{"Clearfield":37.47,"Ogden":48.41,"Riverdale":33.08,"Syracuse":36.08},"g":["Ogden"],"a":35.54,"adj":null,"roy":38.37,"v":-7.38,"n":4,"note":""},{"i":59,"t":"Deputy Director","d":"Public Works","c":{"Centerville":46.13,"Clearfield":54.6,"Clinton":33.69,"Layton":49.8,"North Ogden":38.24,"Ogden":55.42,"South Ogden":40.86},"g":["Clinton","Ogden"],"a":45.93,"adj":null,"roy":38.37,"v":19.7,"n":7,"note":""},{"i":60,"t":"City Planner","d":"Comm Dev","c":{"Clearfield":39.61,"Layton":42.67,"Ogden":48.41},"g":[],"a":43.56,"adj":null,"roy":39.7,"v":9.72,"n":3,"note":""},{"i":61,"t":"Assistant City Attorney","d":"Legal","c":{"Bountiful":37.88,"Clearfield":54.6,"Layton":53.25,"Ogden":43.85},"g":["Bountiful"],"a":50.57,"adj":null,"roy":42.43,"v":19.18,"n":4,"note":""},{"i":62,"t":"Parks & Recreation Director","d":"Parks/Rec","c":{"Bountiful":39.76,"Centerville":47.24,"Clearfield":54.6,"Clinton":35.39,"Kaysville":48.65,"Layton":60.23,"Ogden":48.41,"Syracuse":53.31},"g":["Clinton","Layton"],"a":48.66,"adj":null,"roy":44.4,"v":9.59,"n":8,"note":""},{"i":63,"t":"Management Services Director","d":"Finance","c":{"Bountiful":48.32,"Centerville":49.81,"Clearfield":50.32,"Kaysville":53.44,"Layton":58.83,"North Ogden":56.91,"Ogden":65.23,"Pleasant View":50.3,"Riverdale":47.79,"South Ogden":46.76,"Syracuse":51.36},"g":["Ogden"],"a":51.38,"adj":null,"roy":47.24,"v":8.76,"n":11,"note":""},{"i":64,"t":"Public Works Director","d":"PW Admin","c":{"Bountiful":50.72,"Centerville":52.69,"Clearfield":59.95,"Kaysville":54.95,"Layton":62.35,"North Ogden":58.2,"Riverdale":50.85,"South Ogden":51.88,"Syracuse":52.92},"g":[],"a":54.95,"adj":null,"roy":47.88,"v":14.77,"n":9,"note":""},{"i":65,"t":"Community Development Director/Asst City Manager","d":"Comm Dev","c":{"Bountiful":53.22,"Clearfield":63.17,"South Ogden":52.31,"Syracuse":55.31},"g":[],"a":56.0,"adj":null,"roy":48.32,"v":15.89,"n":4,"note":""},{"i":66,"t":"City Attorney","d":"Legal","c":{"Bountiful":58.74,"Centerville":58.6,"Clearfield":63.17,"Kaysville":60.45,"Layton":67.61,"North Ogden":72.78,"Ogden":69.8,"Syracuse":58.66},"g":["North Ogden"],"a":62.43,"adj":null,"roy":54.53,"v":14.49,"n":8,"note":""},{"i":67,"t":"City Manager","d":"Legislative","c":{"Bountiful":67.95,"Centerville":64.26,"Clearfield":68.52,"Clinton":52.12,"Kaysville":67.75,"Layton":117.97,"North Ogden":72.78,"Ogden":64.59,"Pleasant View":50.3,"Riverdale":55.84,"South Ogden":59.86,"Syracuse":61.46},"g":["Clinton","Layton","Pleasant View"],"a":64.78,"adj":null,"roy":57.69,"v":12.29,"n":12,"note":""},{"i":68,"t":"Firefighter/EMT (2880 hours)","d":"Fire & Rescue","c":{"Clinton":16.16,"Kaysville":18.67,"Layton":19.26,"Ogden":18.77,"Riverdale":24.56,"South Ogden":17.83,"Syracuse":20.44},"g":[],"a":19.38,"adj":null,"roy":17.17,"v":12.87,"n":7,"note":""},{"i":69,"t":"Engineer/Firefighter II (2880 hours)","d":"Fire & Rescue","c":{"Kaysville":21.55,"Layton":24.6,"Ogden":22.52,"Riverdale":29.74,"South Ogden":20.76,"Syracuse":22.48},"g":["Riverdale"],"a":22.38,"adj":null,"roy":19.42,"v":15.24,"n":6,"note":""},{"i":70,"t":"Firefighter/Paramedic (2880 hours)","d":"Fire & Rescue","c":{"Clinton":21.79,"Kaysville":21.67,"Layton":22.93,"Ogden":24.4,"Syracuse":24.16},"g":[],"a":22.99,"adj":null,"roy":19.97,"v":15.12,"n":5,"note":""},{"i":71,"t":"FirefighterII/Senior Paramedic (2880 hours)","d":"Fire & Rescue","c":{},"g":[],"a":24.14,"adj":null,"roy":20.98,"v":15.06,"n":0,"note":"5% above Paramedic"},{"i":72,"t":"Fire Captain (2880 hours)","d":"Fire & Rescue","c":{"Clinton":24.85,"Kaysville":26.52,"Layton":30.96,"Ogden":28.06,"Riverdale":36.38,"South Ogden":26.73,"Syracuse":27.09},"g":["Riverdale"],"a":27.37,"adj":null,"roy":23.78,"v":15.1,"n":7,"note":""},{"i":73,"t":"Fire Battalion Chief (2880 hours)","d":"Fire & Rescue","c":{"Layton":36.39,"Ogden":33.11,"Syracuse":33.42},"g":[],"a":34.31,"adj":null,"roy":29.87,"v":14.86,"n":3,"note":""},{"i":74,"t":"Deputy Chief","d":"Fire & Rescue","c":{"Clinton":45.0,"Layton":55.26,"Ogden":55.42,"South Ogden":44.59,"Syracuse":56.24},"g":[],"a":51.3,"adj":null,"roy":45.16,"v":13.6,"n":5,"note":""},{"i":75,"t":"Fire Chief","d":"Fire & Rescue","c":{"Clinton":40.86,"Kaysville":53.72,"Layton":64.86,"Ogden":65.23,"Riverdale":50.68,"South Ogden":49.38,"Syracuse":63.3},"g":["Clinton"],"a":57.86,"adj":null,"roy":47.84,"v":20.94,"n":7,"note":""},{"i":76,"t":"Police Officer","d":"Police","c":{"Bountiful":28.55,"Centerville":30.37,"Clearfield":27.84,"Layton":31.51,"North Ogden":31.0,"Ogden":29.26,"Pleasant View":24.34,"Riverdale":26.92,"South Ogden":24.1,"Syracuse":27.62},"g":[],"a":28.15,"adj":null,"roy":27.12,"v":3.8,"n":10,"note":""},{"i":77,"t":"Master Officer","d":"Police","c":{},"g":[],"a":30.97,"adj":null,"roy":29.84,"v":3.79,"n":0,"note":"10% above Police Officer"},{"i":78,"t":"Sergeant","d":"Police","c":{"Bountiful":36.42,"Centerville":41.01,"Clearfield":39.61,"Clinton":33.59,"Kaysville":43.44,"Layton":46.22,"North Ogden":41.78,"Ogden":43.06,"Pleasant View":34.77,"Riverdale":36.33,"South Ogden":34.37,"Syracuse":43.21},"g":[],"a":39.48,"adj":null,"roy":34.55,"v":14.27,"n":12,"note":""},{"i":79,"t":"Police Captain","d":"Police","c":{"Bountiful":41.73,"Centerville":49.62,"Clearfield":46.06,"Clinton":38.86,"Kaysville":49.07,"Layton":52.64,"North Ogden":53.0,"Ogden":47.45,"South Ogden":41.57,"Syracuse":49.52},"g":[],"a":46.95,"adj":null,"roy":40.63,"v":15.56,"n":10,"note":""},{"i":80,"t":"Chief of Police","d":"Police","c":{"Bountiful":55.94,"Centerville":59.05,"Clearfield":59.9,"Clinton":51.92,"Kaysville":63.93,"Layton":64.86,"North Ogden":67.31,"Ogden":65.23,"Pleasant View":46.76,"Riverdale":52.91,"South Ogden":52.7,"Syracuse":60.31},"g":[],"a":58.4,"adj":null,"roy":52.0,"v":12.31,"n":12,"note":""}],"cities":["Bountiful","Centerville","Clearfield","Clinton","Kaysville","Layton","North Ogden","Ogden","Pleasant View","Riverdale","South Ogden","Syracuse"],"short":{"Bountiful":"Bntfl","Centerville":"Cntrv","Clearfield":"Clrfd","Clinton":"Clntn","Kaysville":"Kaysv","Layton":"Laytn","North Ogden":"N Ogd","Ogden":"Ogden","Pleasant View":"P View","Riverdale":"Rvrdl","South Ogden":"S Ogd","Syracuse":"Syrcs"}}, sort={k:'v',dir:-1};
+  var t=document.getElementById('svt'), q=document.getElementById('svq'), dsel=document.getElementById('svd'), cb=document.getElementById('svc'), n=document.getElementById('svn');
+  Array.from(new Set(D.rows.map(function(r){return r.d;}))).sort().forEach(function(d){var o=document.createElement('option');o.value=d;o.textContent=d;dsel.appendChild(o);});
+  function f(x){return x==null?'':x.toFixed(2);}
+  function val(r,k){return k==='t'||k==='d'?r[k]:(k in r?r[k]:(r.c[k]!=null?r.c[k]:null));}
+  function draw(){
+    var show=cb.checked, s=(q.value||'').toLowerCase(), dd=dsel.value;
+    var cols=[['t','Job','l'],['d','Department','l']].concat(show?D.cities.map(function(c){return [c,D.short[c],''];}):[]).concat([['n','Cities',''],['a','Average',''],['adj','Adjusted',''],['roy','Roy',''],['v','Gap','']]);
+    var rows=D.rows.filter(function(r){return (!dd||r.d===dd)&&(!s||(r.t+' '+r.d+' '+r.note).toLowerCase().indexOf(s)>-1);});
+    rows.sort(function(a,b){var x=val(a,sort.k),y=val(b,sort.k);if(x==null)return 1;if(y==null)return -1;return (x>y?1:x<y?-1:0)*sort.dir;});
+    var h='<thead><tr>'+cols.map(function(c){return '<th class="'+c[2]+'" data-k="'+c[0]+'" title="Sort">'+c[1]+(sort.k===c[0]?(sort.dir>0?' ▲':' ▼'):'')+'</th>';}).join('')+'</tr></thead><tbody>';
+    h+=rows.map(function(r){
+      var flags=(r.n===0?'<span class="flag">no city to compare</span>':r.n===1?'<span class="flag">1 city</span>':'')+(r.adj?'<span class="flag b">shared figure</span>':'');
+      return '<tr><td class="l"><b>'+r.t+'</b>'+flags+(r.note?'<div class="sv-note">'+r.note+'</div>':'')+'</td><td class="l">'+r.d+'</td>'+
+        (show?D.cities.map(function(c){return '<td class="'+(r.g.indexOf(c)>-1?'gray':'')+'">'+f(r.c[c])+'</td>';}).join(''):'')+
+        '<td>'+r.n+'</td><td>'+f(r.a)+'</td><td>'+f(r.adj)+'</td><td>'+f(r.roy)+'</td><td class="big '+(r.v<0?'neg':r.v>=20?'hi':'')+'">'+r.v.toFixed(2)+'%</td></tr>';
+    }).join('')+'</tbody>';
+    t.innerHTML=h; n.textContent='Showing '+rows.length+' of '+D.rows.length+' rows';
+    t.querySelectorAll('th').forEach(function(th){th.onclick=function(){var k=th.dataset.k;sort.dir=(sort.k===k?-sort.dir:(k==='t'||k==='d'?1:-1));sort.k=k;draw();};});
+  }
+  q.oninput=draw; dsel.onchange=draw; cb.onchange=draw; draw();
+})();
+</script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: false, theme: 'base',
+    flowchart: { htmlLabels: true, useMaxWidth: false, diagramPadding: 12, nodeSpacing: 30, rankSpacing: 40, wrappingWidth: 300 },
+    themeVariables: { primaryColor: '#fbf9f3', primaryTextColor: '#1c1c1c', primaryBorderColor: '#16273f', lineColor: '#16273f', fontFamily: '"Source Sans 3", Arial, sans-serif', fontSize: '22px' } });
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function(){ mermaid.run({ querySelector: 'pre.mermaid' }); });
+</script>
+</body>
+</html>
