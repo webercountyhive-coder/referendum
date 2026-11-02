@@ -16,11 +16,11 @@
     --paper: #fbf9f3;
     --ink: #1c1c1c;
     --ink-soft: #4a4a44;
-    --rust: #a8431f;
+    --rust: #b3261e;
     --amber: #c8912b;
     --line: #d8d0bc;
     --good: #3d6b46;
-    --bad: #a8431f;
+    --bad: #b3261e;
     --unclear: #8a7a3d;
   }
   * { box-sizing: border-box; }
@@ -167,10 +167,10 @@
     padding: 14px 18px;
     margin: 16px 0;
     border-left: 4px solid var(--rust);
-    background: #fbeee6;
+    background: #fbe3df;
     font-size: 0.95rem;
   }
-  .callout.finding { border-left-color: var(--bad); background: #fbeee6; }
+  .callout.finding { border-left-color: var(--bad); background: #fbe3df; }
   .callout.note { border-left-color: var(--unclear); background: #f7f1de; }
   .callout.good { border-left-color: var(--good); background: #eaf1ea; }
   .callout strong { display: block; font-family: 'Source Sans 3', sans-serif; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.06em; margin-bottom: 6px; }
@@ -180,7 +180,7 @@
   table.compare tr:nth-child(even) td { background: var(--paper); }
   .status-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; padding: 2px 8px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.03em; }
   .status-confirmed { background: #eaf1ea; color: var(--good); border: 1px solid var(--good); }
-  .status-disputed { background: #fbeee6; color: var(--bad); border: 1px solid var(--bad); }
+  .status-disputed { background: #fbe3df; color: var(--bad); border: 1px solid var(--bad); }
   .status-unverified { background: #f7f1de; color: var(--unclear); border: 1px solid var(--unclear); }
   .timeline { list-style: none; padding: 0; margin: 16px 0; }
   .timeline li { padding: 10px 0 10px 20px; border-left: 2px solid var(--line); position: relative; margin-left: 6px; }
@@ -269,7 +269,7 @@
   .city-label.key span{font-weight:600;font-size:11.5px;color:#14213D;}
   .city-label span{display:block;transform:translate(-50%,-50%);font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#4a2f55;white-space:nowrap;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff;pointer-events:none;}
   .loc-pin{background:none;border:none;}
-  .loc-pin span{display:block;width:22px;height:22px;border-radius:50%;background:#a8431f;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.5);transform:translate(-50%,-50%);}
+  .loc-pin span{display:block;width:22px;height:22px;border-radius:50%;background:#b3261e;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.5);transform:translate(-50%,-50%);}
   @media (max-width:640px){ #locmap{height:300px;} }
 </style>
 <style>
@@ -390,14 +390,62 @@ details.sources ol, .full-sources ol{padding-left:64px !important}
 .big-num-box{border:3px solid var(--navy);background:#fff;padding:18px 20px;margin:18px 0}
 .big-num-box .bn{font-size:2.1rem;font-weight:800;color:var(--rust);line-height:1}
 .big-num-box p{margin:8px 0 0;font-size:1.1rem}
+.hbx-top{margin:0}
+.hb-bar{background:#0d0b0a;border-bottom:1px solid #3a2f1c;padding:10px 20px}
+.hb-bar a{display:flex;align-items:center;gap:12px;max-width:1100px;margin:0 auto;text-decoration:none}
+.hb-bar img{width:52px;height:52px;border-radius:4px;display:block;flex:none}
+.hb-name{font-family:'Cinzel','Trajan Pro',Georgia,serif;color:#d4af37;font-size:16px;letter-spacing:.14em;text-transform:uppercase;line-height:1.2;display:block}
+.hb-sub{font-family:Georgia,serif;font-style:italic;color:#b8956a;font-size:12.5px;display:block;margin-top:2px}
+.hb-line-top{font-family:Georgia,serif;color:#e8d9b5;font-size:12.5px;display:block;margin-top:3px;line-height:1.4}
+.hbx-slim{background:#0e2438;color:#dbe7f0;font:600 14px/1.4 Arial,sans-serif;padding:7px 20px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.hbx-slim a{color:#F3E3B3;text-decoration:underline}
+.hb-foot{background:#0d0b0a;color:#b8956a;text-align:center;padding:26px 20px 30px;font-family:Georgia,serif;line-height:1.5}
+.hb-foot img{width:52px;height:52px;display:block;margin:0 auto 10px}
+.hb-foot .hb-name,.hb-foot .hb-sub{display:block}
+.hb-foot .hb-tag{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8a7650;margin-top:8px;display:block}
+.hb-line{max-width:720px;margin:14px auto 0;color:#e8d9b5;font-size:15.5px;line-height:1.5}
+.hb-tips{margin:16px 0 4px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.hb-btn{display:inline-block;border:2px solid #d4af37;background:#d4af37;color:#0d0b0a!important;font:700 15px Georgia,serif;padding:10px 18px;border-radius:6px;text-decoration:none!important}
+.hb-btn2{background:transparent;color:#d4af37!important}
+.hb-small{font-size:12.5px;color:#8a7650;margin:6px 0 0}
+.hb-small a{color:#d4af37;text-decoration:underline}
+.hb-foot p{max-width:720px;margin-left:auto!important;margin-right:auto!important}
+.hbx-tools{max-width:980px;margin:14px auto 4px;padding:0 20px;display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start;font-family:Arial,sans-serif;position:relative;z-index:2}
+.hbx-tool{display:inline-block;font:700 15px Arial,sans-serif;color:#13233F!important;background:#fff;border:1px solid #c8cfd6;border-radius:6px;padding:9px 13px;text-decoration:none!important;cursor:pointer;line-height:1.2}
+.hbx-tool:hover{border-color:#13233F}.hbx-cnchip b{color:#1f5f9e;font-family:ui-monospace,Menlo,monospace}
+.hbx-jump{flex-basis:100%;order:5;border:1px solid #c8cfd6;border-radius:6px;background:#fff;color:#13233F}.hbx-jump summary{cursor:pointer;padding:9px 13px;font:700 15px Arial,sans-serif}
+.hbx-jump ol{margin:0;padding:4px 16px 12px 36px}.hbx-jump li{margin:6px 0;font-size:16.5px}.hbx-jump a{color:#13233F}
+.hbx-shelfwrap{background:#0e2438;color:#dbe7f0;padding:26px 20px 30px;font:16px/1.5 Arial,sans-serif;margin-top:48px;position:relative;z-index:1}
+.hbx-shelfwrap .in{max-width:900px;margin:0 auto}
+.hbx-shelf{border:2px dashed #9fd0ee;border-radius:10px;padding:16px 18px}
+.hbx-cn-big{font:600 17px ui-monospace,Menlo,monospace;margin-bottom:12px;color:#fff}.hbx-cn-big b{color:#9fd0ee}
+.hbx-nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.hbx-nav-btn{flex:1;min-width:220px;background:#12304a;border:1px solid #4d86ad;border-radius:8px;padding:12px 14px;color:#fff!important;text-decoration:none!important;font-size:16px}.hbx-nav-btn b{color:#9fd0ee;font-family:ui-monospace,Menlo,monospace}.hbx-off{opacity:.5}
+.hbx-list summary{cursor:pointer;font-weight:700;padding:6px 0}.hbx-list ol{list-style:none;margin:6px 0 0;padding:0}.hbx-list li{padding:6px 0;border-bottom:1px solid #2b4a63}.hbx-list a{color:#fff!important;text-decoration:none}
+.hbx-shelf-head{color:#9fd0ee;font:600 13px ui-monospace,Menlo,monospace;letter-spacing:.1em}.hbx-cn{font-family:ui-monospace,Menlo,monospace;color:#9fd0ee;margin-right:6px}
+.hbx-find{margin:14px 0 4px}.hbx-find label{display:block;font-weight:700;margin-bottom:6px}.hbx-find div{display:flex;gap:8px;flex-wrap:wrap}.hbx-find input{flex:1;min-width:0;width:100%;padding:12px 14px;font-size:17px;border:2px solid #4d86ad;border-radius:6px;color:#13233F;background:#fff}.hbx-find button{padding:12px 18px;font-size:16px;font-weight:700;background:#9fd0ee;color:#0e2438;border:0;border-radius:6px;cursor:pointer}
+.hbx-search{font-size:15px;margin-top:12px}.hbx-search a,.hbx-search b{color:#9fd0ee}
+.hbx-totop{display:none;position:fixed;right:16px;bottom:16px;z-index:50;background:#0e2438;color:#fff!important;border:2px solid #9fd0ee;border-radius:24px;padding:10px 16px;font:700 15px Arial,sans-serif;text-decoration:none!important;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.hbx-dates{font-family:ui-monospace,Menlo,monospace;font-size:13px}
+@media(max-width:600px){.hb-bar img{width:38px;height:38px}.hb-line-top{font-size:11.5px}}
+@media print{.hbx-tools,.hbx-totop{display:none}}
+/* Text sizes matched to the other Hive repos (Nov. 2, 2026) */
+section p:not(.hs-date):not(.hs-updates),section li,.newhere p,.bill-card p,.tier-card p,main li{font-size:19px!important;line-height:1.6}
+.chart-block p,.statute-box,.funnel-bar,.tier-eg,.sig-note,td,.hs-fig p.sub,.keyfig,.signers,.vpa-note,.sv-note,.fd,figcaption,.sig-facts li{font-size:17px!important;line-height:1.55}
+.card .dates,.card .loc,.pub-date,.bill-meta,.stat .label,div.l{font-size:15px!important}
+.hb-foot .hb-name{font-size:16px}
+.hb-foot .hb-sub{font-size:12.5px}
+.hbx-tools{margin-top:16px;margin-bottom:14px}
+.hbx-shelfwrap+.hb-foot{margin-top:0}
+.hbx-shelf details.hbx-list li,.hbx-shelf details.hbx-list p{font-size:16px!important}
+.hb-bar img[src="hive-bee.png"]{border-radius:50%}
+li a,td a,p a{overflow-wrap:anywhere}
+@media(max-width:700px){main table,.wrap table,section table{display:block;overflow-x:auto;max-width:100%}main svg,section svg{max-width:100%;height:auto}}
 </style>
 </head>
 <body>
-<div class="hb-bar"><a href="https://webercountyhive.substack.com/" target="_blank" rel="noopener"><img src="uhp-badge.png" alt="Utah Hive Politics logo"><span><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span></span></a></div>
-<div class="topbar">
-  <span>THE WEBER COUNTY HIVE &middot; REFERENDUM DOCKET</span>
-  <a href="index.html">&larr; All referendums tracked</a>
-</div>
+<div class="hbx-top"><div class="hb-bar"><a href="https://webercountyhive.substack.com/" target="_blank" rel="noopener"><img src="hive-bee.png" alt="The Hive bee seal"><span><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span><span class="hb-line-top">The people's publication. We investigate what's best for the public as a whole, not any party or special interest.</span></span></a></div>
+<div class="hbx-slim"><span>Referendum Docket · RF 100.07</span><span><a href="index.html">← All referendums tracked</a> · <a href="https://weber-county-hive.github.io/-weber-county-hive-index/">← Hive library (every repo)</a></span></div></div>
 <header class="masthead">
   <div class="masthead-inner">
     <div class="eyebrow">Roy, Weber County &middot; Property-Tax Referendum &middot; Ruled Insufficient Oct. 20 &middot; Printed on the Nov. 3 Ballot, City Says Votes Won't Count</div>
@@ -410,7 +458,7 @@ details.sources ol, .full-sources ol{padding-left:64px !important}
       <span>VOTE NOV 3, 2026</span>
     </div>
     <span class="caselabel">Weber County &middot; Roy</span>
-    <p class="hs-date">Posted Oct. 1, 2026 &middot; Updated Oct. 29, 2026</p>
+    <p class="hs-date">Posted Oct. 1, 2026 &middot; Updated Nov. 2, 2026 &middot; Page look updated Nov. 2, 2026</p>
     <div class="pub-date">Published Oct. 1, 2026 &middot; Signature gathering under way as of Oct. 1, 2026 &middot; Updated Oct. 18, 2026 (petition met requirements; Prop 10 is on the Nov. 3 ballot) &middot; Updated Oct. 23, 2026 (ruled insufficient Oct. 20 after signatures were removed; "Vote FOR" mailer and a council member's claims checked against city records) &middot; Updated Oct. 24, 2026 (correction on the bill section; Roy's fire budget figures added) &middot; Updated Oct. 27, 2026 (the city's salary survey behind the "14%" added) &middot; Updated Oct. 29, 2026 (rubric grades and five unlisted costs added)</div>
   </div>
 </header>
@@ -529,14 +577,21 @@ flowchart TD
   <section id="last-year">
     <h2>4. Last Year's Attempt</h2>
     <p>This is Roy's second property-tax referendum in two years. In 2025 the council adopted an increase (Resolution 25-24 / Ordinance 25-25, Aug. 19, 2025) to raise $1,423,978. A referendum petition was filed Aug. 25, 2025. It needed 1,743 signatures; 714 were turned in and 576 were found valid. The City Recorder declared it insufficient on Oct. 27, 2025.</p>
-    <p>Separately, KSL reported that the State Tax Commission denied Roy's 2025 increase because the city had not posted other Weber County entities' proposed increases, as new guidelines required. The Standard-Examiner reported that denial left the budget gap behind this year's proposal.</p>
+    <p>The city's notice gives two different counts. Its summary says sponsors turned in 714 signatures and 576 were valid; a breakdown table in the same notice lists 831 total and 742 valid. The Lt. Governor's petition page lists 742 signers. Either count is short of 1,743.</p>
+    <div class="callout"><p style="margin:0;"><b>Last year's votes were not counted.</b> The 2025 question still appeared on the November ballot. Roy's referendum page says: &ldquo;Although it was on the November 2025 Election Ballot, any votes cast for the Referendum were not counted.&rdquo; That is what happened last year; the page does not say how 2026 votes would be handled if this year's petition falls short. <i>(Update Oct. 20, 2026: the city ruled this year's petition short and says those votes won't count. See Section 5.)</i></p></div>
+    <h3 style="margin-top:1.4em;">The order of events matters</h3>
+    <p>Before the 2025 petition was counted, the state had already stopped the increase. By Sept. 25, 2025, FOX 13 reported that the State Tax Commission had denied tax increases from 39 Utah entities, and Roy's $1,423,978 was on that list. KSL reported that Roy's was denied because the city had not posted other Weber County entities' proposed increases, as new state guidelines required. City Manager Matt Andrews told KSL the city had followed a Tax Commission checklist that did not list that requirement.</p>
+    <p>On Oct. 6, 2025, KSL reported that 600 to 700 people had signed and called the ballot question &ldquo;now likely a moot point.&rdquo; The petition was declared insufficient three weeks later, on Oct. 27.</p>
+    <div class="callout"><p style="margin:0;"><b>What the records show, and what they don't:</b> The 2025 petition was declared insufficient <i>after</i> the state had already denied the increase and news outlets had reported it. The records don't say why more people didn't sign. They do show that by then the state had already stopped the increase, so the count no longer decided whether it took effect.</p></div>
+    <p>The Standard-Examiner reported that the 2025 denial left the budget gap behind this year's proposal.</p>
     <ul class="timeline">
       <li><span class="date">Aug. 19, 2025</span>Council adopts the 2025 increase ($1,423,978).</li>
       <li><span class="date">Aug. 25, 2025</span>2025 referendum petition received.</li>
-      <li><span class="date">Oct. 2025</span>State Tax Commission denies the 2025 increase (news).</li>
-      <li><span class="date">Oct. 27, 2025</span>2025 petition declared insufficient: 576 valid of 1,743 needed.</li>
+      <li><span class="date">By Sept. 25, 2025</span>State Tax Commission denies the 2025 increase; FOX 13 lists Roy among 39 entities denied.</li>
+      <li><span class="date">Oct. 6, 2025</span>KSL: 600&ndash;700 signed; the petition is &ldquo;now likely a moot point.&rdquo;</li>
+      <li><span class="date">Oct. 27, 2025</span>2025 petition declared insufficient: 576 valid of 1,743 needed (the notice also lists 742 valid in another place). Its ballot votes were later not counted.</li>
       <li><span class="date">July 23, 2026</span>Roy posts its 2026 notice: 54.94% proposed.</li>
-      <li><span class="date">Aug. 11, 2026</span>Council adopts 34.25%, 4-1.</li>
+      <li><span class="date">Aug. 11, 2026</span>Council adopts 34.25%, 4-1 (motion: 34.24%; news: 34.25%).</li>
       <li><span class="date">Sept. 3, 2026</span>Weber County certifies the Nov. 3 ballot listing Prop #10.</li>
       <li><span class="date">Oct. 1, 2026</span>Signature gathering under way.</li>
       <li><span class="date">Oct. 8, 2026</span>Signature deadline (news). Sponsors turn in nearly 2,100 signatures (FOX 13).</li>
@@ -580,7 +635,7 @@ flowchart TD
         <rect x="10" y="10" width="780" height="180" fill="#f6e3dc" stroke="#16273f" stroke-width="4"/>
         <text x="400" y="62" text-anchor="middle" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#16273f">AREA 1 &middot; NORTH</text>
         <text x="400" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" fill="#1c1c1c">461 of 472 needed</text>
-        <text x="400" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#a8431f">SHORT BY 11</text>
+        <text x="400" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#b3261e">SHORT BY 11</text>
         <rect x="10" y="190" width="390" height="250" fill="#e3ecdf" stroke="#16273f" stroke-width="4"/>
         <text x="205" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#16273f">AREA 4 &middot; WEST</text>
         <text x="205" y="310" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" fill="#1c1c1c">492 of 470</text>
@@ -588,7 +643,7 @@ flowchart TD
         <rect x="400" y="190" width="390" height="250" fill="#f6e3dc" stroke="#16273f" stroke-width="4"/>
         <text x="595" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#16273f">AREA 2 &middot; EAST</text>
         <text x="595" y="310" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" fill="#1c1c1c">328 of 423</text>
-        <text x="595" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#a8431f">SHORT BY 95</text>
+        <text x="595" y="370" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#b3261e">SHORT BY 95</text>
         <rect x="10" y="440" width="780" height="190" fill="#e3ecdf" stroke="#16273f" stroke-width="4"/>
         <text x="400" y="495" text-anchor="middle" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#16273f">AREA 3 &middot; SOUTH</text>
         <text x="400" y="547" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" fill="#1c1c1c">564 of 435</text>
@@ -814,6 +869,9 @@ flowchart TD
       <tr><td>$1,749,050 equals a 34.25% increase over $5,106,044</td><td><span class="status-badge status-confirmed">Confirmed</span><span class="st-note">Confirmed &mdash; Hive math on city figures</span></td></tr>
       <tr><td>Signature gathering is under way</td><td><span class="status-badge status-confirmed">Under way as of Oct. 1, 2026</span></td></tr>
       <tr><td>The 2026 petition has enough valid signatures</td><td><span class="status-badge status-disputed">Ruled insufficient Oct. 20</span><span class="st-note">Update Oct. 23: the city ruled it insufficient on Oct. 20 after signature withdrawals (1,845 valid citywide, enough; Areas 1 and 2 short). Earlier status, Oct. 18: met requirements, per Weber County Clerk-Auditor Ricky Hatch (KSL, Oct. 13, 2026). Earlier status, Oct. 1: still open, deadline Oct. 8 (news). An official verified count was not found in the records read.</span></td></tr>
+      <tr><td>Adopted percentage: motion says 34.24%; discussion and news say 34.25%</td><td><span class="status-badge status-unverified">Small discrepancy</span><span class="st-note">Small discrepancy in the record &mdash; minutes vs. news</span></td></tr>
+      <tr><td>2025 signature count: notice lists 576 valid of 714 and also 742 valid of 831</td><td><span class="status-badge status-unverified">Conflicting figures</span><span class="st-note">Conflicting figures in the official notice</span></td></tr>
+      <tr><td>2025 votes on the referendum were not counted</td><td><span class="status-badge status-confirmed">Confirmed</span><span class="st-note">Confirmed &mdash; Roy City referendum page</span></td></tr>
       <tr><td>Organizer names and signature targets</td><td><span class="status-badge status-unverified">News reports only</span></td></tr>
       <tr><td>Exact final adopted tax rate (decimal)</td><td><span class="status-badge status-unverified">Not found in records read</span><span class="st-note">Update Oct. 23: the Aug. 11 packet's alternative schedule shows .002159, up from .001608. The final certified decimal was not found.</span></td></tr>
       <tr><td>19 signatures came off between Oct. 14 and Oct. 20</td><td><span class="status-badge status-confirmed">From the city's totals</span><span class="st-note">The city's letters give totals, not a withdrawal count.</span></td></tr>
@@ -827,7 +885,7 @@ flowchart TD
   <section id="updates">
   <h2>Updates since this was posted</h2>
   <p>Changes and new records since this page was first posted, with dates.</p>
-<ul class="hs-upd"><li><span class="d">Oct. 8, 2026</span>Sponsors turned in nearly 2,100 signatures to the Weber County Clerk's office, according to FOX 13.<span class="s">Source: <a href="https://www.fox13now.com/news/local-news/weber-county/roy-referendum-on-34-property-tax-increase-gets-enough-signatures-to-be-on-ballot" target="_blank" rel="noopener">FOX 13, Oct. 15, 2026</a></span></li><li><span class="d">Oct. 13, 2026</span>KSL reported that Weber County Clerk-Auditor Ricky Hatch said the petitioners "met the requirements." Prop 10 stays on the Nov. 3 ballot. See Section 3.<span class="s">Source: <a href="https://www.ksl.com/article/51635841/roy-petitioners-get-enough-signatures-to-force-vote-on-future-of-3425-tax-hike" target="_blank" rel="noopener">KSL.com, Oct. 13, 2026</a></span></li><li><span class="d">Oct. 18, 2026</span>This page was moved to the Hive's standard layout: larger print, a short version, words to know, connected work and a plain-words version. No earlier text or figures were removed. Long status labels were shortened, with their full original wording kept beneath each label.</li><li><span class="d">Oct. 20, 2026</span>The city ruled the petition insufficient after signature withdrawals. Prop 10 stays printed on the ballot; the city says votes on it will not be counted. See Section 5.<span class="s">Source: <a href="https://cms7files1.revize.com/roycityut/Government/Referendums/2026%20Referendum%20Petition%20Response%20-%20Insufficient.pdf" target="_blank" rel="noopener">Roy City letter, Oct. 20, 2026</a></span></li><li><span class="d">Oct. 22, 2026</span>Roy City Citizens, run by former Councilmember Randy Scadden, registered as a political issues committee supporting Prop 10. See Section 7.<span class="s">Source: <a href="https://disclosures.utah.gov/" target="_blank" rel="noopener">disclosures.utah.gov</a></span></li><li><span class="d">Oct. 23, 2026</span>Changed the page title from "Roy Prop 10: Voters Are Asked to Keep or Reject a $1.75 Million Tax Increase" and updated the summary under it, which had said "Residents are gathering signatures right now for a referendum on it." Added Sections 5 through 8: the six days from sufficient to insufficient, the area map, where the money goes (including the draft salary survey, the fire move, what it adds up to on your bill, Roy's audited savings and debt, and where Roy's tax growth goes), the mailer check and Councilmember Jackson's claims check. Added people and questions. No earlier text or figures were removed; earlier status wording is kept beneath the updated labels.</li><li><span class="d">Oct. 24, 2026</span><b>Correction:</b> the bill section said the Weber Fire District's hearing notice states its estimate leaves out Roy's required rate cut. The written notice doesn't mention the cut; the district's Oct. 1 hearing presentation does. The sentence now says so. <b>Added:</b> state law says Roy's certified tax rate "shall be decreased" in the first budget year after it joins the district, by the revenue it budgeted for fire protection, paramedic and emergency services the prior fiscal year. Roy's budget book shows Fire &amp; Rescue at $6,052,221 in the FY2026 budget and $7,027,895 for FY2027; ambulance fees of $1,472,000 and Weber County paramedic money of $500,000 (FY2026 modified budget); and general property taxes of $5,063,978 (FY2026 modified budget). Roy hasn't published the dollar amount of its cut, which fiscal year it will use, or how fee revenue is counted, so the net bill still isn't known. A reader comment raised these points.<span class="s">Sources: <a href="https://le.utah.gov/xcode/Title59/Chapter2/59-2-S924.2.html" target="_blank" rel="noopener">Utah Code 59-2-924.2(1) and (7)(b)</a>; <a href="https://www.utah.gov/pmn/files/1447829.pdf" target="_blank" rel="noopener">Roy City Annual Budget, FY2027</a>; <a href="https://www.utah.gov/pmn/files/1491557.pdf" target="_blank" rel="noopener">Weber Fire District, Roy hearing notice</a></span></li><li><span class="d">Oct. 27, 2026</span><b>Added:</b> Section 9, the city's one-page "Salary Survey Fall 2024," released under a public records request (a tip came in with it). The sheet's 81 gaps average 14.1%, the city's 14%. Added what the sheet leaves out, a city-by-city chart, where the $1,207,371 in raises goes by department, the payroll weighting, the Oct. 20 hearing on top officials raises, a status update and six questions. A full sortable copy is on its own page. No earlier text or figures were removed; the "Not found" status is kept beneath the new label. The story ran Oct. 27: <a href="https://webercountyhive.substack.com/p/roys-14-the-one-page-sheet-behind" target="_blank" rel="noopener">Roy's 14%: The One-Page Sheet Behind a 34% Tax Increase</a>.<span class="s">Sources: Roy City Salary Survey Fall 2024; <a href="https://www.utah.gov/pmn/files/1471580.pdf" target="_blank" rel="noopener">Roy City Aug. 11, 2026 packet</a></span></li><li><span class="d">Oct. 29, 2026</span><b>Added:</b> Section 10, the rubric grades, with three grades changed after a second look from the public's point of view (city Transparency C to D; voter-area rule Community C to D; mailer Community, blank, now D) and how each could have earned a better grade. Earlier grades are kept in the table. <b>Added</b> to Section 6: five costs the tax schedule doesn't spell out. No earlier text or figures were removed.<span class="s">Source: <a href="https://www.utah.gov/pmn/files/1471580.pdf" target="_blank" rel="noopener">Roy City Aug. 11, 2026 packet</a></span></li></ul>
+<ul class="hs-upd"><li><span class="d">Oct. 8, 2026</span>Sponsors turned in nearly 2,100 signatures to the Weber County Clerk's office, according to FOX 13.<span class="s">Source: <a href="https://www.fox13now.com/news/local-news/weber-county/roy-referendum-on-34-property-tax-increase-gets-enough-signatures-to-be-on-ballot" target="_blank" rel="noopener">FOX 13, Oct. 15, 2026</a></span></li><li><span class="d">Oct. 13, 2026</span>KSL reported that Weber County Clerk-Auditor Ricky Hatch said the petitioners "met the requirements." Prop 10 stays on the Nov. 3 ballot. See Section 3.<span class="s">Source: <a href="https://www.ksl.com/article/51635841/roy-petitioners-get-enough-signatures-to-force-vote-on-future-of-3425-tax-hike" target="_blank" rel="noopener">KSL.com, Oct. 13, 2026</a></span></li><li><span class="d">Oct. 18, 2026</span>This page was moved to the Hive's standard layout: larger print, a short version, words to know, connected work and a plain-words version. No earlier text or figures were removed. Long status labels were shortened, with their full original wording kept beneath each label.</li><li><span class="d">Oct. 20, 2026</span>The city ruled the petition insufficient after signature withdrawals. Prop 10 stays printed on the ballot; the city says votes on it will not be counted. See Section 5.<span class="s">Source: <a href="https://cms7files1.revize.com/roycityut/Government/Referendums/2026%20Referendum%20Petition%20Response%20-%20Insufficient.pdf" target="_blank" rel="noopener">Roy City letter, Oct. 20, 2026</a></span></li><li><span class="d">Oct. 22, 2026</span>Roy City Citizens, run by former Councilmember Randy Scadden, registered as a political issues committee supporting Prop 10. See Section 7.<span class="s">Source: <a href="https://disclosures.utah.gov/" target="_blank" rel="noopener">disclosures.utah.gov</a></span></li><li><span class="d">Oct. 23, 2026</span>Changed the page title from "Roy Prop 10: Voters Are Asked to Keep or Reject a $1.75 Million Tax Increase" and updated the summary under it, which had said "Residents are gathering signatures right now for a referendum on it." Added Sections 5 through 8: the six days from sufficient to insufficient, the area map, where the money goes (including the draft salary survey, the fire move, what it adds up to on your bill, Roy's audited savings and debt, and where Roy's tax growth goes), the mailer check and Councilmember Jackson's claims check. Added people and questions. No earlier text or figures were removed; earlier status wording is kept beneath the updated labels.</li><li><span class="d">Oct. 24, 2026</span><b>Correction:</b> the bill section said the Weber Fire District's hearing notice states its estimate leaves out Roy's required rate cut. The written notice doesn't mention the cut; the district's Oct. 1 hearing presentation does. The sentence now says so. <b>Added:</b> state law says Roy's certified tax rate "shall be decreased" in the first budget year after it joins the district, by the revenue it budgeted for fire protection, paramedic and emergency services the prior fiscal year. Roy's budget book shows Fire &amp; Rescue at $6,052,221 in the FY2026 budget and $7,027,895 for FY2027; ambulance fees of $1,472,000 and Weber County paramedic money of $500,000 (FY2026 modified budget); and general property taxes of $5,063,978 (FY2026 modified budget). Roy hasn't published the dollar amount of its cut, which fiscal year it will use, or how fee revenue is counted, so the net bill still isn't known. A reader comment raised these points.<span class="s">Sources: <a href="https://le.utah.gov/xcode/Title59/Chapter2/59-2-S924.2.html" target="_blank" rel="noopener">Utah Code 59-2-924.2(1) and (7)(b)</a>; <a href="https://www.utah.gov/pmn/files/1447829.pdf" target="_blank" rel="noopener">Roy City Annual Budget, FY2027</a>; <a href="https://www.utah.gov/pmn/files/1491557.pdf" target="_blank" rel="noopener">Weber Fire District, Roy hearing notice</a></span></li><li><span class="d">Oct. 27, 2026</span><b>Added:</b> Section 9, the city's one-page "Salary Survey Fall 2024," released under a public records request (a tip came in with it). The sheet's 81 gaps average 14.1%, the city's 14%. Added what the sheet leaves out, a city-by-city chart, where the $1,207,371 in raises goes by department, the payroll weighting, the Oct. 20 hearing on top officials raises, a status update and six questions. A full sortable copy is on its own page. No earlier text or figures were removed; the "Not found" status is kept beneath the new label. The story ran Oct. 27: <a href="https://webercountyhive.substack.com/p/roys-14-the-one-page-sheet-behind" target="_blank" rel="noopener">Roy's 14%: The One-Page Sheet Behind a 34% Tax Increase</a>.<span class="s">Sources: Roy City Salary Survey Fall 2024; <a href="https://www.utah.gov/pmn/files/1471580.pdf" target="_blank" rel="noopener">Roy City Aug. 11, 2026 packet</a></span></li><li><span class="d">Oct. 29, 2026</span><b>Added:</b> Section 10, the rubric grades, with three grades changed after a second look from the public's point of view (city Transparency C to D; voter-area rule Community C to D; mailer Community, blank, now D) and how each could have earned a better grade. Earlier grades are kept in the table. <b>Added</b> to Section 6: five costs the tax schedule doesn't spell out. No earlier text or figures were removed.<span class="s">Source: <a href="https://www.utah.gov/pmn/files/1471580.pdf" target="_blank" rel="noopener">Roy City Aug. 11, 2026 packet</a></span></li><li><span class="d">Nov. 2, 2026</span><b>Added back:</b> details on the 2025 referendum from an earlier version of this page: the city notice's two different signature counts (576 and 742 valid), the state's denial of the 2025 increase before the count (FOX 13, KSL), the Oct. 6, 2025 KSL "moot point" report, and Roy's note that 2025 votes were not counted. Also added the small 34.24% vs. 34.25% difference between the minutes and news.</li></ul>
 </section>
 <section id="words">
   <h2>Words to know</h2>
@@ -836,7 +894,7 @@ flowchart TD
 </section>
 <section id="questions">
   <h2>Questions Worth Asking, and Who to Ask</h2>
-<div class="hs-qa"><div><b>Ask the Roy City Recorder's office:</b>when the 2026 referendum petition was filed, how many signatures were turned in and found valid, and whether it has been declared sufficient. <i>(Update Oct. 18: the county says it met the requirements; the official counts are still worth asking for.)</i></div><div><b>Ask the Weber County Clerk/Auditor's elections office:</b>if the petition is found insufficient, what happens to the Prop #10 votes already printed on the ballot.</div><div><b>Ask Roy City (City Manager's office or Finance):</b>what Roy's adopted 2026 rate is as a decimal, and what changes in the FY2027 budget if voters reject the increase.</div><div><b>Ask the Utah State Tax Commission, Property Tax Division:</b>whether Roy's 2026 increase has been approved for this year's tax notices.</div><div><b>Ask your state representative:</b>whether the Legislature plans changes to Truth in Taxation or property-tax referendum timing.</div><div><b>Ask the Roy City Recorder's office (added Oct. 23):</b>whether Resolution 26-27 was adopted on Oct. 6, and which map of voter participation areas was used to count this petition.</div><div><b>Ask the Weber County Clerk/Auditor's elections office (added Oct. 23):</b>how many removal requests were received for this petition, and on what dates.</div><div><b>Ask your Roy council members (added Oct. 23):</b>the city says a repeal leaves a $195,550 gap. What services would you cut to close that, and why did voters hear "over $1 million"?</div><div><b>Ask Roy City (added Oct. 23):</b>what study the "14% below" wage figure is based on, whether the public can see it, and whether the professional salary survey recommended in August 2025 was ever done.</div><div><b>Ask Roy City and the Weber Fire District (added Oct. 23):</b>how much Roy will cut its own rate when fire moves, and whether any Res. 26-24 raises go with the firefighters.</div><div><b>Watch disclosures.utah.gov (added Oct. 23):</b>Roy City Citizens' money report will show who paid for the "Vote FOR" mailer and when.</div><div><b>Ask Roy City (added Oct. 27):</b>how many employees hold each job on the salary survey, and what the 14% comes to when it is weighted by headcount.</div><div><b>Ask Roy City (added Oct. 27):</b>how the $488,257 for Police &amp; Animal Services was figured when the survey shows the Police Officer job about 3.8% behind.</div><div><b>Ask the Roy City Recorder (added Oct. 27):</b>when the separate public hearing on raises for the city manager, city attorney, department heads and deputies was held, as Utah Code 10-3-818(2) requires before such raises are adopted.</div><div><b>Ask the Roy City Recorder (added Oct. 27):</b>whether Ordinance 26-15 passed on Oct. 20, and whether the cost-of-living raise and wage corrections for those officers had their own hearing before Aug. 11.</div><div><b>Ask your Roy council members (added Oct. 27):</b>why the salary survey compares wages only, when the city also pays about $2.1 million a year into employee retirement.</div><div><b>Ask your Roy council members (added Oct. 27):</b>why these 12 cities, and why the gap is measured from Roy's pay rather than the other cities'.</div></div>
+<div class="hs-qa"><div><b>Ask the Roy City Recorder's office:</b>when the 2026 referendum petition was filed, how many signatures were turned in and found valid, and whether it has been declared sufficient. <i>(Update Oct. 18: the county says it met the requirements; the official counts are still worth asking for.)</i></div><div><b>Ask the Weber County Clerk/Auditor's elections office:</b>if the petition is found insufficient, what happens to the Prop #10 votes already printed on the ballot, and whether they will be counted or reported, as happened in 2025 when they were not counted. <i>(Asked Oct. 1, 2026, when this page was posted. Answered Oct. 20, 2026: the city ruled the petition insufficient and says the Prop #10 votes won't count. See Section 5.)</i></div><div><b>Ask Roy City (City Manager's office or Finance):</b>what Roy's adopted 2026 rate is as a decimal, and what changes in the FY2027 budget if voters reject the increase.</div><div><b>Ask the Utah State Tax Commission, Property Tax Division:</b>whether Roy's 2026 increase has been approved for this year's tax notices.</div><div><b>Ask your state representative:</b>whether the Legislature plans changes to Truth in Taxation or property-tax referendum timing.</div><div><b>Ask the Roy City Recorder's office (added Oct. 23):</b>whether Resolution 26-27 was adopted on Oct. 6, and which map of voter participation areas was used to count this petition.</div><div><b>Ask the Weber County Clerk/Auditor's elections office (added Oct. 23):</b>how many removal requests were received for this petition, and on what dates.</div><div><b>Ask your Roy council members (added Oct. 23):</b>the city says a repeal leaves a $195,550 gap. What services would you cut to close that, and why did voters hear "over $1 million"?</div><div><b>Ask Roy City (added Oct. 23):</b>what study the "14% below" wage figure is based on, whether the public can see it, and whether the professional salary survey recommended in August 2025 was ever done.</div><div><b>Ask Roy City and the Weber Fire District (added Oct. 23):</b>how much Roy will cut its own rate when fire moves, and whether any Res. 26-24 raises go with the firefighters.</div><div><b>Watch disclosures.utah.gov (added Oct. 23):</b>Roy City Citizens' money report will show who paid for the "Vote FOR" mailer and when.</div><div><b>Ask Roy City (added Oct. 27):</b>how many employees hold each job on the salary survey, and what the 14% comes to when it is weighted by headcount.</div><div><b>Ask Roy City (added Oct. 27):</b>how the $488,257 for Police &amp; Animal Services was figured when the survey shows the Police Officer job about 3.8% behind.</div><div><b>Ask the Roy City Recorder (added Oct. 27):</b>when the separate public hearing on raises for the city manager, city attorney, department heads and deputies was held, as Utah Code 10-3-818(2) requires before such raises are adopted.</div><div><b>Ask the Roy City Recorder (added Oct. 27):</b>whether Ordinance 26-15 passed on Oct. 20, and whether the cost-of-living raise and wage corrections for those officers had their own hearing before Aug. 11.</div><div><b>Ask your Roy council members (added Oct. 27):</b>why the salary survey compares wages only, when the city also pays about $2.1 million a year into employee retirement.</div><div><b>Ask your Roy council members (added Oct. 27):</b>why these 12 cities, and why the gap is measured from Roy's pay rather than the other cities'.</div></div>
 </section>
 
   <div class="callout good" id="send-updates">
@@ -850,7 +908,7 @@ flowchart TD
 <section id="behind">
   <h2>Behind this piece</h2>
 <div class="hs-counter"><div><div class="n">71</div><div class="l">Sources listed below</div></div><div><div class="n">17</div><div class="l">Questions to ask, with whom to ask</div></div><div><div class="n">18</div><div class="l">Rows in "People in this record"</div></div><div><div class="n">5</div><div class="l">Large-print diagrams and maps</div></div><div><div class="n">13</div><div class="l">Claims checked against city records</div></div></div>
-  <p class="hs-updates">Posted Oct. 1, 2026. Updated Oct. 18, Oct. 23, Oct. 24, Oct. 27 and Oct. 29, 2026. See "Updates since this was posted" above.</p>
+  <p class="hs-updates">Posted Oct. 1, 2026. Updated Oct. 18, Oct. 23, Oct. 24, Oct. 27, Oct. 29 and Nov. 2, 2026. See "Updates since this was posted" above.</p>
 </section>
 <section id="sources">
   <h2>Sources</h2>
@@ -867,6 +925,9 @@ flowchart TD
       <li>Roy City Council, approved minutes of Aug. 11, 2026 (motion text and 4-1 roll call), approved Sept. 15, 2026. <a href="https://www.utah.gov/pmn/files/1490337.pdf" target="_blank" rel="noopener">Link</a></li>
       <li>Utah Code &sect; 20A-7-613, property tax referendum petition (ballot wording; what a yes or no vote does). <a href="https://le.utah.gov/xcode/Title20A/Chapter7/C20A-7-S613_2025050720250507.html" target="_blank" rel="noopener">Link</a></li>
       <li>Lt. Governor, Initiatives and Referenda page (lists the 2025 "Roy Tax Increase Referendum" as insufficient). <a href="https://vote.utah.gov/initiatives-and-referenda" target="_blank" rel="noopener">Link</a></li>
+      <li>FOX 13, Sept. 25, 2025, &ldquo;39 tax hikes across Utah have been rejected because of a change in the law&rdquo; (lists Roy City, $1,423,978) (news). <a href="https://www.fox13now.com/news/politics/39-tax-hikes-across-utah-have-been-rejected-because-of-a-change-in-the-law" target="_blank" rel="noopener">Link</a></li>
+      <li>Lt. Governor, petition signature page, Roy Tax Increase Referendum (2025): &ldquo;Total Signers 742,&rdquo; last updated Oct. 28, 2025. <a href="https://vote.utah.gov/local-referendum-weber-county-roy-tax-increase-referendum/" target="_blank" rel="noopener">Link</a></li>
+      <li>Roy City, 2025 and 2026 Referendum Information page (2025 votes not counted; 2026 ballot number assigned). <a href="https://www.royutah.gov/government/referendum_s.php" target="_blank" rel="noopener">Link</a></li>
       <li>Roy City 2025 Proposition Information Pamphlet (Resolution 25-24 / Ordinance 25-25). <a href="https://www.utah.gov/pmn/files/1321873.pdf" target="_blank" rel="noopener">Link</a></li>
       <li>Roy City notice declaring the 2025 referendum petition insufficient, Oct. 27, 2025. <a href="https://www.utah.gov/pmn/files/1341699.pdf" target="_blank" rel="noopener">Link</a></li>
       <li>KSL.com, Aug. 12, 2026, "Roy leaders OK scaled-back 34.25% tax hike; foes plan challenge to halt it" (news). <a href="https://www.ksl.com/article/51608949/roy-leaders-ok-scaled-back-3425-tax-hike-foes-plan-challenge-to-halt-it" target="_blank" rel="noopener">Link</a></li>
@@ -933,11 +994,9 @@ flowchart TD
 </section>
 </main>
 
-<footer class="site-footer">
-  The Weber County Hive &middot; Referendum Docket &middot; Reporting from public records only &mdash; no outreach to referendum subjects.<br>
-  <a href="index.html">Back to all referendums tracked</a>
-</footer>
-<div class="hb-foot"><img src="hive-bee.png" alt=""><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span><span class="hb-tag">Independent · Accountability · Journalism</span></div>
+<div class="hbx-shelfwrap"><div class="in"><div class="hbx-shelf" id="hbx-shelf"></div></div></div>
+<div class="hb-foot"><img src="hive-bee.png" alt=""><span class="hb-name">Utah Hive Politics</span><span class="hb-sub">from the publisher of The Weber County Hive</span><span class="hb-tag">Independent &middot; Accountability &middot; Journalism</span><p class="hb-line">The Weber County Hive and Utah Hive Politics: the people's publication. We investigate what's best for the public as a whole, not for any party or special interest group. We report public records. You decide.</p><p class="hb-tips"><a class="hb-btn" href="https://weber-county-hive.github.io/-weber-county-hive-index/tips.html#send">Send a tip</a><a class="hb-btn hb-btn2" href="https://weber-county-hive.github.io/-weber-county-hive-index/tips.html">Tips we checked</a><a class="hb-btn hb-btn2" href="https://weber-county-hive.github.io/-weber-county-hive-index/tips.html#send">See a mistake? Tell us</a></p><p class="hb-small">Reporting from public records only &mdash; no outreach to referendum subjects.</p><p class="hb-small">We never name tipsters. When we correct a page, the fix and its date are shown on the page.</p><p class="hb-small"><a href="index.html">All referendums tracked</a> · <a href="https://weber-county-hive.github.io/-weber-county-hive-index/">Master Index (Hive library)</a> · <a href="https://webercountyhive.substack.com/">Read on Substack</a></p></div>
+<script src="rf-shelf.js?v=1"></script>
 
 <script>document.querySelectorAll('.hs-flip').forEach(f=>f.addEventListener('click',()=>f.setAttribute('aria-expanded',f.getAttribute('aria-expanded')==='true'?'false':'true')));</script>
 <script type="module">
